@@ -28,6 +28,7 @@ export class GoogleComponent implements OnInit {
 
   ageScale = AgeScale.RANGE_20;
   genderScale = GenderScale.BASIC;
+  countryScale = CountryScale.DEU_AUT_CHE;
 
   constructor(private store: Store, private fb: FormBuilder) {}
 
@@ -38,7 +39,6 @@ export class GoogleComponent implements OnInit {
 
     this.googleForm = this.fb.group({
       company: 'Google',
-      country: '',
       education: '',
       state: '',
       firstName: '',
@@ -50,14 +50,12 @@ export class GoogleComponent implements OnInit {
 
     const firstName = this.googleForm.get('firstName');
     const lastName = this.googleForm.get('lastName');
-    const country = this.googleForm.get('country');
     const education = this.googleForm.get('education');
     const income = this.googleForm.get('income');
 
     firstName.valueChanges.subscribe(() => this.store.dispatch(new SetName(firstName.value, lastName.value)));
     lastName.valueChanges.subscribe(() => this.store.dispatch(new SetName(firstName.value, lastName.value)));
     // tslint:disable-next-line: max-line-length
-    country.valueChanges.subscribe(() => this.store.dispatch(new SetCountry(<DeuAutChe>country.value, CountryScale.DEU_AUT_CHE)));
     education.valueChanges.subscribe(() => this.store.dispatch(new SetEducation(<EducationGerman>education.value, EducationScale.GERMAN)));
     income.valueChanges.subscribe(() => this.store.dispatch(new SetIncome(<Number>income.value, IncomeScale.BASIC)));
 
