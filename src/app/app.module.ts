@@ -18,6 +18,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { SurveyState } from './state/survey.state';
 import { environment } from 'src/environments/environment';
+import { AgeComponent } from './demographic/age/age.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { environment } from 'src/environments/environment';
     GoogleComponent,
     FacebookComponent,
     FoodFrequencyComponent,
-    CarCostComponent
+    CarCostComponent,
+    AgeComponent
   ],
   imports: [
     BrowserModule,

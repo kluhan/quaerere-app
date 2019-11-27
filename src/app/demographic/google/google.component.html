@@ -28,9 +28,9 @@
             </mat-form-field>
         </div>
 
-        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
             <!--Gender fields -->
-            <mat-form-field appearance="outline" fxFlex="50">
+            <mat-form-field appearance="outline" fxFlex="33">
                 <mat-label>Gender</mat-label>
                 <mat-select #fontSize formControlName="gender">
                     <mat-option *ngFor="let gender of genderKeys" [value]="gender"> {{ genderLabelGenerator[gender] }} </mat-option>
@@ -38,15 +38,10 @@
             </mat-form-field>
 
             <!--Age fields -->
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Age</mat-label>
-                <mat-select #fontSize formControlName="age">
-                    <mat-option *ngFor="let age of ageKeys" [value]="age"> {{ ageLabelGenerator[age] }} </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <app-demographic-age [parentForm]="googleForm" [scale]="ageScale" fxFlex="33"></app-demographic-age>
 
             <!--Country fields -->
-            <mat-form-field appearance="outline" fxFlex="50">
+            <mat-form-field appearance="outline" fxFlex="33">
                 <mat-label>Country</mat-label>
                 <mat-select #fontSize  formControlName="country">
                     <mat-option value="germany">Deutschland</mat-option>
