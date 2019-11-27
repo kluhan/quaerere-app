@@ -30,7 +30,6 @@
 
         <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
             
-
             <!--Age fields -->
             <app-demographic-age [parentForm]="googleForm" [scale]="ageScale" fxFlex="33"></app-demographic-age>
 
@@ -43,20 +42,9 @@
         </div>
 
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-            <!--Street field -->
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Education</mat-label>
-                <mat-select #fontSize formControlName="education">
-                    <mat-option value="hauptschulabschluss">Hauptschulabschluss</mat-option>
-                    <mat-option value="realschulabschluss">Realschulabschluss</mat-option>
-                    <mat-option value="hochschulreife">Hochschulreife</mat-option>
-                    <mat-option value="bachelor">Bachelor</mat-option>
-                    <mat-option value="master">Master</mat-option>
-                    <mat-option value="doktor">Doktor</mat-option>
-                    <mat-option value="meister">Meister</mat-option>
-                    <mat-option value="techniker">Techniker</mat-option>
-                </mat-select>
-            </mat-form-field>
+            
+            <!--Education field -->
+            <app-demographic-education [parentForm]="googleForm" [scale]="educationScale" fxFlex="50"></app-demographic-education>
 
             <mat-form-field appearance="outline" fxFlex="50">
                 <mat-label>Income</mat-label>

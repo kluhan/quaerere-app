@@ -21,6 +21,7 @@ import { environment } from 'src/environments/environment';
 import { AgeComponent } from './demographic/age/age.component';
 import { GenderComponent } from './demographic/gender/gender.component';
 import { CountryComponent } from './demographic/country/country.component';
+import { EducationComponent } from './demographic/education/education.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CountryComponent } from './demographic/country/country.component';
     CarCostComponent,
     AgeComponent,
     GenderComponent,
-    CountryComponent
+    CountryComponent,
+    EducationComponent
   ],
   imports: [
     BrowserModule,
