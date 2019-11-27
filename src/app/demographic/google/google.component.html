@@ -1,0 +1,86 @@
+
+<div fxLayout="row" style="margin-top: 32px">
+    <form  [formGroup]="googleForm" fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlexOffset="15">
+      <!-- Applying the mat-tyography class adds styles for native elements. -->
+        <section style="text-align:center;">
+          <h1 class="mat-display-4">Google</h1>
+
+         <!--CONSOLE-LOG-DEBUG-->
+          <span class="mat-headline">Value: {{ googleForm.value | json}}</span>  
+        </section>
+
+        <!--Company field -->
+        <mat-form-field  appearance="outline">
+            <mat-label>Company</mat-label>
+            <input matInput placeholder="Company (disabled)" disabled value="Google Inc.">
+        </mat-form-field>
+
+        <!--Name fields -->
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
+            <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>First name</mat-label>
+                <input matInput formControlName="firstName" placeholder="First name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Last name</mat-label>
+                <input matInput formControlName="lastName" placeholder="Last Name">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
+            <!--Gender fields -->
+            <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Gender</mat-label>
+                <mat-select #fontSize formControlName="gender">
+                    <mat-option *ngFor="let gender of genderKeys" [value]="gender"> {{ genderLabelGenerator[gender] }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--Age fields -->
+            <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Age</mat-label>
+                <mat-select #fontSize formControlName="age">
+                    <mat-option *ngFor="let age of ageKeys" [value]="age"> {{ ageLabelGenerator[age] }} </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--Country fields -->
+            <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Country</mat-label>
+                <mat-select #fontSize  formControlName="country">
+                    <mat-option value="germany">Deutschland</mat-option>
+                    <mat-option value="austria">Österreich</mat-option>
+                    <mat-option value="switzerland">Schweiz</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
+            <!--Street field -->
+            <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Education</mat-label>
+                <mat-select #fontSize formControlName="education">
+                    <mat-option value="hauptschulabschluss">Hauptschulabschluss</mat-option>
+                    <mat-option value="realschulabschluss">Realschulabschluss</mat-option>
+                    <mat-option value="hochschulreife">Hochschulreife</mat-option>
+                    <mat-option value="bachelor">Bachelor</mat-option>
+                    <mat-option value="master">Master</mat-option>
+                    <mat-option value="doktor">Doktor</mat-option>
+                    <mat-option value="meister">Meister</mat-option>
+                    <mat-option value="techniker">Techniker</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Income</mat-label>
+                <input matInput formControlName="income" placeholder="Income" value=""> 
+                <mat-icon matSuffix>euro_symbol</mat-icon>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+
+    <div fxFlex="15"></div>
+</div>

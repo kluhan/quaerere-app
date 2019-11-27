@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+    <span>Quaerere-App</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item  [routerLink]="['/demographic/google']">
+    <mat-icon>polymer</mat-icon>
+    <span>Google</span>
+  </button>
+  <button mat-menu-item [routerLink]="['/demographic/facebook']">
+    <mat-icon>contacts</mat-icon>
+    <span>Facebook</span>
+  </button>
+  <button mat-menu-item [routerLink]="['/questionnaire/food-frequency']">
+    <mat-icon>fastfood</mat-icon>
+    <span>Food-Frequency</span>
+  </button>
+  <button mat-menu-item [routerLink]="['/questionnaire/car-cost']">
+    <mat-icon>directions_car</mat-icon>
+    <span>Car-Cost</span>
+  </button>‚
+  <button mat-menu-item disabled>
+    <mat-icon>fingerprint</mat-icon>
+    <span>Apple</span>
+  </button>
+</mat-menu>
