@@ -29,16 +29,13 @@
         </div>
 
         <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
-            <!--Gender fields -->
-            <mat-form-field appearance="outline" fxFlex="33">
-                <mat-label>Gender</mat-label>
-                <mat-select #fontSize formControlName="gender">
-                    <mat-option *ngFor="let gender of genderKeys" [value]="gender"> {{ genderLabelGenerator[gender] }} </mat-option>
-                </mat-select>
-            </mat-form-field>
+            
 
             <!--Age fields -->
             <app-demographic-age [parentForm]="googleForm" [scale]="ageScale" fxFlex="33"></app-demographic-age>
+
+            <!--Gender fields -->
+            <app-demographic-gender [parentForm]="googleForm" [scale]="genderScale" fxFlex="33"></app-demographic-gender>
 
             <!--Country fields -->
             <mat-form-field appearance="outline" fxFlex="33">

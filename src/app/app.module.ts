@@ -19,6 +19,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { SurveyState } from './state/survey.state';
 import { environment } from 'src/environments/environment';
 import { AgeComponent } from './demographic/age/age.component';
+import { GenderComponent } from './demographic/gender/gender.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AgeComponent } from './demographic/age/age.component';
     FacebookComponent,
     FoodFrequencyComponent,
     CarCostComponent,
-    AgeComponent
+    AgeComponent,
+    GenderComponent
   ],
   imports: [
     BrowserModule,
