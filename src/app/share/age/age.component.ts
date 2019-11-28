@@ -23,8 +23,6 @@ export class AgeComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit() {
-    console.log(this.scale);
-
     this.parentForm.addControl('age', new FormControl('', Validators.required));
     const age = this.parentForm.get('age');
     age.valueChanges.subscribe(() => this.store.dispatch(new SetAge(age.value, this.scale)));
