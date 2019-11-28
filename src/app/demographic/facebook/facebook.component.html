@@ -1,13 +1,9 @@
-
 <div fxLayout="row" style="margin-top: 32px">
     <form  [formGroup]="facebookForm" fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlexOffset="15">
-      <!-- Applying the mat-tyography class adds styles for native elements. -->
+        
+        <!-- Applying the mat-typography class adds styles for native elements. -->
         <section style="text-align:center;">
           <h1 class="mat-display-4">Facebook</h1>
-
-         <!--CONSOLE-LOG-DEBUG-->
-          <span class="mat-headline">Value: {{ facebookForm.value | json}}</span>  
-          <span class="mat-headline">Form Status: {{ facebookForm.status }}</span>
         </section>
 
         <!--Company field -->
@@ -16,81 +12,28 @@
             <input matInput placeholder="Company (disabled)" disabled value="Facebook Inc.">
         </mat-form-field>
 
-        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-            <!--Position fields -->
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Position</mat-label>
-                <mat-select #fontSize value="" formControlName="position">
-                    <mat-option value="chief_branding_officer">Chief Branding Officer</mat-option>
-                    <mat-option value="chief_human_resources_officer">Chief Human Resources Officer</mat-option>
-                    <mat-option value="chief_knowledge_officer">Chief Knowledge Officer</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <!--Age fields -->
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Date of birth</mat-label>
-                <input matInput formControlName="birthdate" [matDatepicker]="picker" placeholder="Choose a date of birth">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
+            <!--Name fields -->
+            <app-demographic-name [parentForm]="facebookForm" fxFlex="100" fxLayoutGap="32px"></app-demographic-name>
         </div>
-        
-        <!--Name fields -->
-
 
         <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
-            <mat-form-field appearance="outline" fxFlex="15">
-                <mat-label>Deegre</mat-label>
-                <mat-select formControlName="deegre">
-                    <mat-option value=""></mat-option>
-                    <mat-option value="bsc">B.Sc.</mat-option>
-                    <mat-option value="msc">M.Sc.</mat-option>
-                    <mat-option value="phd">Ph.D.</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="35">
-                <mat-label>Name</mat-label>
-                <input matInput formControlName="name" placeholder="Name">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>E-Mail</mat-label>
-                <input matInput formControlName="email" placeholder="E-Mail">
-                <mat-error *ngIf="emailControl.errors.email">Email is not valid</mat-error>
-            </mat-form-field>
+            <!--Age fields -->
+            <app-demographic-age [parentForm]="facebookForm" [scale]="ageScale" fxFlex="33"></app-demographic-age>
+            <!--Gender fields -->
+            <app-demographic-gender [parentForm]="facebookForm" [scale]="genderScale" fxFlex="33"></app-demographic-gender>
+            <!--Country fields -->
+            <app-demographic-country [parentForm]="facebookForm" [scale]="countryScale" fxFlex="33"></app-demographic-country>
         </div>
 
-        <!--Street field -->
-        <mat-form-field appearance="outline">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="address" placeholder="Address">
-        </mat-form-field>
-        
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-            <!--City field -->          
-            <mat-form-field appearance="outline" fxFlex="33">
-                <mat-label>City</mat-label>
-                <input matInput formControlName="city" placeholder="City">
-            </mat-form-field>
-                
-            <!--State field -->  
-            <mat-form-field appearance="outline" fxFlex="34">
-                <mat-label>State</mat-label>
-                <input matInput formControlName="state" placeholder="State">
-            </mat-form-field>
-
-            <!--Postal-Code field -->  
-            <mat-form-field appearance="outline" fxFlex="33">
-                <mat-label>Postal Code</mat-label>
-                <input matInput formControlName="postCode" #postalCode maxlength="5" placeholder="Postal Code" value="">
-                <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-            </mat-form-field>
+            <!--Education field -->
+            <app-demographic-education [parentForm]="facebookForm" [scale]="educationScale" fxFlex="50"></app-demographic-education>
+            <!--Income field -->
+            <app-demographic-income [parentForm]="facebookForm" [scale]="incomeScale" fxFlex="50"></app-demographic-income>
         </div>
 
     </form>
-
 
     <div fxFlex="15"></div>
 </div>

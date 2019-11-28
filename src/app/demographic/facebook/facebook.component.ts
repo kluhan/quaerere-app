@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AgeScale } from 'src/app/models/demographic/age.enum';
+import { GenderScale } from 'src/app/models/demographic/gender.enum';
+import { CountryScale } from 'src/app/models/demographic/country.enum';
+import { EducationScale } from 'src/app/models/demographic/education.enum';
+import { IncomeScale } from 'src/app/models/demographic/income.enum';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-facebook',
@@ -10,36 +16,19 @@ export class FacebookComponent implements OnInit {
 
   facebookForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  ageScale = AgeScale.BASIC;
+  genderScale = GenderScale.ADVANCED;
+  countryScale = CountryScale.DEU_AUT_CHE;
+  educationScale = EducationScale.ACADEMIC;
+  incomeScale = IncomeScale.RANGE_1000;
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder) {}
+
+  async ngOnInit() {
+
     this.facebookForm = this.fb.group({
       company: 'Facebook',
-      position: '',
-      birthdate: '',
-      deegre: '',
-      address: '',
-      city: '',
-      state: '',
-      postCode: ''
     });
 
-    this.facebookForm.addControl('name',
-      new FormControl('', [
-        Validators.required])
-    );
-
-    this.facebookForm.addControl('email',
-      new FormControl('', [
-        Validators.required,
-        Validators.email])
-    );
-
-    // CONSOLE-LOG-DEBUG
-    this.facebookForm.valueChanges.subscribe(console.log);
   }
-
-  get nameControl() { return this.facebookForm.get('name'); }
-
-  get emailControl() { return this.facebookForm.get('email'); }
 }
