@@ -1,0 +1,19 @@
+<mat-form-field [ngSwitch]="scale" [formGroup]="parentForm" appearance="outline">
+    <mat-label>Gender</mat-label>
+  
+    <ng-container *ngSwitchCase="scaleOptions.BASIC">
+      <mat-select #fontSize formControlName="gender">
+        <mat-option [value]="genderOptionsBasic.MALE">Male</mat-option>
+        <mat-option [value]="genderOptionsBasic.FEMALE">Female</mat-option>
+      </mat-select>
+    </ng-container>
+    
+    <ng-container *ngSwitchCase="scaleOptions.ADVANCED">
+      <mat-select #fontSize formControlName="gender">
+        <mat-option [value]="genderOptionsAdvanced.MALE">Male</mat-option>
+        <mat-option [value]="genderOptionsAdvanced.FEMALE">Female</mat-option>
+        <mat-option [value]="genderOptionsAdvanced.DIVERSE">Diverse</mat-option>
+      </mat-select>
+    </ng-container>
+    
+  </mat-form-field>

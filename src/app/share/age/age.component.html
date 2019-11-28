@@ -1,0 +1,17 @@
+<mat-form-field [ngSwitch]="scale" [formGroup]="parentForm" appearance="outline">
+  <mat-label>Age</mat-label>
+
+  <ng-container *ngSwitchCase="scaleOptions.BASIC">
+      <input matInput formControlName="age" placeholder="Age" value=""> 
+  </ng-container>
+  
+  <ng-container *ngSwitchCase="scaleOptions.RANGE_20">
+    <mat-select #fontSize formControlName="age">
+      <mat-option [value]="rangeOptions.BELOW_20">Below 20</mat-option>
+      <mat-option [value]="rangeOptions.TWENTY_TO_THIRTYNINE">20 to 39</mat-option>
+      <mat-option [value]="rangeOptions.FORTY_TO_FIFTYNINE">40 to 59</mat-option>
+      <mat-option [value]="rangeOptions.SIXTY_AND_ABOVE">60 and above</mat-option>
+    </mat-select>
+  </ng-container>
+  
+</mat-form-field>

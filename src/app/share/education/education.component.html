@@ -1,0 +1,26 @@
+<mat-form-field [ngSwitch]="scale" [formGroup]="parentForm" appearance="outline">
+  <mat-label>Education</mat-label>
+
+  <ng-container *ngSwitchCase="scaleOptions.GERMAN">
+    <mat-select #fontSize formControlName="education">
+        <mat-option [value]="educationOptionsGerman.HAUPTSCHULABSCHLUSS">Hauptschulabschluss</mat-option>
+        <mat-option [value]="educationOptionsGerman.REALSCHULABSCHLUSS">Realschulabschluss</mat-option>
+        <mat-option [value]="educationOptionsGerman.HOCHSCHULREIFE">Hochschulreife</mat-option>
+        <mat-option [value]="educationOptionsGerman.BACHELOR">Bachelor</mat-option>
+        <mat-option [value]="educationOptionsGerman.MASTER">Master</mat-option>
+        <mat-option [value]="educationOptionsGerman.DOKTOR">Doktor</mat-option>
+        <mat-option [value]="educationOptionsGerman.MEISTER">Meister</mat-option>
+        <mat-option [value]="educationOptionsGerman.TECHNIKER">Techniker</mat-option>
+    </mat-select>
+  </ng-container>
+  
+  <ng-container *ngSwitchCase="scaleOptions.ACADEMIC">
+    <mat-select #fontSize formControlName="education">
+      <mat-option [value]="educationOptionsAcademic.BACHELOR">Bachelor</mat-option>
+      <mat-option [value]="educationOptionsAcademic.MASTER">Master</mat-option>
+      <mat-option [value]="educationOptionsAcademic.PHD">Phd</mat-option>
+    </mat-select>
+  </ng-container>
+  
+</mat-form-field>
+

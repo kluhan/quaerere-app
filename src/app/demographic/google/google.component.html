@@ -15,68 +15,35 @@
             <input matInput placeholder="Company (disabled)" disabled value="Google Inc.">
         </mat-form-field>
 
-        <!--Name fields -->
-        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>First name</mat-label>
-                <input matInput formControlName="firstName" placeholder="First name">
-            </mat-form-field>
 
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Last name</mat-label>
-                <input matInput formControlName="lastName" placeholder="Last Name">
-            </mat-form-field>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
+
+            <!--Name fields -->
+            <app-demographic-name [parentForm]="googleForm" fxFlex="100" fxLayoutGap="32px"></app-demographic-name>
+        
         </div>
 
-        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-            <!--Gender fields -->
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Gender</mat-label>
-                <mat-select #fontSize formControlName="gender">
-                    <mat-option *ngFor="let gender of genderKeys" [value]="gender"> {{ genderLabelGenerator[gender] }} </mat-option>
-                </mat-select>
-            </mat-form-field>
-
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
+            
             <!--Age fields -->
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Age</mat-label>
-                <mat-select #fontSize formControlName="age">
-                    <mat-option *ngFor="let age of ageKeys" [value]="age"> {{ ageLabelGenerator[age] }} </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <app-demographic-age [parentForm]="googleForm" [scale]="ageScale" fxFlex="33"></app-demographic-age>
+
+            <!--Gender fields -->
+            <app-demographic-gender [parentForm]="googleForm" [scale]="genderScale" fxFlex="33"></app-demographic-gender>
 
             <!--Country fields -->
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Country</mat-label>
-                <mat-select #fontSize  formControlName="country">
-                    <mat-option value="germany">Deutschland</mat-option>
-                    <mat-option value="austria">Österreich</mat-option>
-                    <mat-option value="switzerland">Schweiz</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <app-demographic-country [parentForm]="googleForm" [scale]="countryScale" fxFlex="33"></app-demographic-country>
+            
         </div>
 
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-            <!--Street field -->
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Education</mat-label>
-                <mat-select #fontSize formControlName="education">
-                    <mat-option value="hauptschulabschluss">Hauptschulabschluss</mat-option>
-                    <mat-option value="realschulabschluss">Realschulabschluss</mat-option>
-                    <mat-option value="hochschulreife">Hochschulreife</mat-option>
-                    <mat-option value="bachelor">Bachelor</mat-option>
-                    <mat-option value="master">Master</mat-option>
-                    <mat-option value="doktor">Doktor</mat-option>
-                    <mat-option value="meister">Meister</mat-option>
-                    <mat-option value="techniker">Techniker</mat-option>
-                </mat-select>
-            </mat-form-field>
+            
+            <!--Education field -->
+            <app-demographic-education [parentForm]="googleForm" [scale]="educationScale" fxFlex="50"></app-demographic-education>
+            
+            <!--Income field -->
+            <app-demographic-income [parentForm]="googleForm" [scale]="incomeScale" fxFlex="50"></app-demographic-income>
 
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Income</mat-label>
-                <input matInput formControlName="income" placeholder="Income" value=""> 
-                <mat-icon matSuffix>euro_symbol</mat-icon>
-            </mat-form-field>
         </div>
 
     </form>

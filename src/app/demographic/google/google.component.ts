@@ -26,6 +26,11 @@ export class GoogleComponent implements OnInit {
 
   countryKeys: String[];
 
+  ageScale = AgeScale.RANGE_20;
+  genderScale = GenderScale.BASIC;
+  countryScale = CountryScale.DEU_AUT_CHE;
+  educationScale = EducationScale.GERMAN;
+  incomeScale = IncomeScale.RANGE_500;
 
   constructor(private store: Store, private fb: FormBuilder) {}
 
@@ -36,33 +41,17 @@ export class GoogleComponent implements OnInit {
 
     this.googleForm = this.fb.group({
       company: 'Google',
-      country: '',
-      education: '',
-      gender: '',
       state: '',
       firstName: '',
       lastName: '',
-      age: '',
-      'income': ['', Validators.pattern('^[0-9]*$') ],
     });
 
 
     const firstName = this.googleForm.get('firstName');
     const lastName = this.googleForm.get('lastName');
-    const gender = this.googleForm.get('gender');
-    const age = this.googleForm.get('age');
-    const country = this.googleForm.get('country');
-    const education = this.googleForm.get('education');
-    const income = this.googleForm.get('income');
 
     firstName.valueChanges.subscribe(() => this.store.dispatch(new SetName(firstName.value, lastName.value)));
     lastName.valueChanges.subscribe(() => this.store.dispatch(new SetName(firstName.value, lastName.value)));
-    // tslint:disable-next-line: max-line-length
-    gender.valueChanges.subscribe(() => this.store.dispatch(new SetGender(<GenderAdvanced>GenderAdvanced[gender.value], GenderScale.ADVANCED)));
-    age.valueChanges.subscribe(() => this.store.dispatch(new SetAge(<AgeRange20>AgeRange20[age.value], AgeScale.RANGE_20)));
-    country.valueChanges.subscribe(() => this.store.dispatch(new SetCountry(<DeuAutChe>country.value, CountryScale.DEU_AUT_CHE)));
-    education.valueChanges.subscribe(() => this.store.dispatch(new SetEducation(<EducationGerman>education.value, EducationScale.GERMAN)));
-    income.valueChanges.subscribe(() => this.store.dispatch(new SetIncome(<Number>income.value, IncomeScale.BASIC)));
 
     this.store.dispatch(new SetAge(AgeRange20.BELOW_20, AgeScale.RANGE_20));
     this.store.dispatch(new SetGender(GenderBasic.MALE, GenderScale.BASIC));
