@@ -45,12 +45,10 @@
             
             <!--Education field -->
             <app-demographic-education [parentForm]="googleForm" [scale]="educationScale" fxFlex="50"></app-demographic-education>
+            
+            <!--Income field -->
+            <app-demographic-income [parentForm]="googleForm" [scale]="incomeScale" fxFlex="50"></app-demographic-income>
 
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Income</mat-label>
-                <input matInput formControlName="income" placeholder="Income" value=""> 
-                <mat-icon matSuffix>euro_symbol</mat-icon>
-            </mat-form-field>
         </div>
 
     </form>

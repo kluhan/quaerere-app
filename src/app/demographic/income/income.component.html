@@ -1,0 +1,21 @@
+<mat-form-field [ngSwitch]="scale" [formGroup]="parentForm" appearance="outline">
+    
+  <mat-label>Income</mat-label>
+  
+  <ng-container *ngSwitchCase="scaleOptions.BASIC">
+    <input matInput formControlName="income" placeholder="Income" value=""> 
+  </ng-container>
+  
+  <ng-container *ngSwitchCase="scaleOptions.RANGE_500">
+    <input matInput formControlName="income" placeholder="Income" value=""> 
+  </ng-container>
+
+  <ng-container *ngSwitchCase="scaleOptions.RANGE_1000">
+    <input matInput formControlName="income" placeholder="Income" value=""> 
+  </ng-container>
+    
+  <mat-icon matSuffix>euro_symbol</mat-icon>
+  
+</mat-form-field>
+  
+  

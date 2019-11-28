@@ -30,6 +30,7 @@ export class GoogleComponent implements OnInit {
   genderScale = GenderScale.BASIC;
   countryScale = CountryScale.DEU_AUT_CHE;
   educationScale = EducationScale.GERMAN;
+  incomeScale = IncomeScale.RANGE_500;
 
   constructor(private store: Store, private fb: FormBuilder) {}
 
@@ -43,19 +44,14 @@ export class GoogleComponent implements OnInit {
       state: '',
       firstName: '',
       lastName: '',
-      age: '',
-      'income': ['', Validators.pattern('^[0-9]*$') ],
     });
 
 
     const firstName = this.googleForm.get('firstName');
     const lastName = this.googleForm.get('lastName');
-    const income = this.googleForm.get('income');
 
     firstName.valueChanges.subscribe(() => this.store.dispatch(new SetName(firstName.value, lastName.value)));
     lastName.valueChanges.subscribe(() => this.store.dispatch(new SetName(firstName.value, lastName.value)));
-    // tslint:disable-next-line: max-line-length
-    income.valueChanges.subscribe(() => this.store.dispatch(new SetIncome(<Number>income.value, IncomeScale.BASIC)));
 
     this.store.dispatch(new SetAge(AgeRange20.BELOW_20, AgeScale.RANGE_20));
     this.store.dispatch(new SetGender(GenderBasic.MALE, GenderScale.BASIC));
