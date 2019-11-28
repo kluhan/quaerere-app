@@ -18,12 +18,12 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { SurveyState } from './state/survey.state';
 import { environment } from 'src/environments/environment';
-import { AgeComponent } from './demographic/age/age.component';
-import { GenderComponent } from './demographic/gender/gender.component';
-import { CountryComponent } from './demographic/country/country.component';
-import { EducationComponent } from './demographic/education/education.component';
-import { IncomeComponent } from './demographic/income/income.component';
-import { NameComponent } from './demographic/name/name.component';
+import { AgeComponent } from './share/age/age.component';
+import { GenderComponent } from './share/gender/gender.component';
+import { CountryComponent } from './share/country/country.component';
+import { EducationComponent } from './share/education/education.component';
+import { IncomeComponent } from './share/income/income.component';
+import { NameComponent } from './share/name/name.component';
 
 @NgModule({
   declarations: [
