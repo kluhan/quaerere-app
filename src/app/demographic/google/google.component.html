@@ -1,12 +1,10 @@
 
 <div fxLayout="row" style="margin-top: 32px">
     <form  [formGroup]="googleForm" fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlexOffset="15">
-      <!-- Applying the mat-tyography class adds styles for native elements. -->
+        
+        <!-- Applying the mat-typography class adds styles for native elements. -->
         <section style="text-align:center;">
           <h1 class="mat-display-4">Google</h1>
-
-         <!--CONSOLE-LOG-DEBUG-->
-          <span class="mat-headline">Value: {{ googleForm.value | json}}</span>  
         </section>
 
         <!--Company field -->
@@ -15,39 +13,28 @@
             <input matInput placeholder="Company (disabled)" disabled value="Google Inc.">
         </mat-form-field>
 
-
         <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
-
             <!--Name fields -->
             <app-demographic-name [parentForm]="googleForm" fxFlex="100" fxLayoutGap="32px"></app-demographic-name>
-        
         </div>
 
         <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
-            
             <!--Age fields -->
             <app-demographic-age [parentForm]="googleForm" [scale]="ageScale" fxFlex="33"></app-demographic-age>
-
             <!--Gender fields -->
             <app-demographic-gender [parentForm]="googleForm" [scale]="genderScale" fxFlex="33"></app-demographic-gender>
-
             <!--Country fields -->
             <app-demographic-country [parentForm]="googleForm" [scale]="countryScale" fxFlex="33"></app-demographic-country>
-            
         </div>
 
         <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-            
             <!--Education field -->
             <app-demographic-education [parentForm]="googleForm" [scale]="educationScale" fxFlex="50"></app-demographic-education>
-            
             <!--Income field -->
             <app-demographic-income [parentForm]="googleForm" [scale]="incomeScale" fxFlex="50"></app-demographic-income>
-
         </div>
 
     </form>
-
 
     <div fxFlex="15"></div>
 </div>
