@@ -23,6 +23,7 @@ import { GenderComponent } from './demographic/gender/gender.component';
 import { CountryComponent } from './demographic/country/country.component';
 import { EducationComponent } from './demographic/education/education.component';
 import { IncomeComponent } from './demographic/income/income.component';
+import { NameComponent } from './demographic/name/name.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { IncomeComponent } from './demographic/income/income.component';
     GenderComponent,
     CountryComponent,
     EducationComponent,
-    IncomeComponent
+    IncomeComponent,
+    NameComponent
   ],
   imports: [
     BrowserModule,

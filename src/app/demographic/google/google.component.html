@@ -15,17 +15,12 @@
             <input matInput placeholder="Company (disabled)" disabled value="Google Inc.">
         </mat-form-field>
 
-        <!--Name fields -->
-        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>First name</mat-label>
-                <input matInput formControlName="firstName" placeholder="First name">
-            </mat-form-field>
 
-            <mat-form-field appearance="outline" fxFlex="50">
-                <mat-label>Last name</mat-label>
-                <input matInput formControlName="lastName" placeholder="Last Name">
-            </mat-form-field>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
+
+            <!--Name fields -->
+            <app-demographic-name [parentForm]="googleForm" fxFlex="100" fxLayoutGap="32px"></app-demographic-name>
+        
         </div>
 
         <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="32px">
