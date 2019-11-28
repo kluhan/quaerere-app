@@ -13,10 +13,11 @@ import { Country } from '../share/models/country.model';
 import { Education } from '../share/models/education.model';
 import { Income } from '../share/models/income.model';
 import { Profession } from '../share/models/profession.model';
+import { Name } from '../share/models/name.model';
 
 export class SurveyStateModel {
     demographicData: {
-        name: {first: String, last: String};
+        name: Name;
         age: Age;
         gender: Gender;
         country: Country;
@@ -65,7 +66,7 @@ export class SurveyStateModel {
 export class SurveyState {
 
     @Action(SetName)
-    SetName(ctx: StateContext<SurveyStateModel>, action: {first: String, last: String}) {
+    SetName(ctx: StateContext<SurveyStateModel>, action: Name) {
         const state = ctx.getState();
         ctx.patchState({
             demographicData: {
