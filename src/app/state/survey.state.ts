@@ -1,22 +1,28 @@
 import { State, Action, StateContext } from '@ngxs/store';
 import { SetCountry, SetGender, SetAge, SetEducation, SetProfession, SetIncome, SetName } from '../actions/demographicData.action';
-import { DemographicAge, AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
-import { DemographicGender, GenderScale, GenderBasic, GenderAdvanced } from '../share/enumerations/gender.enum';
-import { DemographicCountry, CountryScale, DeuAutChe } from '../share/enumerations/country.enum';
-import { DemographicEducation, EducationGerman, EducationScale, EducationAcademic } from '../share/enumerations/education.enum';
-import { DemographicIncome, IncomeScale } from '../share/enumerations/income.enum';
-import { DemographicProfession, ProfessionScale, ProfessionBasic, ProfessionAdvanced } from '../share/enumerations/profession.enum';
+import { AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
+import { GenderScale, GenderBasic, GenderAdvanced } from '../share/enumerations/gender.enum';
+import { CountryScale, DeuAutChe } from '../share/enumerations/country.enum';
+import { EducationGerman, EducationScale, EducationAcademic } from '../share/enumerations/education.enum';
+import { IncomeScale } from '../share/enumerations/income.enum';
+import { ProfessionScale, ProfessionBasic, ProfessionAdvanced } from '../share/enumerations/profession.enum';
 import { ValueScaleMatchError } from '../errors/scale-value.error';
+import { Age } from '../share/models/age.model';
+import { Gender } from '../share/models/gender.model';
+import { Country } from '../share/models/country.model';
+import { Education } from '../share/models/education.model';
+import { Income } from '../share/models/income.model';
+import { Profession } from '../share/models/profession.model';
 
 export class SurveyStateModel {
     demographicData: {
         name: {first: String, last: String};
-        age: DemographicAge;
-        gender: DemographicGender;
-        country: DemographicCountry;
-        education: DemographicEducation;
-        income: DemographicIncome;
-        profession: DemographicProfession;
+        age: Age;
+        gender: Gender;
+        country: Country;
+        education: Education;
+        income: Income;
+        profession: Profession;
     };
 }
 
@@ -73,7 +79,7 @@ export class SurveyState {
     }
 
     @Action(SetAge)
-    SetAge(ctx: StateContext<SurveyStateModel>, action: DemographicAge) {
+    SetAge(ctx: StateContext<SurveyStateModel>, action: Age) {
         switch (action.scale) {
             case AgeScale.BASIC:
                 if (isNaN(action.value.valueOf())) {
@@ -103,7 +109,7 @@ export class SurveyState {
     }
 
     @Action(SetGender)
-    SetGender(ctx: StateContext<SurveyStateModel>, action: DemographicGender, ) {
+    SetGender(ctx: StateContext<SurveyStateModel>, action: Gender, ) {
         switch (action.scale) {
             case GenderScale.BASIC:
                 if (!Object.values(GenderBasic).includes(<GenderBasic>action.value)) {
@@ -133,7 +139,7 @@ export class SurveyState {
     }
 
     @Action(SetCountry)
-    setCountry(ctx: StateContext<SurveyStateModel>, action: DemographicCountry, ) {
+    setCountry(ctx: StateContext<SurveyStateModel>, action: Country, ) {
         switch (action.scale) {
             case CountryScale.DEU_AUT_CHE:
                 if (!Object.values(DeuAutChe).includes(<DeuAutChe>action.value)) {
@@ -157,7 +163,7 @@ export class SurveyState {
     }
 
     @Action(SetEducation)
-    setEducation(ctx: StateContext<SurveyStateModel>, action: DemographicEducation, ) {
+    setEducation(ctx: StateContext<SurveyStateModel>, action: Education, ) {
         switch (action.scale) {
             case EducationScale.GERMAN:
                 if (!Object.values(EducationGerman).includes(<EducationGerman>action.value)) {
@@ -187,7 +193,7 @@ export class SurveyState {
     }
 
     @Action(SetIncome)
-    setIncome(ctx: StateContext<SurveyStateModel>, action: DemographicIncome, ) {
+    setIncome(ctx: StateContext<SurveyStateModel>, action: Income, ) {
         switch (action.scale) {
             case IncomeScale.BASIC:
                 if (isNaN(action.value.valueOf())) {
@@ -222,7 +228,7 @@ export class SurveyState {
     }
 
     @Action(SetProfession)
-    setProfession(ctx: StateContext<SurveyStateModel>, action: DemographicProfession, ) {
+    setProfession(ctx: StateContext<SurveyStateModel>, action: Profession, ) {
         switch (action.scale) {
             case ProfessionScale.BASIC:
                 if (!Object.values(ProfessionBasic).includes(<ProfessionBasic>action.value)) {

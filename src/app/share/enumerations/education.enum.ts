@@ -1,8 +1,3 @@
-export class DemographicEducation {
-    scale: EducationScale;
-    value: EducationAcademic | EducationGerman;
-}
-
 export enum EducationGerman {
     HAUPTSCHULABSCHLUSS = 'hauptschulabschluss',
     REALSCHULABSCHLUSS = 'realschulabschluss',

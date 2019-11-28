@@ -1,8 +1,3 @@
-export class DemographicAge {
-    scale: AgeScale;
-    value: Number;
-}
-
 export enum AgeScale {
     BASIC,
     RANGE_20,

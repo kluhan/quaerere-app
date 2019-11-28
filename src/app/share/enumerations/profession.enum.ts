@@ -1,8 +1,3 @@
-export class DemographicProfession {
-    scale: ProfessionScale;
-    value: ProfessionBasic | ProfessionAdvanced;
-}
-
 export enum ProfessionBasic {
     GARDENER = 'gardener',
     BUILDER = 'builder',

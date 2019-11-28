@@ -1,8 +1,3 @@
-export class DemographicCountry {
-    scale: CountryScale;
-    value: DeuAutChe;
-}
-
 export enum DeuAutChe {
     GERMANY = 'germany',
     SWITZERLAND = 'switzerland',
