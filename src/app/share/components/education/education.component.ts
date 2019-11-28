@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EducationGerman, EducationScale, EducationAcademic } from 'src/app/models/demographic/education.enum';
+import { EducationGerman, EducationScale, EducationAcademic } from 'src/app/share/enumerations/education.enum';
 import { SetEducation } from 'src/app/actions/demographicData.action';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';

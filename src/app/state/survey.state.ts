@@ -1,11 +1,11 @@
 import { State, Action, StateContext } from '@ngxs/store';
 import { SetCountry, SetGender, SetAge, SetEducation, SetProfession, SetIncome, SetName } from '../actions/demographicData.action';
-import { DemographicAge, AgeScale, AgeRange20 } from '../models/demographic/age.enum';
-import { DemographicGender, GenderScale, GenderBasic, GenderAdvanced } from '../models/demographic/gender.enum';
-import { DemographicCountry, CountryScale, DeuAutChe } from '../models/demographic/country.enum';
-import { DemographicEducation, EducationGerman, EducationScale, EducationAcademic } from '../models/demographic/education.enum';
-import { DemographicIncome, IncomeScale } from '../models/demographic/income.enum';
-import { DemographicProfession, ProfessionScale, ProfessionBasic, ProfessionAdvanced } from '../models/demographic/profession.enum';
+import { DemographicAge, AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
+import { DemographicGender, GenderScale, GenderBasic, GenderAdvanced } from '../share/enumerations/gender.enum';
+import { DemographicCountry, CountryScale, DeuAutChe } from '../share/enumerations/country.enum';
+import { DemographicEducation, EducationGerman, EducationScale, EducationAcademic } from '../share/enumerations/education.enum';
+import { DemographicIncome, IncomeScale } from '../share/enumerations/income.enum';
+import { DemographicProfession, ProfessionScale, ProfessionBasic, ProfessionAdvanced } from '../share/enumerations/profession.enum';
 import { ValueScaleMatchError } from '../errors/scale-value.error';
 
 export class SurveyStateModel {

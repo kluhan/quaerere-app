@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app.material';
-import { NavigationComponent } from './share/navigation/navigation.component';
+import { NavigationComponent } from './share/components/navigation/navigation.component';
 import { GoogleComponent } from './demographic/google/google.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FacebookComponent } from './demographic/facebook/facebook.component';
@@ -18,12 +18,12 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { SurveyState } from './state/survey.state';
 import { environment } from 'src/environments/environment';
-import { AgeComponent } from './share/age/age.component';
-import { GenderComponent } from './share/gender/gender.component';
-import { CountryComponent } from './share/country/country.component';
-import { EducationComponent } from './share/education/education.component';
-import { IncomeComponent } from './share/income/income.component';
-import { NameComponent } from './share/name/name.component';
+import { AgeComponent } from './share/components/age/age.component';
+import { GenderComponent } from './share/components/gender/gender.component';
+import { CountryComponent } from './share/components/country/country.component';
+import { EducationComponent } from './share/components/education/education.component';
+import { IncomeComponent } from './share/components/income/income.component';
+import { NameComponent } from './share/components/name/name.component';
 
 @NgModule({
   declarations: [

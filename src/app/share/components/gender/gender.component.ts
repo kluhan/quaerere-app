@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GenderScale, GenderBasic, GenderAdvanced } from 'src/app/models/demographic/gender.enum';
+import { GenderScale, GenderBasic, GenderAdvanced } from 'src/app/share/enumerations/gender.enum';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { SetGender } from 'src/app/actions/demographicData.action';

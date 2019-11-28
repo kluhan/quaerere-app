@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store, } from '@ngxs/store';
-import { AgeScale } from 'src/app/models/demographic/age.enum';
-import { GenderScale } from 'src/app/models/demographic/gender.enum';
-import { CountryScale } from 'src/app/models/demographic/country.enum';
-import { EducationScale } from 'src/app/models/demographic/education.enum';
-import { IncomeScale } from 'src/app/models/demographic/income.enum';
+import { AgeScale } from 'src/app/share/enumerations/age.enum';
+import { GenderScale } from 'src/app/share/enumerations/gender.enum';
+import { CountryScale } from 'src/app/share/enumerations/country.enum';
+import { EducationScale } from 'src/app/share/enumerations/education.enum';
+import { IncomeScale } from 'src/app/share/enumerations/income.enum';
 
 @Component({
   selector: 'app-google',

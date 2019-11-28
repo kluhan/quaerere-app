@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SetIncome } from 'src/app/actions/demographicData.action';
-import { IncomeScale } from 'src/app/models/demographic/income.enum';
+import { IncomeScale } from 'src/app/share/enumerations/income.enum';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Store } from '@ngxs/store';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SetCountry } from 'src/app/actions/demographicData.action';
-import { CountryScale, DeuAutChe } from 'src/app/models/demographic/country.enum';
+import { CountryScale, DeuAutChe } from 'src/app/share/enumerations/country.enum';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 

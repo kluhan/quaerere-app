@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AgeScale, AgeRange20 } from 'src/app/models/demographic/age.enum';
+import { AgeScale, AgeRange20 } from 'src/app/share/enumerations/age.enum';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { SetAge } from 'src/app/actions/demographicData.action';
 import { Store } from '@ngxs/store';

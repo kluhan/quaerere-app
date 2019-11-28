@@ -1,9 +1,9 @@
-import { AgeScale, AgeRange20 } from '../models/demographic/age.enum';
-import { GenderAdvanced, GenderBasic, GenderScale } from '../models/demographic/gender.enum';
-import { DeuAutChe, CountryScale } from '../models/demographic/country.enum';
-import { EducationAcademic, EducationGerman, EducationScale } from '../models/demographic/education.enum';
-import { IncomeScale } from '../models/demographic/income.enum';
-import { ProfessionBasic, ProfessionAdvanced, ProfessionScale } from '../models/demographic/profession.enum';
+import { AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
+import { GenderAdvanced, GenderBasic, GenderScale } from '../share/enumerations/gender.enum';
+import { DeuAutChe, CountryScale } from '../share/enumerations/country.enum';
+import { EducationAcademic, EducationGerman, EducationScale } from '../share/enumerations/education.enum';
+import { IncomeScale } from '../share/enumerations/income.enum';
+import { ProfessionBasic, ProfessionAdvanced, ProfessionScale } from '../share/enumerations/profession.enum';
 
 export class SetName {
     static readonly type = '[DEMOGRAPHIC] Set Name';
