@@ -24,6 +24,7 @@ import { CountryComponent } from './share/components/country/country.component';
 import { EducationComponent } from './share/components/education/education.component';
 import { IncomeComponent } from './share/components/income/income.component';
 import { NameComponent } from './share/components/name/name.component';
+import { LinkerComponent } from './linker/linker.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NameComponent } from './share/components/name/name.component';
     CountryComponent,
     EducationComponent,
     IncomeComponent,
-    NameComponent
+    NameComponent,
+    LinkerComponent
   ],
   imports: [
     BrowserModule,
