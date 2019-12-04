@@ -1,25 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { GoogleComponent } from '../demographic/google/google.component';
+import { CarCostComponent } from '../tests/car-cost/car-cost.component';
+import { FoodFrequencyComponent } from '../tests/food-frequency/food-frequency.component';
 
 @Component({
   selector: 'app-linker',
   templateUrl: './linker.component.html',
-  styleUrls: ['./linker.component.scss']
+  styleUrls: ['./linker.component.scss'],
 })
-export class LinkerComponent implements OnInit {
+export class LinkerComponent implements AfterViewInit{
+
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  changeDetectorRef: ChangeDetectorRef;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  @ViewChild(GoogleComponent, {static: false}) googleComponent: GoogleComponent;
+  @ViewChild(CarCostComponent, {static: false}) carCostComponent: CarCostComponent;
+  @ViewChild(FoodFrequencyComponent, {static: false}) foodFrequencyComponent: FoodFrequencyComponent;
 
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-
+  get frmGoogleComponent() {
+     return this.googleComponent ? this.googleComponent.googleForm : null;
   }
+
+  get frmCarCostComponent() {
+     return this.carCostComponent ? this.carCostComponent.carCostForm : null;
+  }
+
+  get frmFoodFrequencyComponent() {
+     return this.foodFrequencyComponent ? this.foodFrequencyComponent.foodFrequencyForm : null;
+  }
+
+  // Saves the ChangeDetectorRef for afterViewInit
+  constructor(private ref: ChangeDetectorRef) { this.changeDetectorRef = ref; }
+
+  // Forcing change detection to avoid ExpressionChangedAfterItHasBeenCheckedError for further information see
+  // https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
+  ngAfterViewInit() { this.changeDetectorRef.detectChanges(); }
+
 }
+

@@ -1,37 +1,22 @@
 <div fxLayout="row" style="margin-top: 32px">
 
-  <mat-horizontal-stepper [linear]="true" #stepper fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlexOffset="15">
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlexOffset="15">
+    
+    <mat-step [stepControl]="frmGoogleComponent">
+      <ng-template matStepLabel>Google</ng-template>
+      <app-google></app-google>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Address" formControlName="secondCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+
+    <mat-step [stepControl]="frmCarCostComponent">
+      <ng-template matStepLabel>Car</ng-template>
+      <app-car-cost></app-car-cost>  
     </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
+
+    <mat-step [stepControl]="frmFoodFrequencyComponent">
+      <ng-template matStepLabel>Food</ng-template>
+		  <app-food-frequency></app-food-frequency>
     </mat-step>
+
   </mat-horizontal-stepper>
 
 </div>
