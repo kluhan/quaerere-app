@@ -24,6 +24,7 @@ import { CountryComponent } from './share/components/country/country.component';
 import { EducationComponent } from './share/components/education/education.component';
 import { IncomeComponent } from './share/components/income/income.component';
 import { NameComponent } from './share/components/name/name.component';
+import { LikertItemComponent } from './share/components/likert-item/likert-item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NameComponent } from './share/components/name/name.component';
     EducationComponent,
     IncomeComponent,
     NameComponent
+    LikertItemComponent,
   ],
   imports: [
     BrowserModule,
