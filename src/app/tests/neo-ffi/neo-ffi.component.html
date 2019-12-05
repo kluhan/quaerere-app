@@ -1,0 +1,21 @@
+
+<div style="margin-top: 32px" class="mat-typography">
+  <form  [formGroup]="neoFfiForm" fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlex.lt-md="90" fxFlexOffset="15" fxFlexOffset.lt-md="5">
+      
+      <!-- Applying the mat-typography class adds styles for native elements. -->
+      <section style="text-align: center;">
+        <h1 class="mat-display-4">NEO-FFI</h1>
+      </section>
+
+      <app-likert-item [parentForm]="neoFfiForm" [scale]="scale" question="Ich bin nicht leicht beunruhigt." controlName="first"></app-likert-item>
+
+      <app-likert-item [parentForm]="neoFfiForm" [scale]="scale" question="Ich habe gerne viele Leute um mich herum." controlName="second"></app-likert-item>
+
+      <app-likert-item [parentForm]="neoFfiForm" [scale]="scale" question="Ich mag meine Zeit nicht mit Tagträumereien verschwenden." controlName="third"></app-likert-item>
+
+
+
+  </form>
+
+  <div fxFlex></div>
+</div>

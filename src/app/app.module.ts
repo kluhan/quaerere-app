@@ -24,6 +24,7 @@ import { CountryComponent } from './share/components/country/country.component';
 import { EducationComponent } from './share/components/education/education.component';
 import { IncomeComponent } from './share/components/income/income.component';
 import { NameComponent } from './share/components/name/name.component';
+import { NeoFfiComponent } from './tests/neo-ffi/neo-ffi.component';
 import { LikertItemComponent } from './share/components/likert-item/likert-item.component';
 
 @NgModule({
@@ -39,7 +40,8 @@ import { LikertItemComponent } from './share/components/likert-item/likert-item.
     CountryComponent,
     EducationComponent,
     IncomeComponent,
-    NameComponent
+    NameComponent,
+    NeoFfiComponent,
     LikertItemComponent,
   ],
   imports: [
