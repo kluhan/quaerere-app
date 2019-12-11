@@ -1,6 +1,6 @@
 <section fxLayout="column" fxLayoutAlign="center center"  fxLayoutGap="16px" [ngSwitch]="scale">
   
-  <p> {{ question.toString() }} </p>
+  <p> {{ questionString.toString() }} </p>
   
   <ng-container *ngSwitchCase="scaleOptions.LIKERT_THREE_LEVEL">
     <div fxFill [formGroup]="parentForm">

@@ -7,13 +7,9 @@
         <h1 class="mat-display-4">NEO-FFI</h1>
       </section>
 
-      <app-likert-item [parentForm]="neoFfiForm" [scale]="scale" question="Ich bin nicht leicht beunruhigt." controlName="first"></app-likert-item>
-
-      <app-likert-item [parentForm]="neoFfiForm" [scale]="scale" question="Ich habe gerne viele Leute um mich herum." controlName="second"></app-likert-item>
-
-      <app-likert-item [parentForm]="neoFfiForm" [scale]="scale" question="Ich mag meine Zeit nicht mit Tagträumereien verschwenden." controlName="third"></app-likert-item>
-
-
+      <div *ngFor="let question of questions;">
+        <app-likert-item [parentForm]="neoFfiForm" [scale]="scale" [questionString]="question[3]" [controlName]="question[0]"></app-likert-item>
+      </div>
 
   </form>
 

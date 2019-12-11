@@ -1,4 +1,4 @@
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, StateOperator } from '@ngxs/store';
 import { SetCountry, SetGender, SetAge, SetEducation, SetProfession, SetIncome, SetName } from '../actions/demographicData.action';
 import { AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
 import { GenderScale, GenderBasic, GenderAdvanced } from '../share/enumerations/gender.enum';
@@ -14,6 +14,10 @@ import { Education } from '../share/models/education.model';
 import { Income } from '../share/models/income.model';
 import { Profession } from '../share/models/profession.model';
 import { Name } from '../share/models/name.model';
+import { NeoFfi } from '../share/models/neo-ffi.model';
+import { LikertFiveLevel, LikertThreeLevel, LikertScale } from '../share/enumerations/likert.enum';
+import { SetScale, SetAnswer } from '../actions/neoFfi.action';
+import { Ocean } from '../share/enumerations/ocean.enum';
 
 export class SurveyStateModel {
     demographicData: {
@@ -24,6 +28,9 @@ export class SurveyStateModel {
         education: Education;
         income: Income;
         profession: Profession;
+    };
+    tests: {
+        neo_ffi: NeoFfi;
     };
 }
 
@@ -60,10 +67,143 @@ export class SurveyStateModel {
                 value: undefined,
             }
         },
+        tests: {
+            neo_ffi: {
+                scale: undefined,
+                openness: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                    question_6:  undefined,
+                    question_7:  undefined,
+                    question_8:  undefined,
+                    question_9:  undefined,
+                    question_10: undefined,
+                    question_11: undefined,
+                },
+                conscientiousness: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                    question_6:  undefined,
+                    question_7:  undefined,
+                    question_8:  undefined,
+                    question_9:  undefined,
+                    question_10: undefined,
+                    question_11: undefined,
+                },
+                extraversion: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                    question_6:  undefined,
+                    question_7:  undefined,
+                    question_8:  undefined,
+                    question_9:  undefined,
+                    question_10: undefined,
+                    question_11: undefined,
+                },
+                agreeableness: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                    question_6:  undefined,
+                    question_7:  undefined,
+                    question_8:  undefined,
+                    question_9:  undefined,
+                    question_10: undefined,
+                    question_11: undefined,
+                },
+                neuroticism: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                    question_6:  undefined,
+                    question_7:  undefined,
+                    question_8:  undefined,
+                    question_9:  undefined,
+                    question_10: undefined,
+                    question_11: undefined,
+                },
+            },
+        }
     }
 })
 
 export class SurveyState {
+
+    @Action(SetScale)
+    SetScale(ctx: StateContext<SurveyStateModel>, action: {scale: LikertScale}) {
+        if (!Object.values(LikertScale).includes(<LikertScale>action.scale)) {
+            throw new Error('Undefined scale');
+        }
+        const state = ctx.getState();
+        ctx.patchState({
+            tests: {
+                ...state.tests,
+                neo_ffi: {
+                    ...state.tests.neo_ffi,
+                    'scale': action.scale,
+                }
+            }
+        });
+    }
+
+    @Action(SetAnswer)
+    // tslint:disable-next-line: max-line-length
+    SetAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Ocean}) {
+        const state = ctx.getState();
+
+        switch (state.tests.neo_ffi.scale){
+            case LikertScale.LIKERT_THREE_LEVEL:
+                if (!Object.values(LikertThreeLevel).includes(<LikertThreeLevel>action.value)) {
+                    throw new ValueScaleMatchError();
+                }
+                break;
+
+            case LikertScale.LIKERT_FIVE_LEVEL:
+                if (!Object.values(LikertFiveLevel).includes(<LikertFiveLevel>action.value)) {
+                    throw new ValueScaleMatchError();
+                }
+                break;
+
+            default:
+                // TODO Generate Error
+                throw new Error('Undefined Scale, set it via SetScale before');
+        }
+        if (action.question > 11 || action.question < 0) {
+            // TODO Generate Error
+            throw new Error('Question out of Range');
+        }
+
+        ctx.patchState({
+            tests: {
+                ...state.tests,
+                neo_ffi: {
+                    ...state.tests.neo_ffi,
+                    agreeableness: {
+                        ...state.tests.neo_ffi.agreeableness,
+                        ['question_' + action.question.toString()]: action.value,
+                    },
+                }
+            }
+        });
+    }
 
     @Action(SetName)
     SetName(ctx: StateContext<SurveyStateModel>, action: Name) {
