@@ -6,7 +6,7 @@ import { CountryScale, DeuAutChe } from '../share/enumerations/country.enum';
 import { EducationGerman, EducationScale, EducationAcademic } from '../share/enumerations/education.enum';
 import { IncomeScale } from '../share/enumerations/income.enum';
 import { ProfessionScale, ProfessionBasic, ProfessionAdvanced } from '../share/enumerations/profession.enum';
-import { ValueScaleMatchError } from '../errors/scale-value.error';
+import { ValueScaleMatchError } from '../errors/valueScaleMatch.error';
 import { Age } from '../share/models/age.model';
 import { Gender } from '../share/models/gender.model';
 import { Country } from '../share/models/country.model';
@@ -18,6 +18,9 @@ import { NeoFfi } from '../share/models/neo-ffi.model';
 import { LikertFiveLevel, LikertThreeLevel, LikertScale } from '../share/enumerations/likert.enum';
 import { SetScale, SetAnswer } from '../actions/neoFfi.action';
 import { Ocean } from '../share/enumerations/ocean.enum';
+import { UndefinedScaleError } from '../errors/undefinedScale.error';
+import { QuestionOutOfRangeError } from '../errors/questionOutOfRange.error';
+import { UndefinedFactorError } from '../errors/undefinedFactor.error';
 
 export class SurveyStateModel {
     demographicData: {
@@ -183,26 +186,86 @@ export class SurveyState {
                 break;
 
             default:
-                // TODO Generate Error
-                throw new Error('Undefined Scale, set it via SetScale before');
+                throw new UndefinedScaleError();
         }
         if (action.question > 11 || action.question < 0) {
-            // TODO Generate Error
-            throw new Error('Question out of Range');
+            throw new QuestionOutOfRangeError();
         }
+        switch (action.factor) {
+            case Ocean.AGREEABLENESS:
+                ctx.patchState({
+                    tests: {
+                        ...state.tests,
+                        neo_ffi: {
+                            ...state.tests.neo_ffi,
+                            agreeableness: {
+                                ...state.tests.neo_ffi.agreeableness,
+                                ['question_' + action.question.toString()]: action.value,
+                            },
+                        }
+                    }
+                });
+                break;
+            case Ocean.CONSCIENTIOUSNESS:
+                ctx.patchState({
+                    tests: {
+                        ...state.tests,
+                        neo_ffi: {
+                            ...state.tests.neo_ffi,
+                            conscientiousness: {
+                                ...state.tests.neo_ffi.conscientiousness,
+                                ['question_' + action.question.toString()]: action.value,
+                            },
+                        }
+                    }
+                });
+                break;
+            case Ocean.EXTRAVERSION:
+                ctx.patchState({
+                    tests: {
+                        ...state.tests,
+                        neo_ffi: {
+                            ...state.tests.neo_ffi,
+                            extraversion: {
+                                ...state.tests.neo_ffi.extraversion,
+                                ['question_' + action.question.toString()]: action.value,
+                            },
+                        }
+                    }
+                });
+                break;
+            case Ocean.NEUROTICISM:
+                ctx.patchState({
+                    tests: {
+                        ...state.tests,
+                        neo_ffi: {
+                            ...state.tests.neo_ffi,
+                            neuroticism: {
+                                ...state.tests.neo_ffi.neuroticism,
+                                ['question_' + action.question.toString()]: action.value,
+                            },
+                        }
+                    }
+                });
+                break;
+            case Ocean.OPENNESS:
+                    ctx.patchState({
+                        tests: {
+                            ...state.tests,
+                            neo_ffi: {
+                                ...state.tests.neo_ffi,
+                                openness: {
+                                    ...state.tests.neo_ffi.openness,
+                                    ['question_' + action.question.toString()]: action.value,
+                                },
+                            }
+                        }
+                    });
+                    break;
 
-        ctx.patchState({
-            tests: {
-                ...state.tests,
-                neo_ffi: {
-                    ...state.tests.neo_ffi,
-                    agreeableness: {
-                        ...state.tests.neo_ffi.agreeableness,
-                        ['question_' + action.question.toString()]: action.value,
-                    },
-                }
-            }
-        });
+            default:
+                throw new UndefinedFactorError();
+        }
     }
 
     @Action(SetName)

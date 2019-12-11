@@ -8,5 +8,5 @@ export class SetScale {
 
 export class SetAnswer {
     static readonly type = '[NEO-FFI] Set Answer';
-    constructor(public value: LikertThreeLevel | LikertFiveLevel, public question: Number, public facto: Ocean) {}
+    constructor(public value: LikertThreeLevel | LikertFiveLevel, public question: Number, public factor: Ocean) {}
 }
