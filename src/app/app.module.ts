@@ -25,6 +25,8 @@ import { EducationComponent } from './share/components/education/education.compo
 import { IncomeComponent } from './share/components/income/income.component';
 import { NameComponent } from './share/components/name/name.component';
 import { LinkerComponent } from './linker/linker.component';
+import { NeoFfiComponent } from './tests/neo-ffi/neo-ffi.component';
+import { LikertItemComponent } from './share/components/likert-item/likert-item.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { LinkerComponent } from './linker/linker.component';
     EducationComponent,
     IncomeComponent,
     NameComponent,
-    LinkerComponent
+    NeoFfiComponent,
+    LikertItemComponent,
   ],
   imports: [
     BrowserModule,
