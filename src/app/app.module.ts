@@ -44,6 +44,7 @@ import { LikertItemComponent } from './share/components/likert-item/likert-item.
     NameComponent,
     NeoFfiComponent,
     LikertItemComponent,
+    LinkerComponent,
   ],
   imports: [
     BrowserModule,

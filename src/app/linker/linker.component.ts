@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewInit } from '
 import { GoogleComponent } from '../demographic/google/google.component';
 import { CarCostComponent } from '../tests/car-cost/car-cost.component';
 import { FoodFrequencyComponent } from '../tests/food-frequency/food-frequency.component';
+import { NeoFfiComponent } from '../tests/neo-ffi/neo-ffi.component';
 
 @Component({
   selector: 'app-linker',
@@ -16,6 +17,7 @@ export class LinkerComponent implements AfterViewInit{
   @ViewChild(GoogleComponent, {static: false}) googleComponent: GoogleComponent;
   @ViewChild(CarCostComponent, {static: false}) carCostComponent: CarCostComponent;
   @ViewChild(FoodFrequencyComponent, {static: false}) foodFrequencyComponent: FoodFrequencyComponent;
+  @ViewChild(NeoFfiComponent, {static: false}) neoFfiComponent: NeoFfiComponent;
 
   get frmGoogleComponent() {
      return this.googleComponent ? this.googleComponent.googleForm : null;
@@ -28,6 +30,10 @@ export class LinkerComponent implements AfterViewInit{
   get frmFoodFrequencyComponent() {
      return this.foodFrequencyComponent ? this.foodFrequencyComponent.foodFrequencyForm : null;
   }
+
+  get frmNeoFfiComponent() {
+      return this.neoFfiComponent ? this.neoFfiComponent.neoFfiForm : null;
+   }
 
   // Saves the ChangeDetectorRef for afterViewInit
   constructor(private ref: ChangeDetectorRef) { this.changeDetectorRef = ref; }

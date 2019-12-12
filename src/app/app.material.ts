@@ -31,6 +31,7 @@ import {
       MatRadioModule,
       MatSliderModule,
       MatButtonToggleModule,
+      MatStepperModule,
     ],
     exports: [
       MatInputModule,
@@ -46,6 +47,7 @@ import {
       MatRadioModule,
       MatSliderModule,
       MatButtonToggleModule,
+      MatStepperModule,
     ]
   })
   export class AppMaterialModule { }

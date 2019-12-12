@@ -17,6 +17,11 @@
 		  <app-food-frequency></app-food-frequency>
     </mat-step>
 
+    <mat-step [stepControl]="frmNeoFfiComponent">
+      <ng-template matStepLabel>NEO</ng-template>
+		  <app-neo-ffi></app-neo-ffi>
+    </mat-step>
+
   </mat-horizontal-stepper>
 
 </div>
