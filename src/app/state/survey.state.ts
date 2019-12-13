@@ -4,7 +4,7 @@ import { AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
 import { GenderScale, GenderBasic, GenderAdvanced } from '../share/enumerations/gender.enum';
 import { CountryScale, DeuAutChe } from '../share/enumerations/country.enum';
 import { EducationGerman, EducationScale, EducationAcademic } from '../share/enumerations/education.enum';
-import { IncomeScale } from '../share/enumerations/income.enum';
+import { IncomeScale, IncomeThreeSteps } from '../share/enumerations/income.enum';
 import { ProfessionScale, ProfessionBasic, ProfessionAdvanced } from '../share/enumerations/profession.enum';
 import { ValueScaleMatchError } from '../errors/valueScaleMatch.error';
 import { Age } from '../share/models/age.model';
@@ -400,18 +400,18 @@ export class SurveyState {
     setIncome(ctx: StateContext<SurveyStateModel>, action: Income, ) {
         switch (action.scale) {
             case IncomeScale.BASIC:
-                if (isNaN(action.value.valueOf())) {
+                if (isNaN(action.value.valueOf()) || action.value.valueOf() < 0) {
                     throw new ValueScaleMatchError();
                 }
                 break;
 
-            case IncomeScale.RANGE_500:
-                if (isNaN(action.value.valueOf()) || action.value.valueOf() % 500 !== 0) {
+            case IncomeScale.RANGE_10000:
+                if (isNaN(action.value.valueOf()) || action.value.valueOf() % 10000 !== 0 || action.value.valueOf() < 0) {
                     throw new ValueScaleMatchError();
                 }
                 break;
-            case IncomeScale.RANGE_1000:
-                if (isNaN(action.value.valueOf()) || action.value.valueOf() % 1000 !== 0) {
+            case IncomeScale.THREE_STEPS:
+                if (!Object.values(IncomeThreeSteps).includes(<IncomeThreeSteps><unknown>action.value)) {
                     throw new ValueScaleMatchError();
                 }
                 break;

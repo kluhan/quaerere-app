@@ -20,7 +20,7 @@ export class FacebookComponent implements OnInit {
   genderScale = GenderScale.ADVANCED;
   countryScale = CountryScale.DEU_AUT_CHE;
   educationScale = EducationScale.ACADEMIC;
-  incomeScale = IncomeScale.RANGE_1000;
+  incomeScale = IncomeScale.RANGE_10000;
 
   constructor(private fb: FormBuilder) {}
 

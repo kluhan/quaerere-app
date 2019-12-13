@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SetIncome } from 'src/app/actions/demographicData.action';
-import { IncomeScale } from 'src/app/share/enumerations/income.enum';
-import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { IncomeScale, IncomeThreeSteps } from 'src/app/share/enumerations/income.enum';
+import { FormGroup, FormControl, Validators, } from '@angular/forms';
 import { Store } from '@ngxs/store';
 
 @Component({
@@ -18,6 +18,7 @@ export class IncomeComponent implements OnInit {
   parentForm: FormGroup;
 
   scaleOptions = IncomeScale;
+  threeStepsOptions = IncomeThreeSteps;
 
   constructor(private store: Store) { }
 

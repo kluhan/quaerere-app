@@ -2,7 +2,7 @@ import { AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
 import { GenderAdvanced, GenderBasic, GenderScale } from '../share/enumerations/gender.enum';
 import { DeuAutChe, CountryScale } from '../share/enumerations/country.enum';
 import { EducationAcademic, EducationGerman, EducationScale } from '../share/enumerations/education.enum';
-import { IncomeScale } from '../share/enumerations/income.enum';
+import { IncomeScale, IncomeThreeSteps } from '../share/enumerations/income.enum';
 import { ProfessionBasic, ProfessionAdvanced, ProfessionScale } from '../share/enumerations/profession.enum';
 
 export class SetName {
@@ -32,7 +32,7 @@ export class SetEducation {
 
 export class SetIncome {
     static readonly type = '[DEMOGRAPHIC] Set Income';
-    constructor(public value:  Number, public scale: IncomeScale) {}
+    constructor(public value:  Number | IncomeThreeSteps, public scale: IncomeScale) {}
 }
 
 export class SetProfession {
