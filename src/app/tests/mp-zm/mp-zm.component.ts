@@ -2,18 +2,17 @@ import { Component, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { LikertScale } from 'src/app/share/enumerations/likert.enum';
-import { Ocean } from 'src/app/share/enumerations/ocean.enum';
-import { SetAnswer, SetScale } from 'src/app/actions/zmSm.action';
+import { SetAnswer, SetScale } from 'src/app/actions/mpZm.action';
 import { Zurich } from 'src/app/share/enumerations/zurich.enum';
 
 @Component({
-  selector: 'app-zm-sm',
-  templateUrl: './zm-sm.component.html',
-  styleUrls: ['./zm-sm.component.scss']
+  selector: 'app-mp-zm',
+  templateUrl: './mp-zm.component.html',
+  styleUrls: ['./mp-zm.component.scss']
 })
-export class ZmSmComponent implements AfterViewInit {
+export class MpZmComponent implements AfterViewInit {
 
-  zmSmForm: FormGroup;
+  mpZmForm: FormGroup;
   scale = LikertScale.LIKERT_FIVE_LEVEL;
   zurich = Zurich;
 
@@ -55,13 +54,13 @@ export class ZmSmComponent implements AfterViewInit {
   ];
 
   constructor(private store: Store, private fb: FormBuilder) {
-    this.zmSmForm = this.fb.group({});
+    this.mpZmForm = this.fb.group({});
     store.dispatch(new SetScale(this.scale));
   }
 
   async ngAfterViewInit() {
     this.questions.forEach(question => {
-      this.zmSmForm.get(question[0].toString()).valueChanges.subscribe(value =>
+      this.mpZmForm.get(question[0].toString()).valueChanges.subscribe(value =>
         this.store.dispatch(new SetAnswer(value, Number(question[1]), <Zurich>question[2] ))
       );
     });

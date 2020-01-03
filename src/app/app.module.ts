@@ -27,7 +27,7 @@ import { NameComponent } from './share/components/name/name.component';
 import { LinkerComponent } from './linker/linker.component';
 import { NeoFfiComponent } from './tests/neo-ffi/neo-ffi.component';
 import { LikertItemComponent } from './share/components/likert-item/likert-item.component';
-import { ZmSmComponent } from './tests/zm-sm/zm-sm.component';
+import { MpZmComponent } from './tests/mp-zm/mp-zm.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { ZmSmComponent } from './tests/zm-sm/zm-sm.component';
     NeoFfiComponent,
     LikertItemComponent,
     LinkerComponent,
-    ZmSmComponent,
+    MpZmComponent,
   ],
   imports: [
     BrowserModule,

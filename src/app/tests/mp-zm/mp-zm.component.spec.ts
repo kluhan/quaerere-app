@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZmSmComponent } from './zm-sm.component';
+import { ZmSmComponent } from './mp-zm.component';
 
 describe('ZmSmComponent', () => {
   let component: ZmSmComponent;

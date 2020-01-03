@@ -23,8 +23,8 @@ import { QuestionOutOfRangeError } from '../errors/questionOutOfRange.error';
 import { UndefinedFactorError } from '../errors/undefinedFactor.error';
 import { Demographic } from '../share/enumerations/demographic.enum';
 import { Tests } from '../share/enumerations/tests.enum';
-import * as ZmSmActions from '../actions/zmSm.action';
-import { ZmSm } from '../share/models/zm-sm.model';
+import * as ZmSmActions from '../actions/mpZm.action';
+import { MpZm } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
 
 // TODO Update
@@ -42,7 +42,7 @@ export class SurveyStateModel {
     };
     tests: {
         neo_ffi: NeoFfi;
-        zm_sm: ZmSm;
+        zm_sm: MpZm;
     };
     surveyLayout: SurveyComponent[];
 }

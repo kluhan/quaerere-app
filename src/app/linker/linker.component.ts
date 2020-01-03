@@ -6,7 +6,7 @@ import { NeoFfiComponent } from '../tests/neo-ffi/neo-ffi.component';
 import { Tests } from '../share/enumerations/tests.enum';
 import { Demographic } from '../share/enumerations/demographic.enum';
 import { Store } from '@ngxs/store';
-import { ZmSmComponent } from '../tests/zm-sm/zm-sm.component';
+import { MpZmComponent } from '../tests/mp-zm/mp-zm.component';
 
 // TODO Update
 type SurveyComponent = Demographic | Tests;
@@ -30,7 +30,7 @@ export class LinkerComponent implements AfterViewInit{
   @ViewChild(CarCostComponent, {static: false}) carCostComponent: CarCostComponent;
   @ViewChild(FoodFrequencyComponent, {static: false}) foodFrequencyComponent: FoodFrequencyComponent;
   @ViewChild(NeoFfiComponent, {static: false}) neoFfiComponent: NeoFfiComponent;
-  @ViewChild(ZmSmComponent, {static: false}) zmSmComponent: ZmSmComponent;
+  @ViewChild(MpZmComponent, {static: false}) mpZmComponent:MpZmComponent;
 
   // TODO Update
   get frmGoogleComponent() {
@@ -50,7 +50,7 @@ export class LinkerComponent implements AfterViewInit{
    }
    // TODO Update
    get frmZmSmComponent() {
-       return this.zmSmComponent ? this.zmSmComponent.zmSmForm : null;
+       return this.mpZmComponent ? this.mpZmComponent.mpZmForm : null;
     }
 
 

@@ -1,6 +1,6 @@
 import { LikertScale, LikertThreeLevel, LikertFiveLevel } from '../enumerations/likert.enum';
 
-export class ZmSm {
+export class MpZm {
     scale: LikertScale;
     safety: Safety;
     initiative: Initiative;
