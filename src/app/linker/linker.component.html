@@ -41,6 +41,14 @@
           <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-step>
+  
+      <mat-step *ngIf='survey.includes(testOptions.ZM_SM)' [stepControl]="frmZmSmComponent">
+        <ng-template matStepLabel>ZM</ng-template>
+        <app-mp-zm></app-mp-zm>
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
     
   </mat-horizontal-stepper>
 
