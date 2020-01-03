@@ -19,7 +19,7 @@ type SurveyComponent = Demographic | Tests;
 
 export class LinkerComponent implements AfterViewInit{
 
-  isLinear = true;
+  isLinear = false;
   changeDetectorRef: ChangeDetectorRef;
 
   survey: SurveyComponent[];

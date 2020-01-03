@@ -1,3 +1,8 @@
-<app-navigation fxFill></app-navigation>
 
-<router-outlet></router-outlet>
+<div fxLayout="column" fxFlexFill>
+    <app-navigation></app-navigation>
+    <div fxFlex>
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+</div>
