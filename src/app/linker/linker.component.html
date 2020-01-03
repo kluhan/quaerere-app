@@ -1,0 +1,47 @@
+<div fxLayout="row" style="margin-top: 32px">
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepper fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlexOffset="15">
+
+      <mat-step *ngIf='survey.includes(demographicOptions.GOOGLE)' [stepControl]="frmGoogleComponent">
+        <ng-template matStepLabel>Google</ng-template>
+        <app-google></app-google>
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+  
+      <mat-step *ngIf='survey.includes(demographicOptions.FACEBOOK)' [stepControl]="frmFacebookComponent">
+        <ng-template matStepLabel>Facebook</ng-template>
+        <app-facebook></app-facebook>
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+        
+      <mat-step *ngIf='survey.includes(testOptions.CAR_COST)' [stepControl]="frmCarCostComponent">
+        <ng-template matStepLabel>Car</ng-template>
+        <app-car-cost></app-car-cost>
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+  
+      <mat-step *ngIf='survey.includes(testOptions.FOOD_FREQUENCY)' [stepControl]="frmFoodFrequencyComponent">
+        <ng-template matStepLabel>Food</ng-template>
+        <app-food-frequency></app-food-frequency>
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+  
+      <mat-step *ngIf='survey.includes(testOptions.NEO_FFI)' [stepControl]="frmNeoFfiComponent">
+        <ng-template matStepLabel>NEO</ng-template>
+        <app-neo-ffi></app-neo-ffi>
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+    
+  </mat-horizontal-stepper>
+
+</div>

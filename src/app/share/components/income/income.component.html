@@ -4,18 +4,31 @@
   
   <ng-container *ngSwitchCase="scaleOptions.BASIC">
     <input matInput formControlName="income" placeholder="Income" value=""> 
-  </ng-container>
-  
-  <ng-container *ngSwitchCase="scaleOptions.RANGE_500">
-    <input matInput formControlName="income" placeholder="Income" value=""> 
+    <mat-icon matSuffix>euro_symbol</mat-icon>
   </ng-container>
 
-  <ng-container *ngSwitchCase="scaleOptions.RANGE_1000">
-    <input matInput formControlName="income" placeholder="Income" value=""> 
+  <ng-container *ngSwitchCase="scaleOptions.RANGE_10000">
+    <mat-select #fontSize formControlName="income">
+      <mat-option value="20000">20.000€</mat-option>
+      <mat-option value="30000">30.000€</mat-option>
+      <mat-option value="40000">40.000€</mat-option>
+      <mat-option value="50000">50.000€</mat-option>
+      <mat-option value="60000">60.000€</mat-option>
+      <mat-option value="70000">70.000€</mat-option>
+      <mat-option value="80000">80.000€</mat-option>
+      <mat-option value="90000">90.000€</mat-option>
+      <mat-option value="100000">100.000€</mat-option>
+    </mat-select>
   </ng-container>
-    
-  <mat-icon matSuffix>euro_symbol</mat-icon>
+
+  <ng-container *ngSwitchCase="scaleOptions.THREE_STEPS"> 
+    <mat-select #fontSize formControlName="income">
+      <mat-option [value]="threeStepsOptions.BELOW_TWENTYTHOUSAND">Below 20.000€</mat-option>
+      <mat-option [value]="threeStepsOptions.TWENTYTHOUSAND_TO_FORTYTHOUSAND">20.000€ to 40.000€</mat-option>
+      <mat-option [value]="threeStepsOptions.ABOVE_FORTYTHOUSAND">Above 40.000€</mat-option>
+    </mat-select>
+  </ng-container>
+
   
 </mat-form-field>
-  
   

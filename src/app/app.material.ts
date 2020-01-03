@@ -12,6 +12,7 @@ import {
     MatNativeDateModule,
     MatRadioModule,
     MatSliderModule,
+    MatStepperModule,
     MatButtonToggleModule,
   } from '@angular/material';
 
@@ -30,6 +31,7 @@ import {
       MatRadioModule,
       MatSliderModule,
       MatButtonToggleModule,
+      MatStepperModule,
     ],
     exports: [
       MatInputModule,
@@ -45,6 +47,7 @@ import {
       MatRadioModule,
       MatSliderModule,
       MatButtonToggleModule,
+      MatStepperModule,
     ]
   })
   export class AppMaterialModule { }

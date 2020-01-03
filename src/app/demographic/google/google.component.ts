@@ -20,7 +20,7 @@ export class GoogleComponent implements OnInit {
   genderScale = GenderScale.BASIC;
   countryScale = CountryScale.DEU_AUT_CHE;
   educationScale = EducationScale.GERMAN;
-  incomeScale = IncomeScale.RANGE_500;
+  incomeScale = IncomeScale.THREE_STEPS;
 
   constructor(private store: Store, private fb: FormBuilder) {}
 
