@@ -1,4 +1,4 @@
-import { State, Action, StateContext, StateOperator } from '@ngxs/store';
+import { State, Action, StateContext } from '@ngxs/store';
 import { SetCountry, SetGender, SetAge, SetEducation, SetProfession, SetIncome, SetName } from '../actions/demographicData.action';
 import { AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
 import { GenderScale, GenderBasic, GenderAdvanced } from '../share/enumerations/gender.enum';
@@ -16,14 +16,16 @@ import { Profession } from '../share/models/profession.model';
 import { Name } from '../share/models/name.model';
 import { NeoFfi } from '../share/models/neo-ffi.model';
 import { LikertFiveLevel, LikertThreeLevel, LikertScale } from '../share/enumerations/likert.enum';
-import { SetScale, SetAnswer } from '../actions/neoFfi.action';
+import * as NeoFfiActions from '../actions/neoFfi.action';
 import { Ocean } from '../share/enumerations/ocean.enum';
 import { UndefinedScaleError } from '../errors/undefinedScale.error';
 import { QuestionOutOfRangeError } from '../errors/questionOutOfRange.error';
 import { UndefinedFactorError } from '../errors/undefinedFactor.error';
 import { Demographic } from '../share/enumerations/demographic.enum';
 import { Tests } from '../share/enumerations/tests.enum';
-
+import * as ZmSmActions from '../actions/zmSm.action';
+import { ZmSm } from '../share/models/zm-sm.model';
+import { Zurich } from '../share/enumerations/zurich.enum';
 
 // TODO Update
 type SurveyComponent = Demographic | Tests;
@@ -40,6 +42,7 @@ export class SurveyStateModel {
     };
     tests: {
         neo_ffi: NeoFfi;
+        zm_sm: ZmSm;
     };
     surveyLayout: SurveyComponent[];
 }
@@ -151,9 +154,54 @@ export class SurveyStateModel {
                     question_11: undefined,
                 },
             },
+            zm_sm: {
+                scale: undefined,
+                safety: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                },
+                initiative: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                },
+                might:{
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                },
+                repute: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                },
+                accomplishment: {
+                    question_0:  undefined,
+                    question_1:  undefined,
+                    question_2:  undefined,
+                    question_3:  undefined,
+                    question_4:  undefined,
+                    question_5:  undefined,
+                },
+            }
         },
         surveyLayout: [
             Demographic.GOOGLE,
+            Tests.ZM_SM,
+            Tests.NEO_FFI,
             Tests.FOOD_FREQUENCY,
             Tests.CAR_COST,
         ],
@@ -162,8 +210,126 @@ export class SurveyStateModel {
 
 export class SurveyState {
 
-    @Action(SetScale)
+    @Action(ZmSmActions.SetScale)
     SetScale(ctx: StateContext<SurveyStateModel>, action: {scale: LikertScale}) {
+        if (!Object.values(LikertScale).includes(<LikertScale>action.scale)) {
+            throw new Error('Undefined scale');
+        }
+        const state = ctx.getState();
+        ctx.patchState({
+            tests: {
+                ...state.tests,
+                zm_sm: {
+                    ...state.tests.zm_sm,
+                    'scale': action.scale,
+                }
+            }
+        });
+    }
+
+    @Action(ZmSmActions.SetAnswer)
+    // tslint:disable-next-line: max-line-length
+    SetAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Zurich}) {
+        const state = ctx.getState();
+
+        switch (state.tests.zm_sm.scale){
+            case LikertScale.LIKERT_THREE_LEVEL:
+                if (!Object.values(LikertThreeLevel).includes(<LikertThreeLevel>action.value)) {
+                    throw new ValueScaleMatchError();
+                }
+                break;
+
+            case LikertScale.LIKERT_FIVE_LEVEL:
+                if (!Object.values(LikertFiveLevel).includes(<LikertFiveLevel>action.value)) {
+                    throw new ValueScaleMatchError();
+                }
+                break;
+
+            default:
+                throw new UndefinedScaleError();
+        }
+        if (action.question > 5 || action.question < 0) {
+            throw new QuestionOutOfRangeError();
+        }
+        switch (action.factor) {
+            case Zurich.SAFETY:
+                ctx.patchState({
+                    tests: {
+                        ...state.tests,
+                        zm_sm: {
+                            ...state.tests.zm_sm,
+                            safety: {
+                                ...state.tests.zm_sm.safety,
+                                ['question_' + action.question.toString()]: action.value,
+                            },
+                        }
+                    }
+                });
+                break;
+            case Zurich.INITIATIVE:
+                ctx.patchState({
+                    tests: {
+                        ...state.tests,
+                        zm_sm: {
+                            ...state.tests.zm_sm,
+                            initiative: {
+                                ...state.tests.zm_sm.initiative,
+                                ['question_' + action.question.toString()]: action.value,
+                            },
+                        }
+                    }
+                });
+                break;
+            case Zurich.MIGHT:
+                ctx.patchState({
+                    tests: {
+                        ...state.tests,
+                        zm_sm: {
+                            ...state.tests.zm_sm,
+                            might: {
+                                ...state.tests.zm_sm.might,
+                                ['question_' + action.question.toString()]: action.value,
+                            },
+                        }
+                    }
+                });
+                break;
+            case Zurich.REPUTE:
+                ctx.patchState({
+                    tests: {
+                        ...state.tests,
+                        zm_sm: {
+                            ...state.tests.zm_sm,
+                            repute: {
+                                ...state.tests.zm_sm.repute,
+                                ['question_' + action.question.toString()]: action.value,
+                            },
+                        }
+                    }
+                });
+                break;
+            case Zurich.ACCOMPLISHMENT:
+                    ctx.patchState({
+                        tests: {
+                            ...state.tests,
+                            zm_sm: {
+                                ...state.tests.zm_sm,
+                                accomplishment: {
+                                    ...state.tests.zm_sm.accomplishment,
+                                    ['question_' + action.question.toString()]: action.value,
+                                },
+                            }
+                        }
+                    });
+                    break;
+
+            default:
+                throw new UndefinedFactorError();
+        }
+    }
+
+    @Action(NeoFfiActions.SetScale)
+    SetNeoFfiScale(ctx: StateContext<SurveyStateModel>, action: {scale: LikertScale}) {
         if (!Object.values(LikertScale).includes(<LikertScale>action.scale)) {
             throw new Error('Undefined scale');
         }
@@ -179,9 +345,9 @@ export class SurveyState {
         });
     }
 
-    @Action(SetAnswer)
+    @Action(NeoFfiActions.SetAnswer)
     // tslint:disable-next-line: max-line-length
-    SetAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Ocean}) {
+    SetNeoFfiAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Ocean}) {
         const state = ctx.getState();
 
         switch (state.tests.neo_ffi.scale){

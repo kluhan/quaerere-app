@@ -6,7 +6,7 @@ import { NeoFfiComponent } from '../tests/neo-ffi/neo-ffi.component';
 import { Tests } from '../share/enumerations/tests.enum';
 import { Demographic } from '../share/enumerations/demographic.enum';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { ZmSmComponent } from '../tests/zm-sm/zm-sm.component';
 
 // TODO Update
 type SurveyComponent = Demographic | Tests;
@@ -30,6 +30,7 @@ export class LinkerComponent implements AfterViewInit{
   @ViewChild(CarCostComponent, {static: false}) carCostComponent: CarCostComponent;
   @ViewChild(FoodFrequencyComponent, {static: false}) foodFrequencyComponent: FoodFrequencyComponent;
   @ViewChild(NeoFfiComponent, {static: false}) neoFfiComponent: NeoFfiComponent;
+  @ViewChild(ZmSmComponent, {static: false}) zmSmComponent: ZmSmComponent;
 
   // TODO Update
   get frmGoogleComponent() {
@@ -47,12 +48,16 @@ export class LinkerComponent implements AfterViewInit{
   get frmNeoFfiComponent() {
       return this.neoFfiComponent ? this.neoFfiComponent.neoFfiForm : null;
    }
+   // TODO Update
+   get frmZmSmComponent() {
+       return this.zmSmComponent ? this.zmSmComponent.zmSmForm : null;
+    }
 
 
   // Saves the ChangeDetectorRef for afterViewInit
   constructor(private ref: ChangeDetectorRef, private store: Store) {
     this.changeDetectorRef = ref;
-    this.survey = this.store.selectSnapshot<SurveyComponent[]>(state => state.SurveyState.survey);
+    this.survey = this.store.selectSnapshot<SurveyComponent[]>(state => state.surveyState.surveyLayout);
   }
 
   // Forcing change detection to avoid ExpressionChangedAfterItHasBeenCheckedError for further information see
