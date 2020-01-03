@@ -21,6 +21,12 @@ import { Ocean } from '../share/enumerations/ocean.enum';
 import { UndefinedScaleError } from '../errors/undefinedScale.error';
 import { QuestionOutOfRangeError } from '../errors/questionOutOfRange.error';
 import { UndefinedFactorError } from '../errors/undefinedFactor.error';
+import { Demographic } from '../share/enumerations/demographic.enum';
+import { Tests } from '../share/enumerations/tests.enum';
+
+
+// TODO Update
+type SurveyComponent = Demographic | Tests;
 
 export class SurveyStateModel {
     demographicData: {
@@ -35,10 +41,11 @@ export class SurveyStateModel {
     tests: {
         neo_ffi: NeoFfi;
     };
+    surveyLayout: SurveyComponent[];
 }
 
 @State<SurveyStateModel>({
-    name: 'SurveyState',
+    name: 'surveyState',
     defaults: {
         demographicData: {
             name: {
@@ -144,7 +151,12 @@ export class SurveyStateModel {
                     question_11: undefined,
                 },
             },
-        }
+        },
+        surveyLayout: [
+            Demographic.GOOGLE,
+            Tests.FOOD_FREQUENCY,
+            Tests.CAR_COST,
+        ],
     }
 })
 
