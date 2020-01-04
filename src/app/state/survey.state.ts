@@ -170,7 +170,7 @@ export class SurveyStateModel {
                     question_4:  undefined,
                     question_5:  undefined,
                 },
-                might:{
+                might: {
                     question_0:  undefined,
                     question_1:  undefined,
                     question_2:  undefined,
@@ -230,7 +230,7 @@ export class SurveyState {
     SetAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Zurich}) {
         const state = ctx.getState();
 
-        switch (state.tests.zm_sm.scale){
+        switch (state.tests.zm_sm.scale) {
             case LikertScale.LIKERT_THREE_LEVEL:
                 if (!Object.values(LikertThreeLevel).includes(<LikertThreeLevel>action.value)) {
                     throw new ValueScaleMatchError();
@@ -348,7 +348,7 @@ export class SurveyState {
     SetNeoFfiAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Ocean}) {
         const state = ctx.getState();
 
-        switch (state.tests.neo_ffi.scale){
+        switch (state.tests.neo_ffi.scale) {
             case LikertScale.LIKERT_THREE_LEVEL:
                 if (!Object.values(LikertThreeLevel).includes(<LikertThreeLevel>action.value)) {
                     throw new ValueScaleMatchError();
