@@ -1,0 +1,24 @@
+
+<div fxLayout="row" style="margin-top: 32px">
+  <form  [formGroup]="selectorForm" fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlexOffset="15">
+      
+      <!-- Applying the mat-typography class adds styles for native elements. -->
+      <section style="text-align:center;">
+        <h1 class="mat-display-4">Quaerere</h1>
+        <h4>Please enter your token to start the survey</h4>
+      </section>
+
+      <!--Company field -->
+      <mat-form-field  appearance="outline">
+          <mat-label>Token</mat-label>
+          <input matInput placeholder="Token" value="">
+      </mat-form-field>
+
+      <div fxLayoutAlign="center center">
+        <button mat-raised-button color="primary">Submit</button>
+      </div>
+
+  </form>
+
+  <div fxFlex="15"></div>
+</div>

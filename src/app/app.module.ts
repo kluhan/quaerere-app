@@ -29,6 +29,7 @@ import { NeoFfiComponent } from './tests/neo-ffi/neo-ffi.component';
 import { LikertItemComponent } from './share/components/likert-item/likert-item.component';
 import { MpZmComponent } from './tests/mp-zm/mp-zm.component';
 import { FooterComponent } from './share/components/footer/footer.component';
+import { SelectorComponent } from './selector/selector.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { FooterComponent } from './share/components/footer/footer.component';
     LinkerComponent,
     MpZmComponent,
     FooterComponent,
+    SelectorComponent,
   ],
   imports: [
     BrowserModule,
