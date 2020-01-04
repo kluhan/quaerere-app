@@ -27,6 +27,7 @@ import * as ZmSmActions from '../actions/mpZm.action';
 import { MpZm } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
 import { SurveyComponent } from '../share/types/surveyComponent.type';
+import { SetLayout } from '../actions/survey.action';
 
 export class SurveyStateModel {
     demographicData: {
@@ -207,6 +208,14 @@ export class SurveyStateModel {
 })
 
 export class SurveyState {
+
+    @Action(SetLayout)
+    SetLayout(ctx: StateContext<SurveyStateModel>, action: {layout: SurveyComponent[]}) {
+        const state = ctx.getState();
+        ctx.patchState({
+            surveyLayout: action.layout,
+        });
+    }
 
     @Action(ZmSmActions.SetScale)
     SetScale(ctx: StateContext<SurveyStateModel>, action: {scale: LikertScale}) {

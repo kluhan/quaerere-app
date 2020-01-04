@@ -11,11 +11,11 @@
       <!--Company field -->
       <mat-form-field  appearance="outline">
           <mat-label>Token</mat-label>
-          <input matInput placeholder="Token" value="">
+          <input matInput placeholder="Token" value="" formControlName="token">
       </mat-form-field>
 
       <div fxLayoutAlign="center center">
-        <button mat-raised-button color="primary">Submit</button>
+        <button mat-raised-button color="primary" [routerLink]="['/linker']" [disabled]="!tokenValidity">Submit</button>
       </div>
 
   </form>
