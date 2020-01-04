@@ -26,9 +26,7 @@ import { Tests } from '../share/enumerations/tests.enum';
 import * as ZmSmActions from '../actions/mpZm.action';
 import { MpZm } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
-
-// TODO Update
-type SurveyComponent = Demographic | Tests;
+import { SurveyComponent } from '../share/types/surveyComponent.type';
 
 export class SurveyStateModel {
     demographicData: {

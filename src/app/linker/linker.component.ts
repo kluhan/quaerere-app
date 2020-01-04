@@ -8,8 +8,7 @@ import { Demographic } from '../share/enumerations/demographic.enum';
 import { Store } from '@ngxs/store';
 import { MpZmComponent } from '../tests/mp-zm/mp-zm.component';
 import { FacebookComponent } from '../demographic/facebook/facebook.component';
-
-type SurveyComponent = Demographic | Tests;
+import { SurveyComponent } from '../share/types/surveyComponent.type';
 
 @Component({
    selector: 'app-linker',
