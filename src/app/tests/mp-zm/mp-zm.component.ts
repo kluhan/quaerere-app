@@ -58,6 +58,10 @@ export class MpZmComponent implements AfterViewInit {
     store.dispatch(new SetScale(this.scale));
   }
 
+  get formGroup() {
+    return this.mpZmForm;
+  }
+
   async ngAfterViewInit() {
     this.questions.forEach(question => {
       this.mpZmForm.get(question[0].toString()).valueChanges.subscribe(value =>

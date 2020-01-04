@@ -12,14 +12,16 @@ export class CarCostComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
+  get formGroup() {
+    return this.carCostForm;
+  }
+
   ngOnInit() {
     this.carCostForm = this.fb.group({
       brand: '',
       color: '',
       cost: '',
       });
-    // CONSOLE-LOG-DEBUG
-    this.carCostForm.valueChanges.subscribe(console.log);
   }
 
 }

@@ -12,14 +12,16 @@ export class FoodFrequencyComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
+  get formGroup() {
+    return this.foodFrequencyForm;
+  }
+
   ngOnInit() {
     this.foodFrequencyForm = this.fb.group({
       type: '',
       amount: '',
       color: '',
       });
-    // CONSOLE-LOG-DEBUG
-    this.foodFrequencyForm.valueChanges.subscribe(console.log);
   }
 
 }

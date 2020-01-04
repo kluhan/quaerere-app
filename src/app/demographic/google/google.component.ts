@@ -14,22 +14,24 @@ import { IncomeScale } from 'src/app/share/enumerations/income.enum';
 })
 export class GoogleComponent implements OnInit {
 
-  googleForm: FormGroup;
+  private googleForm: FormGroup;
 
-  ageScale = AgeScale.RANGE_20;
-  genderScale = GenderScale.BASIC;
-  countryScale = CountryScale.DEU_AUT_CHE;
-  educationScale = EducationScale.GERMAN;
-  incomeScale = IncomeScale.THREE_STEPS;
+  private ageScale = AgeScale.RANGE_20;
+  private genderScale = GenderScale.BASIC;
+  private countryScale = CountryScale.DEU_AUT_CHE;
+  private educationScale = EducationScale.GERMAN;
+  private incomeScale = IncomeScale.THREE_STEPS;
 
   constructor(private store: Store, private fb: FormBuilder) {}
 
-  async ngOnInit() {
+  get formGroup() {
+    return this.googleForm;
+  }
 
+  async ngOnInit() {
     this.googleForm = this.fb.group({
       company: 'Google',
     });
-
   }
 
 }

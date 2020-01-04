@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { LikertScale } from 'src/app/share/enumerations/likert.enum';
@@ -99,6 +99,10 @@ export class NeoFfiComponent implements AfterViewInit {
     store.dispatch(new SetScale(this.scale));
   }
 
+  get formGroup() {
+    return this.neoFfiForm;
+  }
+
   async ngAfterViewInit() {
     this.questions.forEach(question => {
       this.neoFfiForm.get(question[0].toString()).valueChanges.subscribe(value =>
@@ -108,16 +112,3 @@ export class NeoFfiComponent implements AfterViewInit {
 
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,51 +7,55 @@ import { Tests } from '../share/enumerations/tests.enum';
 import { Demographic } from '../share/enumerations/demographic.enum';
 import { Store } from '@ngxs/store';
 import { MpZmComponent } from '../tests/mp-zm/mp-zm.component';
+import { FacebookComponent } from '../demographic/facebook/facebook.component';
 
-// TODO Update
 type SurveyComponent = Demographic | Tests;
 
 @Component({
-  selector: 'app-linker',
-  templateUrl: './linker.component.html',
-  styleUrls: ['./linker.component.scss'],
+   selector: 'app-linker',
+   templateUrl: './linker.component.html',
+   styleUrls: ['./linker.component.scss'],
 })
 
 export class LinkerComponent implements AfterViewInit{
 
-  isLinear = false;
-  changeDetectorRef: ChangeDetectorRef;
+   isLinear = false;
+   changeDetectorRef: ChangeDetectorRef;
 
-  survey: SurveyComponent[];
-  demographicOptions = Demographic;
-  testOptions = Tests;
+   survey: SurveyComponent[];
+   demographicOptions = Demographic;
+   testOptions = Tests;
 
-  @ViewChild(GoogleComponent, {static: false}) googleComponent: GoogleComponent;
-  @ViewChild(CarCostComponent, {static: false}) carCostComponent: CarCostComponent;
-  @ViewChild(FoodFrequencyComponent, {static: false}) foodFrequencyComponent: FoodFrequencyComponent;
-  @ViewChild(NeoFfiComponent, {static: false}) neoFfiComponent: NeoFfiComponent;
-  @ViewChild(MpZmComponent, {static: false}) mpZmComponent:MpZmComponent;
+   @ViewChild(GoogleComponent, {static: false}) googleComponent: GoogleComponent;
+   @ViewChild(FacebookComponent, {static: false}) facebookComponent: FacebookComponent;
+   @ViewChild(CarCostComponent, {static: false}) carCostComponent: CarCostComponent;
+   @ViewChild(FoodFrequencyComponent, {static: false}) foodFrequencyComponent: FoodFrequencyComponent;
+   @ViewChild(NeoFfiComponent, {static: false}) neoFfiComponent: NeoFfiComponent;
+   @ViewChild(MpZmComponent, {static: false}) mpZmComponent:MpZmComponent;
 
-  // TODO Update
-  get frmGoogleComponent() {
-     return this.googleComponent ? this.googleComponent.googleForm : null;
-  }
-  // TODO Update
-  get frmCarCostComponent() {
-     return this.carCostComponent ? this.carCostComponent.carCostForm : null;
-  }
-  // TODO Update
-  get frmFoodFrequencyComponent() {
-     return this.foodFrequencyComponent ? this.foodFrequencyComponent.foodFrequencyForm : null;
-  }
-  // TODO Update
-  get frmNeoFfiComponent() {
-      return this.neoFfiComponent ? this.neoFfiComponent.neoFfiForm : null;
+   get frmGoogleComponent() {
+      return this.googleComponent ? this.googleComponent.formGroup : null;
    }
-   // TODO Update
+
+   get frmFacebookComponent() {
+      return this.facebookComponent ? this.facebookComponent.formGroup : null;
+   }
+
+   get frmCarCostComponent() {
+      return this.carCostComponent ? this.carCostComponent.formGroup : null;
+   }
+
+   get frmFoodFrequencyComponent() {
+      return this.foodFrequencyComponent ? this.foodFrequencyComponent.formGroup : null;
+   }
+
+   get frmNeoFfiComponent() {
+      return this.neoFfiComponent ? this.neoFfiComponent.formGroup : null;
+   }
+
    get frmZmSmComponent() {
-       return this.mpZmComponent ? this.mpZmComponent.mpZmForm : null;
-    }
+      return this.mpZmComponent ? this.mpZmComponent.formGroup : null;
+   }
 
 
   // Saves the ChangeDetectorRef for afterViewInit
