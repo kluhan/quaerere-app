@@ -16,7 +16,6 @@ export class SelectorComponent {
 
   selectorForm: FormGroup;
   survey: Observable<Survey>;
-  tokenValidity: Boolean;
 
   constructor(firestore: AngularFirestore, private fb: FormBuilder, private store: Store, private router: Router) {
     this.selectorForm = this.fb.group({});
@@ -27,17 +26,16 @@ export class SelectorComponent {
       if (token.value !== undefined && token.value !== '') {
         this.survey = firestore.collection('token').doc<Survey>(token.value).valueChanges();
         this.survey.subscribe(sur => {
+          console.log(sur);
           if (sur !== undefined) {
+            token.setErrors(null);
             store.dispatch(new SetLayout(sur.layout));
-            // router.navigate(['linker']);
-            this.tokenValidity = true;
-            if (token.enabled){
-              token.disable();
-            }
+            router.navigate(['/linker']);
+          } else {
+            token.setErrors({'incorrect': true});
           }
         });
       }
     });
   }
-
 }
