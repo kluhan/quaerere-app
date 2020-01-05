@@ -17,22 +17,6 @@
           <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </mat-step>
-        
-      <mat-step *ngIf='survey.includes(testOptions.CAR_COST)' [stepControl]="frmCarCostComponent">
-        <ng-template matStepLabel>Car</ng-template>
-        <app-car-cost></app-car-cost>
-        <div fxLayoutAlign="center center">
-          <button mat-raised-button color="primary" matStepperNext>Next</button>
-        </div>
-      </mat-step>
-  
-      <mat-step *ngIf='survey.includes(testOptions.FOOD_FREQUENCY)' [stepControl]="frmFoodFrequencyComponent">
-        <ng-template matStepLabel>Food</ng-template>
-        <app-food-frequency></app-food-frequency>
-        <div fxLayoutAlign="center center">
-          <button mat-raised-button color="primary" matStepperNext>Next</button>
-        </div>
-      </mat-step>
   
       <mat-step *ngIf='survey.includes(testOptions.NEO_FFI)' [stepControl]="frmNeoFfiComponent">
         <ng-template matStepLabel>NEO</ng-template>
