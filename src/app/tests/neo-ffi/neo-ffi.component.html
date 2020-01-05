@@ -6,7 +6,22 @@
       <section style="text-align: center;">
         <h1 class="mat-display-4">NEO-FFI</h1>
       </section>
-
+      <p>
+        Der nächste Abschnitt umfasst 60 Aussagen, die sich zur Beschreibung Ihrer eigenen Person eignen könnten. Lesen Sie bitte jede dieser Aussagen aufmerksam durch und überlegen Sie, ob diese Aussage auf Sie persönlich zutrifft oder nicht. Zur Bewertung jeder der 60 Aussagen steht Ihnen eine fünffach abgestufte Skala zur Verfügung.
+      </p>
+      <ul>
+        <li><b>starke Ablehnung</b>, wenn Sie der Aussage auf keinen Fall zustimmen oder sie für völlig unzutreffend halten</li>
+        <li><b>Ablehnung</b>, wenn Sie der Aussage eher nicht zustimmen oder sie für unzutreffend halten</li>
+        <li><b>Neutral</b>, wenn die Aussage weder richtig noch falsch, also weder zutreffend noch unzutreffend ist</li>
+        <li><b>Zustimmung</b>, wenn Sie der Aussage eher zustimmen oder sie für zutreffend halten</li>
+        <li><b>starke Zustimmung</b>, wenn Sie der Aussage nachdrücklich zustimmen oder sie für völlig zutreffend halten</li>
+      </ul>
+      <p>
+        Es gibt in diesem Fragebogen keine ‘richtigen‘ oder ‘falschen‘ Antworten, und Sie müssen kein Experte / keine Expertin sein, um den Fragebogen angemessen beantworten zu können. Sie erfüllen den Zweck der Befragung am besten, wenn Sie die Fragen so wahrheitsgemäß wie möglich beantworten.
+      </p>
+      <p>
+        Bitte lesen Sie jede Aussage genau durch und kreuzen Sie als Antwort die Kategorie an, die Ihre Sichtweise am besten ausdrückt. Falls Sie Ihre Meinung nach dem Ankreuzen einmal ändern sollten, streichen Sie Ihre erste Antwort bitte deutlich durch. Bitte bewerten Sie die 60 Aussagen zügig, aber sorgfältig. Lassen Sie keine Aussage aus. Auch wenn Ihnen einmal die Entscheidung schwerfallen sollte, kreuzen Sie trotzdem immer eine Antwort an und zwar diejenige, welche noch am ehesten auf Sie zutrifft. Beginnen Sie bitte jetzt mit der Beantwortung. 
+      </p>
       <div *ngFor="let question of questions;">
         <app-likert-item [parentForm]="neoFfiForm" [scale]="scale" [questionString]="question[3]" [controlName]="question[0]"></app-likert-item>
       </div>
