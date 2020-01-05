@@ -26,9 +26,8 @@ import { Tests } from '../share/enumerations/tests.enum';
 import * as ZmSmActions from '../actions/mpZm.action';
 import { MpZm } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
-
-// TODO Update
-type SurveyComponent = Demographic | Tests;
+import { SurveyComponent } from '../share/types/surveyComponent.type';
+import { SetLayout } from '../actions/survey.action';
 
 export class SurveyStateModel {
     demographicData: {
@@ -172,7 +171,7 @@ export class SurveyStateModel {
                     question_4:  undefined,
                     question_5:  undefined,
                 },
-                might:{
+                might: {
                     question_0:  undefined,
                     question_1:  undefined,
                     question_2:  undefined,
@@ -210,6 +209,14 @@ export class SurveyStateModel {
 
 export class SurveyState {
 
+    @Action(SetLayout)
+    SetLayout(ctx: StateContext<SurveyStateModel>, action: {layout: SurveyComponent[]}) {
+        const state = ctx.getState();
+        ctx.patchState({
+            surveyLayout: action.layout,
+        });
+    }
+
     @Action(ZmSmActions.SetScale)
     SetScale(ctx: StateContext<SurveyStateModel>, action: {scale: LikertScale}) {
         if (!Object.values(LikertScale).includes(<LikertScale>action.scale)) {
@@ -232,7 +239,7 @@ export class SurveyState {
     SetAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Zurich}) {
         const state = ctx.getState();
 
-        switch (state.tests.zm_sm.scale){
+        switch (state.tests.zm_sm.scale) {
             case LikertScale.LIKERT_THREE_LEVEL:
                 if (!Object.values(LikertThreeLevel).includes(<LikertThreeLevel>action.value)) {
                     throw new ValueScaleMatchError();
@@ -350,7 +357,7 @@ export class SurveyState {
     SetNeoFfiAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Ocean}) {
         const state = ctx.getState();
 
-        switch (state.tests.neo_ffi.scale){
+        switch (state.tests.neo_ffi.scale) {
             case LikertScale.LIKERT_THREE_LEVEL:
                 if (!Object.values(LikertThreeLevel).includes(<LikertThreeLevel>action.value)) {
                     throw new ValueScaleMatchError();

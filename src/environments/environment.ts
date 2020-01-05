@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyBgij5J4iJvfqgMW0QwBGUWtF681obN2cw',
+    authDomain: 'quaerere-app.firebaseapp.com',
+    databaseURL: 'https://quaerere-app.firebaseio.com',
+    projectId: 'quaerere-app',
+    storageBucket: 'quaerere-app.appspot.com',
+    messagingSenderId: '787416054286',
+    appId: '1:787416054286:web:1c8abe539a4ebde3745a5f',
+    measurementId: 'G-5Q9GX7QND0'
+  }
 };
 
 /*

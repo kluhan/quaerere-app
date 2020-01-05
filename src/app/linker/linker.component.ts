@@ -8,8 +8,7 @@ import { Demographic } from '../share/enumerations/demographic.enum';
 import { Store } from '@ngxs/store';
 import { MpZmComponent } from '../tests/mp-zm/mp-zm.component';
 import { FacebookComponent } from '../demographic/facebook/facebook.component';
-
-type SurveyComponent = Demographic | Tests;
+import { SurveyComponent } from '../share/types/surveyComponent.type';
 
 @Component({
    selector: 'app-linker',
@@ -17,7 +16,7 @@ type SurveyComponent = Demographic | Tests;
    styleUrls: ['./linker.component.scss'],
 })
 
-export class LinkerComponent implements AfterViewInit{
+export class LinkerComponent implements AfterViewInit {
 
    isLinear = false;
    changeDetectorRef: ChangeDetectorRef;
@@ -31,7 +30,7 @@ export class LinkerComponent implements AfterViewInit{
    @ViewChild(CarCostComponent, {static: false}) carCostComponent: CarCostComponent;
    @ViewChild(FoodFrequencyComponent, {static: false}) foodFrequencyComponent: FoodFrequencyComponent;
    @ViewChild(NeoFfiComponent, {static: false}) neoFfiComponent: NeoFfiComponent;
-   @ViewChild(MpZmComponent, {static: false}) mpZmComponent:MpZmComponent;
+   @ViewChild(MpZmComponent, {static: false}) mpZmComponent: MpZmComponent;
 
    get frmGoogleComponent() {
       return this.googleComponent ? this.googleComponent.formGroup : null;
@@ -57,7 +56,6 @@ export class LinkerComponent implements AfterViewInit{
       return this.mpZmComponent ? this.mpZmComponent.formGroup : null;
    }
 
-
   // Saves the ChangeDetectorRef for afterViewInit
   constructor(private ref: ChangeDetectorRef, private store: Store) {
     this.changeDetectorRef = ref;
@@ -69,6 +67,3 @@ export class LinkerComponent implements AfterViewInit{
   ngAfterViewInit() { this.changeDetectorRef.detectChanges(); }
 
 }
-
-
-

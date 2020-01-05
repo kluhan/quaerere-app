@@ -29,6 +29,9 @@ import { NeoFfiComponent } from './tests/neo-ffi/neo-ffi.component';
 import { LikertItemComponent } from './share/components/likert-item/likert-item.component';
 import { MpZmComponent } from './tests/mp-zm/mp-zm.component';
 import { FooterComponent } from './share/components/footer/footer.component';
+import { SelectorComponent } from './selector/selector.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,7 @@ import { FooterComponent } from './share/components/footer/footer.component';
     LinkerComponent,
     MpZmComponent,
     FooterComponent,
+    SelectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,9 @@ import { FooterComponent } from './share/components/footer/footer.component';
       SurveyState
     ], { developmentMode: !environment.production }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot()
+    NgxsLoggerPluginModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
   ],
   providers: [],
   bootstrap: [AppComponent]
