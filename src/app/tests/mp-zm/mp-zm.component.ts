@@ -1,9 +1,12 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { LikertScale } from 'src/app/share/enumerations/likert.enum';
 import { SetAnswer, SetScale } from 'src/app/actions/mpZm.action';
 import { Zurich } from 'src/app/share/enumerations/zurich.enum';
+import { Observable } from 'rxjs';
+import { MpZm } from 'src/app/share/models/mp-zm.model';
+import { SynchronisationService } from 'src/app/synchronisation.service';
 
 @Component({
   selector: 'app-mp-zm',
@@ -11,6 +14,8 @@ import { Zurich } from 'src/app/share/enumerations/zurich.enum';
   styleUrls: ['./mp-zm.component.scss']
 })
 export class MpZmComponent implements AfterViewInit {
+
+  @Select(state => state.surveyState.tests.mp_zm) data$: Observable<MpZm>;
 
   mpZmForm: FormGroup;
   scale = LikertScale.LIKERT_FIVE_LEVEL;
@@ -53,8 +58,9 @@ export class MpZmComponent implements AfterViewInit {
     ['qa5', 5, Zurich.ACCOMPLISHMENT, 'Es beschäftigt mich, wie ich meine schon guten Leistungen noch besser machen kann.', ],
   ];
 
-  constructor(private store: Store, private fb: FormBuilder) {
+  constructor(private store: Store, private fb: FormBuilder, private synchronisationService: SynchronisationService) {
     this.mpZmForm = this.fb.group({});
+    synchronisationService.registerData(this.data$, 'mp_zm');
     store.dispatch(new SetScale(this.scale));
   }
 
