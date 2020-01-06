@@ -16,7 +16,7 @@ import { SurveyComponent } from '../share/types/surveyComponent.type';
 
 export class LinkerComponent implements AfterViewInit {
 
-   isLinear = false;
+   isLinear = true;
    changeDetectorRef: ChangeDetectorRef;
 
    survey: SurveyComponent[];
