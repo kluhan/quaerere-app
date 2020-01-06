@@ -198,11 +198,10 @@ export class SurveyStateModel {
             }
         },
         surveyLayout: [
+            Demographic.FACEBOOK,
             Demographic.GOOGLE,
             Tests.ZM_SM,
             Tests.NEO_FFI,
-            Tests.FOOD_FREQUENCY,
-            Tests.CAR_COST,
         ],
     }
 })

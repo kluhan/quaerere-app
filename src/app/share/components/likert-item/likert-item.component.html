@@ -4,25 +4,25 @@
   
   <ng-container *ngSwitchCase="scaleOptions.LIKERT_THREE_LEVEL">
     <div fxFill [formGroup]="parentForm">
-        <mat-radio-group [formControlName]="controlName.toString()" aria-label="Select an option" fxLayout.lt-sm="column" fxLayout.gt-sm="row" fxLayoutGap="8px" fxLayoutAlign="space-around">
-          <mat-radio-button [value]="likertFiveLevel.AGREE">agree</mat-radio-button>
-          <mat-radio-button [value]="likertFiveLevel.NEUTRAL">neutral</mat-radio-button>
-          <mat-radio-button [value]="likertFiveLevel.DISAGREE">disagree</mat-radio-button>
-        </mat-radio-group>
+      <mat-radio-group [formControlName]="controlName.toString()" aria-label="Select an option" fxLayout.lt-sm="column" fxLayout.gt-sm="row" fxLayoutGap="8px" fxLayoutAlign="space-around">
+        <mat-radio-button [value]="likertFiveLevel.AGREE">agree</mat-radio-button>
+        <mat-radio-button [value]="likertFiveLevel.NEUTRAL">neutral</mat-radio-button>
+        <mat-radio-button [value]="likertFiveLevel.DISAGREE">disagree</mat-radio-button>
+      </mat-radio-group>
     </div>
   </ng-container>
 
   <ng-container *ngSwitchCase="scaleOptions.LIKERT_FIVE_LEVEL">
-      <div fxFill [formGroup]="parentForm">
-          <mat-radio-group [formControlName]="controlName.toString()" aria-label="Select an option" fxLayout.lt-sm="column" fxLayout.gt-sm="row" fxLayoutGap="8px" fxLayoutAlign="space-around">
-            <mat-radio-button [value]="likertFiveLevel.STRONG_AGREE">strongly agree</mat-radio-button>
-            <mat-radio-button [value]="likertFiveLevel.AGREE">agree</mat-radio-button>
-            <mat-radio-button [value]="likertFiveLevel.NEUTRAL">neutral</mat-radio-button>
-            <mat-radio-button [value]="likertFiveLevel.DISAGREE">disagree</mat-radio-button>
-            <mat-radio-button [value]="likertFiveLevel.STRONG_DISAGREE">strong disagree</mat-radio-button>
-          </mat-radio-group>
-      </div>
-    </ng-container>
+    <div fxFill [formGroup]="parentForm">
+      <mat-radio-group [formControlName]="controlName.toString()" aria-label="Select an option" fxLayout.lt-sm="column" fxLayout.gt-sm="row" fxLayoutGap="8px" fxLayoutAlign="space-around">
+        <mat-radio-button [value]="likertFiveLevel.STRONG_AGREE">strongly agree</mat-radio-button>
+        <mat-radio-button [value]="likertFiveLevel.AGREE">agree</mat-radio-button>
+        <mat-radio-button [value]="likertFiveLevel.NEUTRAL">neutral</mat-radio-button>
+        <mat-radio-button [value]="likertFiveLevel.DISAGREE">disagree</mat-radio-button>
+        <mat-radio-button [value]="likertFiveLevel.STRONG_DISAGREE">strong disagree</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </ng-container>
 </section>
 
 

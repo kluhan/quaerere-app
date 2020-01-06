@@ -1,5 +1,5 @@
 export enum LikertFiveLevel {
-    STRONG_AGREE = 'strong_disagree',
+    STRONG_AGREE = 'strong_agree',
     AGREE = 'agree',
     NEUTRAL = 'neutral',
     DISAGREE = 'disagree',

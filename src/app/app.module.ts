@@ -11,8 +11,6 @@ import { NavigationComponent } from './share/components/navigation/navigation.co
 import { GoogleComponent } from './demographic/google/google.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FacebookComponent } from './demographic/facebook/facebook.component';
-import { FoodFrequencyComponent } from './tests/food-frequency/food-frequency.component';
-import { CarCostComponent } from './tests/car-cost/car-cost.component';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
@@ -39,8 +37,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     NavigationComponent,
     GoogleComponent,
     FacebookComponent,
-    FoodFrequencyComponent,
-    CarCostComponent,
     AgeComponent,
     GenderComponent,
     CountryComponent,

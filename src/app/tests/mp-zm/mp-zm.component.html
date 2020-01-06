@@ -1,11 +1,27 @@
 
 <div style="margin-top: 24px; margin-bottom: 24px;" class="mat-typography">
-  <form  [formGroup]="mpZmForm" fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlex.lt-md="90" fxFlexOffset="15" fxFlexOffset.lt-md="5">
+  <form  [formGroup]="mpZmForm" fxLayout="column" fxLayoutGap="32px" fxFlex="50" fxFlex.lt-sm="90" fxFlexOffset="25" fxFlexOffset.lt-sm="5">
       
       <!-- Applying the mat-typography class adds styles for native elements. -->
       <section style="text-align: center;">
         <h1 class="mat-display-4">ZM-SM</h1>
       </section>
+      <p>
+        Der nächste Abschnitt umfasst 30 Aussagen. Lesen Sie bitte jede dieser Aussagen aufmerksam durch und überlegen Sie, wie die typisch die Beschreibungen für Sie sind. Zur Bewertung jeder der 30 Beschreibungen steht Ihnen eine fünffach abgestufte Skala zur Verfügung.
+      </p>
+      <ul>
+        <li><b>starke Ablehnung</b>, wenn Sie der Beschreibung auf keinen Fall zustimmt oder sie für völlig unzutreffend für Ihre Person halten</li>
+        <li><b>Ablehnung</b>, wenn Sie der Beschreibung eher nicht zustimmen oder sie für unzutreffend halten</li>
+        <li><b>Neutral</b>, wenn die Beschreibung weder richtig noch falsch, also weder zutreffend noch unzutreffend ist</li>
+        <li><b>Zustimmung</b>, wenn Sie der Beschreibung eher zustimmen oder sie für zutreffend halten</li>
+        <li><b>starke Zustimmung</b>, wenn Sie der Beschreibung nachdrücklich zustimmen oder sie für völlig zutreffend halten</li>
+      </ul>
+      <p>
+        Es gibt in diesem Fragebogen keine ‘richtigen‘ oder ‘falschen‘ Antworten, und Sie müssen kein Experte / keine Expertin sein, um den Fragebogen angemessen beantworten zu können. Sie erfüllen den Zweck der Befragung am besten, wenn Sie die Fragen so wahrheitsgemäß wie möglich beantworten.
+      </p>
+      <p>
+        Bitte lesen Sie jede Aussage genau durch und kreuzen Sie als Antwort die Kategorie an, die Ihre Sichtweise am besten ausdrückt. Falls Sie Ihre Meinung nach dem Ankreuzen einmal ändern sollten, streichen Sie Ihre erste Antwort bitte deutlich durch. Bitte bewerten Sie die 30 Aussagen zügig, aber sorgfältig. Lassen Sie keine Aussage aus. Auch wenn Ihnen einmal die Entscheidung schwerfallen sollte, kreuzen Sie trotzdem immer eine Antwort an und zwar diejenige, welche noch am ehesten auf Sie zutrifft. Beginnen Sie bitte jetzt mit der Beantwortung. 
+      </p>
 
       <div *ngFor="let question of questions;">
         <app-likert-item [parentForm]="mpZmForm" [scale]="scale" [questionString]="question[3]" [controlName]="question[0]"></app-likert-item>

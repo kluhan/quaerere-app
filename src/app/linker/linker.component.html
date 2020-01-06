@@ -1,6 +1,6 @@
-<div fxLayout="row" style="margin-top: 32px" >
+<div fxLayout="row">
 
-  <mat-horizontal-stepper [linear]="isLinear" #stepper fxLayout="column" fxLayoutGap="32px" fxFlex="70" fxFlexOffset="15" style="background-color: transparent;">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper fxLayout="column" fxLayoutGap="32px" fxFlexFill style="background-color: transparent;">
 
       <mat-step *ngIf='survey.includes(demographicOptions.GOOGLE)' [stepControl]="frmGoogleComponent">
         <ng-template matStepLabel>Google</ng-template>
@@ -13,22 +13,6 @@
       <mat-step *ngIf='survey.includes(demographicOptions.FACEBOOK)' [stepControl]="frmFacebookComponent">
         <ng-template matStepLabel>Facebook</ng-template>
         <app-facebook></app-facebook>
-        <div fxLayoutAlign="center center">
-          <button mat-raised-button color="primary" matStepperNext>Next</button>
-        </div>
-      </mat-step>
-        
-      <mat-step *ngIf='survey.includes(testOptions.CAR_COST)' [stepControl]="frmCarCostComponent">
-        <ng-template matStepLabel>Car</ng-template>
-        <app-car-cost></app-car-cost>
-        <div fxLayoutAlign="center center">
-          <button mat-raised-button color="primary" matStepperNext>Next</button>
-        </div>
-      </mat-step>
-  
-      <mat-step *ngIf='survey.includes(testOptions.FOOD_FREQUENCY)' [stepControl]="frmFoodFrequencyComponent">
-        <ng-template matStepLabel>Food</ng-template>
-        <app-food-frequency></app-food-frequency>
         <div fxLayoutAlign="center center">
           <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
@@ -47,6 +31,16 @@
         <app-mp-zm></app-mp-zm>
         <div fxLayoutAlign="center center">
           <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Finish</ng-template>
+        <section style="text-align: center;">
+          <h1 class="mat-display-4">you're done.</h1>
+        </section>
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" matStepperNext>Finish</button>
         </div>
       </mat-step>
     
