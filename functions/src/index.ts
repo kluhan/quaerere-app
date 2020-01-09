@@ -27,6 +27,9 @@ exports.getToken = functions.https.onRequest((req, res) => {
                 .then((uid: string) => {
                     admin.auth().createCustomToken(uid)
                         .then(
+                            layout.forEach(test => {
+                                admin.firestore().collection(test).doc(uid).set({token: token});
+                            }),
                             res.status(200).send({token, uid, layout})
                         )
                 })
