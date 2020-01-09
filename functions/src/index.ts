@@ -30,6 +30,7 @@ exports.getToken = functions.https.onRequest((req, res) => {
                             layout.forEach(test => {
                                 admin.firestore().collection(test).doc(uid).set({token: token});
                             }),
+                            admin.firestore().collection('demographic').doc(uid).set({token: token}),
                             res.status(200).send({token, uid, layout})
                         )
                 })

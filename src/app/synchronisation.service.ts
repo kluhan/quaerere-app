@@ -14,14 +14,13 @@ export class SynchronisationService {
   }
 
   registerData(data$: Observable<any>, collection: String, ) {
-    this.firestore
-            .collection(collection.toString())
-            .add({'token': 'not_implemented'})
-            .then((docRef: DocumentReference) => {
-              data$.subscribe(data => {
-                docRef.update(data);
-              });
-            });
+    const uid = this.store.selectSnapshot<String>(state => state.surveyState.configuration.uid).toString();
+    const docRef = this.firestore.collection(collection.toString()).doc(uid).ref;
+    data$.subscribe(data => {
+      console.log(data);
+      
+      docRef.update(data);
+    });
   }
 
   }
