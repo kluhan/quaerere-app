@@ -47,7 +47,7 @@ export class LinkerComponent implements AfterViewInit {
   // Saves the ChangeDetectorRef for afterViewInit
   constructor(private ref: ChangeDetectorRef, private store: Store) {
     this.changeDetectorRef = ref;
-    this.survey = this.store.selectSnapshot<SurveyComponent[]>(state => state.surveyState.surveyLayout);
+    this.survey = this.store.selectSnapshot<SurveyComponent[]>(state => state.surveyState.configuration.components);
   }
 
   // Forcing change detection to avoid ExpressionChangedAfterItHasBeenCheckedError for further information see

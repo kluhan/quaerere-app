@@ -27,7 +27,7 @@ import * as ZmSmActions from '../actions/mpZm.action';
 import { MpZm } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
 import { SurveyComponent } from '../share/types/surveyComponent.type';
-import { SetLayout } from '../actions/survey.action';
+import { SetComponent, SetToken, SetUID } from '../actions/survey.action';
 
 export class SurveyStateModel {
     demographicData: {
@@ -43,7 +43,11 @@ export class SurveyStateModel {
         neo_ffi: NeoFfi;
         zm_sm: MpZm;
     };
-    surveyLayout: SurveyComponent[];
+    configuration: {
+        components: SurveyComponent[],
+        uid: String,
+        token: String,
+    };
 }
 
 @State<SurveyStateModel>({
@@ -197,22 +201,53 @@ export class SurveyStateModel {
                 },
             }
         },
-        surveyLayout: [
-            Demographic.FACEBOOK,
-            Demographic.GOOGLE,
-            Tests.ZM_SM,
-            Tests.NEO_FFI,
-        ],
+        configuration: {
+            components: [
+                Demographic.FACEBOOK,
+                Demographic.GOOGLE,
+                Tests.ZM_SM,
+                Tests.NEO_FFI,
+            ],
+            uid: null,
+            token: null,
+        },
     }
 })
 
 export class SurveyState {
 
-    @Action(SetLayout)
+    @Action(SetComponent)
     SetLayout(ctx: StateContext<SurveyStateModel>, action: {layout: SurveyComponent[]}) {
         const state = ctx.getState();
         ctx.patchState({
-            surveyLayout: action.layout,
+            configuration: {
+                ...state.configuration,
+                'components': action.layout
+            },
+        });
+    }
+
+
+
+    @Action(SetToken)
+    SetToken(ctx: StateContext<SurveyStateModel>, action: {token: String}) {
+        const state = ctx.getState();
+        ctx.patchState({
+            configuration: {
+                ...state.configuration,
+                'token': action.token
+            },
+        });
+    }
+
+    @Action(SetUID)
+    SetUID(ctx: StateContext<SurveyStateModel>, action: {uid: String}) {
+        const state = ctx.getState();
+        ctx.patchState({
+            configuration: {
+                ...state.configuration,
+                'uid': action.uid
+            },
         });
     }
 
