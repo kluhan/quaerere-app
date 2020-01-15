@@ -18,20 +18,22 @@ exports.getToken = functions.https.onRequest((req, res) => {
         
         const token = req.body.token;
         let layout = null;
+        let demographic = null;
 
         const tokenDoc = admin.firestore().collection('token').doc(token);
         tokenDoc.get().then((doc) => {
             if (doc.exists) {
                 layout = doc.data().layout
+                demographic = doc.data().demographic
                 uidgen.generate()
                 .then((uid: string) => {
                     admin.auth().createCustomToken(uid)
                         .then(
                             layout.forEach(test => {
-                                admin.firestore().collection(test).doc(uid).set({token: token});
+                                admin.firestore().collection(test).doc(uid).set({token: token, finished: false});
                             }),
-                            admin.firestore().collection('demographic').doc(uid).set({token: token}),
-                            res.status(200).send({token, uid, layout})
+                            admin.firestore().collection('demographic').doc(uid).set({token: token, finished: false}),
+                            res.status(200).send({token, uid, layout, demographic})
                         )
                 })
             } else {
@@ -41,6 +43,10 @@ exports.getToken = functions.https.onRequest((req, res) => {
         })
     })
 });
+
+
+
+
 
     
 

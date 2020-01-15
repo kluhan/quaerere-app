@@ -60,7 +60,7 @@ export class MpZmComponent implements AfterViewInit {
 
   constructor(private store: Store, private fb: FormBuilder, private synchronisationService: SynchronisationService) {
     this.mpZmForm = this.fb.group({});
-    synchronisationService.registerData(this.data$, 'mp_zm');
+    synchronisationService.registerTestData(this.data$, 'mp_zm');
     store.dispatch(new SetScale(this.scale));
   }
 

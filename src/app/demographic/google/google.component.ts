@@ -26,8 +26,7 @@ export class GoogleComponent implements OnInit {
   private incomeScale = IncomeScale.THREE_STEPS;
 
   constructor(private store: Store, private fb: FormBuilder, private synchronisationService: SynchronisationService) {
-    synchronisationService.registerData(this.data$, 'demographic');
-    this.data$.subscribe(data => {console.log(data);});
+    synchronisationService.registerDemographicData(this.data$);
   }
 
   get formGroup() {

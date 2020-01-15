@@ -103,7 +103,7 @@ export class NeoFfiComponent implements AfterViewInit {
 
   constructor(private store: Store, private fb: FormBuilder, synchronisationService: SynchronisationService) {
     this.neoFfiForm = this.fb.group({});
-    synchronisationService.registerData(this.data$, 'neo_ffi');
+    synchronisationService.registerTestData(this.data$, 'neo_ffi');
     this.store.dispatch(new SetScale(this.scale));
   }
 

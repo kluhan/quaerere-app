@@ -27,7 +27,7 @@ import * as ZmSmActions from '../actions/mpZm.action';
 import { MpZm } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
 import { SurveyComponent } from '../share/types/surveyComponent.type';
-import { SetComponent, SetToken, SetUID } from '../actions/survey.action';
+import { SetComponent, SetToken, SetUID, SetDemographic } from '../actions/survey.action';
 
 export class SurveyStateModel {
     demographicData: {
@@ -47,6 +47,7 @@ export class SurveyStateModel {
         components: SurveyComponent[],
         uid: String,
         token: String,
+        demographic: SurveyComponent,
     };
 }
 
@@ -210,11 +211,23 @@ export class SurveyStateModel {
             ],
             uid: null,
             token: null,
+            demographic: null,
         },
     }
 })
 
 export class SurveyState {
+
+    @Action(SetDemographic)
+    SetDemographic(ctx: StateContext<SurveyStateModel>, action: {demographic: SurveyComponent}) {
+        const state = ctx.getState();
+        ctx.patchState({
+            configuration: {
+                ...state.configuration,
+                'demographic': action.demographic
+            },
+        });
+    }
 
     @Action(SetComponent)
     SetLayout(ctx: StateContext<SurveyStateModel>, action: {layout: SurveyComponent[]}) {

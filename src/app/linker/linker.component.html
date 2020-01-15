@@ -2,7 +2,7 @@
 
   <mat-horizontal-stepper [linear]="isLinear" #stepper fxLayout="column" fxLayoutGap="32px" fxFlexFill style="background-color: transparent;">
 
-      <mat-step *ngIf='survey.includes(demographicOptions.GOOGLE)' [stepControl]="frmGoogleComponent">
+      <mat-step *ngIf='demographic.includes(demographicOptions.GOOGLE)' [stepControl]="frmGoogleComponent">
         <ng-template matStepLabel>Google</ng-template>
         <app-google></app-google>
         <div fxLayoutAlign="center center">
@@ -10,7 +10,7 @@
         </div>
       </mat-step>
   
-      <mat-step *ngIf='survey.includes(demographicOptions.FACEBOOK)' [stepControl]="frmFacebookComponent">
+      <mat-step *ngIf='demographic.includes(demographicOptions.FACEBOOK)' [stepControl]="frmFacebookComponent">
         <ng-template matStepLabel>Facebook</ng-template>
         <app-facebook></app-facebook>
         <div fxLayoutAlign="center center">
@@ -18,7 +18,7 @@
         </div>
       </mat-step>
   
-      <mat-step *ngIf='survey.includes(testOptions.NEO_FFI)' [stepControl]="frmNeoFfiComponent">
+      <mat-step *ngIf='test.includes(testOptions.NEO_FFI)' [stepControl]="frmNeoFfiComponent">
         <ng-template matStepLabel>NEO</ng-template>
         <app-neo-ffi></app-neo-ffi>
         <div fxLayoutAlign="center center">
@@ -26,7 +26,7 @@
         </div>
       </mat-step>
   
-      <mat-step *ngIf='survey.includes(testOptions.ZM_SM)' [stepControl]="frmZmSmComponent">
+      <mat-step *ngIf='test.includes(testOptions.ZM_SM)' [stepControl]="frmZmSmComponent">
         <ng-template matStepLabel>ZM</ng-template>
         <app-mp-zm></app-mp-zm>
         <div fxLayoutAlign="center center">
