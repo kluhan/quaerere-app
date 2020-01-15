@@ -1,4 +1,4 @@
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { SetCountry, SetGender, SetAge, SetEducation, SetProfession, SetIncome, SetName } from '../actions/demographicData.action';
 import { AgeScale, AgeRange20 } from '../share/enumerations/age.enum';
 import { GenderScale, GenderBasic, GenderAdvanced } from '../share/enumerations/gender.enum';
@@ -27,7 +27,7 @@ import * as ZmSmActions from '../actions/mpZm.action';
 import { MpZm } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
 import { SurveyComponent } from '../share/types/surveyComponent.type';
-import { SetLayout } from '../actions/survey.action';
+import { SetComponent, SetToken, SetUID, SetDemographic } from '../actions/survey.action';
 
 export class SurveyStateModel {
     demographicData: {
@@ -41,9 +41,14 @@ export class SurveyStateModel {
     };
     tests: {
         neo_ffi: NeoFfi;
-        zm_sm: MpZm;
+        mp_zm: MpZm;
     };
-    surveyLayout: SurveyComponent[];
+    configuration: {
+        components: SurveyComponent[],
+        uid: String,
+        token: String,
+        demographic: SurveyComponent,
+    };
 }
 
 @State<SurveyStateModel>({
@@ -51,168 +56,211 @@ export class SurveyStateModel {
     defaults: {
         demographicData: {
             name: {
-                first: undefined,
-                last: undefined,
+                first: null,
+                last: null,
             },
             age: {
-                scale: undefined,
-                value: undefined,
+                scale: null,
+                value: null,
             },
             gender: {
-                scale: undefined,
-                value: undefined,
+                scale: null,
+                value: null,
             },
             country: {
-                scale: undefined,
-                value: undefined,
+                scale: null,
+                value: null,
             },
             education: {
-                scale: undefined,
-                value: undefined,
+                scale: null,
+                value: null,
             },
             income: {
-                scale: undefined,
-                value: undefined,
+                scale: null,
+                value: null,
             },
             profession: {
-                scale: undefined,
-                value: undefined,
+                scale: null,
+                value: null,
             }
         },
         tests: {
             neo_ffi: {
-                scale: undefined,
+                scale: null,
                 openness: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
-                    question_6:  undefined,
-                    question_7:  undefined,
-                    question_8:  undefined,
-                    question_9:  undefined,
-                    question_10: undefined,
-                    question_11: undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
+                    question_6:  null,
+                    question_7:  null,
+                    question_8:  null,
+                    question_9:  null,
+                    question_10: null,
+                    question_11: null,
                 },
                 conscientiousness: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
-                    question_6:  undefined,
-                    question_7:  undefined,
-                    question_8:  undefined,
-                    question_9:  undefined,
-                    question_10: undefined,
-                    question_11: undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
+                    question_6:  null,
+                    question_7:  null,
+                    question_8:  null,
+                    question_9:  null,
+                    question_10: null,
+                    question_11: null,
                 },
                 extraversion: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
-                    question_6:  undefined,
-                    question_7:  undefined,
-                    question_8:  undefined,
-                    question_9:  undefined,
-                    question_10: undefined,
-                    question_11: undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
+                    question_6:  null,
+                    question_7:  null,
+                    question_8:  null,
+                    question_9:  null,
+                    question_10: null,
+                    question_11: null,
                 },
                 agreeableness: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
-                    question_6:  undefined,
-                    question_7:  undefined,
-                    question_8:  undefined,
-                    question_9:  undefined,
-                    question_10: undefined,
-                    question_11: undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
+                    question_6:  null,
+                    question_7:  null,
+                    question_8:  null,
+                    question_9:  null,
+                    question_10: null,
+                    question_11: null,
                 },
                 neuroticism: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
-                    question_6:  undefined,
-                    question_7:  undefined,
-                    question_8:  undefined,
-                    question_9:  undefined,
-                    question_10: undefined,
-                    question_11: undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
+                    question_6:  null,
+                    question_7:  null,
+                    question_8:  null,
+                    question_9:  null,
+                    question_10: null,
+                    question_11: null,
                 },
             },
-            zm_sm: {
-                scale: undefined,
+            mp_zm: {
+                scale: null,
                 safety: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
                 },
                 initiative: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
                 },
                 might: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
                 },
                 repute: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
                 },
                 accomplishment: {
-                    question_0:  undefined,
-                    question_1:  undefined,
-                    question_2:  undefined,
-                    question_3:  undefined,
-                    question_4:  undefined,
-                    question_5:  undefined,
+                    question_0:  null,
+                    question_1:  null,
+                    question_2:  null,
+                    question_3:  null,
+                    question_4:  null,
+                    question_5:  null,
                 },
             }
         },
-        surveyLayout: [
-            Demographic.FACEBOOK,
-            Demographic.GOOGLE,
-            Tests.ZM_SM,
-            Tests.NEO_FFI,
-        ],
+        configuration: {
+            components: [
+                Demographic.FACEBOOK,
+                Demographic.GOOGLE,
+                Tests.ZM_SM,
+                Tests.NEO_FFI,
+            ],
+            uid: null,
+            token: null,
+            demographic: null,
+        },
     }
 })
 
 export class SurveyState {
 
-    @Action(SetLayout)
+    @Action(SetDemographic)
+    SetDemographic(ctx: StateContext<SurveyStateModel>, action: {demographic: SurveyComponent}) {
+        const state = ctx.getState();
+        ctx.patchState({
+            configuration: {
+                ...state.configuration,
+                'demographic': action.demographic
+            },
+        });
+    }
+
+    @Action(SetComponent)
     SetLayout(ctx: StateContext<SurveyStateModel>, action: {layout: SurveyComponent[]}) {
         const state = ctx.getState();
         ctx.patchState({
-            surveyLayout: action.layout,
+            configuration: {
+                ...state.configuration,
+                'components': action.layout
+            },
+        });
+    }
+
+
+
+    @Action(SetToken)
+    SetToken(ctx: StateContext<SurveyStateModel>, action: {token: String}) {
+        const state = ctx.getState();
+        ctx.patchState({
+            configuration: {
+                ...state.configuration,
+                'token': action.token
+            },
+        });
+    }
+
+    @Action(SetUID)
+    SetUID(ctx: StateContext<SurveyStateModel>, action: {uid: String}) {
+        const state = ctx.getState();
+        ctx.patchState({
+            configuration: {
+                ...state.configuration,
+                'uid': action.uid
+            },
         });
     }
 
@@ -225,8 +273,8 @@ export class SurveyState {
         ctx.patchState({
             tests: {
                 ...state.tests,
-                zm_sm: {
-                    ...state.tests.zm_sm,
+                mp_zm: {
+                    ...state.tests.mp_zm,
                     'scale': action.scale,
                 }
             }
@@ -238,7 +286,7 @@ export class SurveyState {
     SetAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Zurich}) {
         const state = ctx.getState();
 
-        switch (state.tests.zm_sm.scale) {
+        switch (state.tests.mp_zm.scale) {
             case LikertScale.LIKERT_THREE_LEVEL:
                 if (!Object.values(LikertThreeLevel).includes(<LikertThreeLevel>action.value)) {
                     throw new ValueScaleMatchError();
@@ -262,10 +310,10 @@ export class SurveyState {
                 ctx.patchState({
                     tests: {
                         ...state.tests,
-                        zm_sm: {
-                            ...state.tests.zm_sm,
+                        mp_zm: {
+                            ...state.tests.mp_zm,
                             safety: {
-                                ...state.tests.zm_sm.safety,
+                                ...state.tests.mp_zm.safety,
                                 ['question_' + action.question.toString()]: action.value,
                             },
                         }
@@ -276,10 +324,10 @@ export class SurveyState {
                 ctx.patchState({
                     tests: {
                         ...state.tests,
-                        zm_sm: {
-                            ...state.tests.zm_sm,
+                        mp_zm: {
+                            ...state.tests.mp_zm,
                             initiative: {
-                                ...state.tests.zm_sm.initiative,
+                                ...state.tests.mp_zm.initiative,
                                 ['question_' + action.question.toString()]: action.value,
                             },
                         }
@@ -290,10 +338,10 @@ export class SurveyState {
                 ctx.patchState({
                     tests: {
                         ...state.tests,
-                        zm_sm: {
-                            ...state.tests.zm_sm,
+                        mp_zm: {
+                            ...state.tests.mp_zm,
                             might: {
-                                ...state.tests.zm_sm.might,
+                                ...state.tests.mp_zm.might,
                                 ['question_' + action.question.toString()]: action.value,
                             },
                         }
@@ -304,10 +352,10 @@ export class SurveyState {
                 ctx.patchState({
                     tests: {
                         ...state.tests,
-                        zm_sm: {
-                            ...state.tests.zm_sm,
+                        mp_zm: {
+                            ...state.tests.mp_zm,
                             repute: {
-                                ...state.tests.zm_sm.repute,
+                                ...state.tests.mp_zm.repute,
                                 ['question_' + action.question.toString()]: action.value,
                             },
                         }
@@ -318,10 +366,10 @@ export class SurveyState {
                     ctx.patchState({
                         tests: {
                             ...state.tests,
-                            zm_sm: {
-                                ...state.tests.zm_sm,
+                            mp_zm: {
+                                ...state.tests.mp_zm,
                                 accomplishment: {
-                                    ...state.tests.zm_sm.accomplishment,
+                                    ...state.tests.mp_zm.accomplishment,
                                     ['question_' + action.question.toString()]: action.value,
                                 },
                             }

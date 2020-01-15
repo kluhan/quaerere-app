@@ -7,17 +7,17 @@
   </div>
 
   <div fxFlex="40">
-      <form  [formGroup]="selectorForm" fxLayout="column" >
+      <form  [formGroup]="selectorForm" fxLayout="column">
 
           <!--Company field -->
-          <mat-form-field  appearance="outline">
+          <mat-form-field appearance="outline">
               <mat-label>Token</mat-label>
               <input matInput placeholder="Enter your Token to start" value="" formControlName="token">
           </mat-form-field>
 
-         <!-- <div fxLayoutAlign="center center">
-            <button mat-raised-button color="primary" [routerLink]="['/linker']" [disabled]="!tokenValidity">Submit</button>
-          </div>-->
+          <div fxLayoutAlign="center center">
+            <button mat-raised-button color="primary" [disabled]="isLoading" (click)="requestAccess()">Submit</button>
+          </div>
 
       </form>
   </div>

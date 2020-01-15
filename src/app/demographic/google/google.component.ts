@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Store, } from '@ngxs/store';
+import { Store, Select, } from '@ngxs/store';
 import { AgeScale } from 'src/app/share/enumerations/age.enum';
 import { GenderScale } from 'src/app/share/enumerations/gender.enum';
 import { CountryScale } from 'src/app/share/enumerations/country.enum';
 import { EducationScale } from 'src/app/share/enumerations/education.enum';
 import { IncomeScale } from 'src/app/share/enumerations/income.enum';
+import { Observable } from 'rxjs';
+import { SynchronisationService } from 'src/app/synchronisation.service';
 
 @Component({
   selector: 'app-google',
@@ -14,6 +16,7 @@ import { IncomeScale } from 'src/app/share/enumerations/income.enum';
 })
 export class GoogleComponent implements OnInit {
 
+  @Select(state => state.surveyState.demographicData) data$: Observable<any>;
   private googleForm: FormGroup;
 
   private ageScale = AgeScale.RANGE_20;
@@ -22,7 +25,9 @@ export class GoogleComponent implements OnInit {
   private educationScale = EducationScale.GERMAN;
   private incomeScale = IncomeScale.THREE_STEPS;
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: FormBuilder, private synchronisationService: SynchronisationService) {
+    synchronisationService.registerDemographicData(this.data$);
+  }
 
   get formGroup() {
     return this.googleForm;

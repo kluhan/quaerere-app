@@ -1,9 +1,14 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { LikertScale } from 'src/app/share/enumerations/likert.enum';
 import { Ocean } from 'src/app/share/enumerations/ocean.enum';
 import { SetAnswer, SetScale } from 'src/app/actions/neoFfi.action';
+import { Observable } from 'rxjs';
+import { NeoFfi } from 'src/app/share/models/neo-ffi.model';
+import { FirebaseDatabase } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { SynchronisationService } from 'src/app/synchronisation.service';
 
 @Component({
   selector: 'app-neo-ffi',
@@ -11,6 +16,8 @@ import { SetAnswer, SetScale } from 'src/app/actions/neoFfi.action';
   styleUrls: ['./neo-ffi.component.scss']
 })
 export class NeoFfiComponent implements AfterViewInit {
+
+  @Select(state => state.surveyState.tests.neo_ffi) data$: Observable<NeoFfi>;
 
   neoFfiForm: FormGroup;
   scale = LikertScale.LIKERT_FIVE_LEVEL;
@@ -94,9 +101,10 @@ export class NeoFfiComponent implements AfterViewInit {
     ['qc11', 11, Ocean.CONSCIENTIOUSNESS, 'Bei allem, was ich tue, strebe ich nach Perfektion.', ],
   ];
 
-  constructor(private store: Store, private fb: FormBuilder) {
+  constructor(private store: Store, private fb: FormBuilder, synchronisationService: SynchronisationService) {
     this.neoFfiForm = this.fb.group({});
-    store.dispatch(new SetScale(this.scale));
+    synchronisationService.registerTestData(this.data$, 'neo_ffi');
+    this.store.dispatch(new SetScale(this.scale));
   }
 
   get formGroup() {

@@ -5,6 +5,9 @@ import { GenderScale } from 'src/app/share/enumerations/gender.enum';
 import { CountryScale } from 'src/app/share/enumerations/country.enum';
 import { EducationScale } from 'src/app/share/enumerations/education.enum';
 import { IncomeScale } from 'src/app/share/enumerations/income.enum';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { SynchronisationService } from 'src/app/synchronisation.service';
 
 @Component({
   selector: 'app-facebook',
@@ -13,6 +16,7 @@ import { IncomeScale } from 'src/app/share/enumerations/income.enum';
 })
 export class FacebookComponent implements OnInit {
 
+  @Select(state => state.surveyState.demographicData) data$: Observable<any>;
   private facebookForm: FormGroup;
 
   private ageScale = AgeScale.BASIC;
@@ -21,7 +25,9 @@ export class FacebookComponent implements OnInit {
   private educationScale = EducationScale.ACADEMIC;
   private incomeScale = IncomeScale.RANGE_10000;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: FormBuilder, private synchronisationService: SynchronisationService) {
+    synchronisationService.registerDemographicData(this.data$);
+  }
 
   get formGroup() {
     return this.facebookForm;

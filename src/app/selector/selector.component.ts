@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import { Survey } from '../share/models/survey.model';
 import { Store } from '@ngxs/store';
-import { SetLayout } from '../actions/survey.action';
+import { SetComponent, SetToken, SetUID } from '../actions/survey.action';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { SynchronisationService } from '../synchronisation.service';
 
 @Component({
   selector: 'app-selector',
@@ -16,26 +18,29 @@ export class SelectorComponent {
 
   selectorForm: FormGroup;
   survey: Observable<Survey>;
+  data$: Observable<any>;
+  tokenController: AbstractControl;
+  isLoading = false;
 
-  constructor(firestore: AngularFirestore, private fb: FormBuilder, private store: Store, private router: Router) {
+  // tslint:disable-next-line: max-line-length
+  constructor(private synchronisationService: SynchronisationService, private firestore: AngularFirestore, private fb: FormBuilder, private store: Store, private router: Router) {
     this.selectorForm = this.fb.group({});
     this.selectorForm.addControl('token', new FormControl(''));
-    const token = this.selectorForm.get('token');
+    this.tokenController = this.selectorForm.get('token');
+  }
 
-    token.valueChanges.subscribe(() => {
-      if (token.value !== undefined && token.value !== '') {
-        this.survey = firestore.collection('token').doc<Survey>(token.value).valueChanges();
-        this.survey.subscribe(sur => {
-          console.log(sur);
-          if (sur !== undefined) {
-            token.setErrors(null);
-            store.dispatch(new SetLayout(sur.layout));
-            router.navigate(['/linker']);
-          } else {
-            token.setErrors({'incorrect': true});
-          }
-        });
+  requestAccess(): void {
+    this.isLoading = true;
+    this.synchronisationService.requestAccess(this.tokenController.value).then(result => {
+      if(result){
+        this.router.navigate(['linker']);
+        this.isLoading = false;
+      } else {
+        this.tokenController.setErrors({'incorrect': true});
+        this.isLoading = false;
       }
-    });
+    }
+
+    );
   }
 }

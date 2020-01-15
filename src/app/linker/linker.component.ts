@@ -16,10 +16,11 @@ import { SurveyComponent } from '../share/types/surveyComponent.type';
 
 export class LinkerComponent implements AfterViewInit {
 
-   isLinear = true;
+   isLinear = false;
    changeDetectorRef: ChangeDetectorRef;
 
-   survey: SurveyComponent[];
+   test: SurveyComponent[];
+   demographic: SurveyComponent;
    demographicOptions = Demographic;
    testOptions = Tests;
 
@@ -47,7 +48,8 @@ export class LinkerComponent implements AfterViewInit {
   // Saves the ChangeDetectorRef for afterViewInit
   constructor(private ref: ChangeDetectorRef, private store: Store) {
     this.changeDetectorRef = ref;
-    this.survey = this.store.selectSnapshot<SurveyComponent[]>(state => state.surveyState.surveyLayout);
+    this.test = this.store.selectSnapshot<SurveyComponent[]>(state => state.surveyState.configuration.components);
+    this.demographic = this.store.selectSnapshot<SurveyComponent>(state => state.surveyState.configuration.demographic);
   }
 
   // Forcing change detection to avoid ExpressionChangedAfterItHasBeenCheckedError for further information see
