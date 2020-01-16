@@ -9,6 +9,15 @@ export class MpZm {
     accomplishment: Accomplishment;
 }
 
+export class MpZmResult {
+    scale: LikertScale;
+    safety: Number;
+    initiative: Number;
+    might: Number;
+    repute: Number;
+    accomplishment: Number;
+}
+
 export class Safety {
     question_0:  LikertThreeLevel | LikertFiveLevel;
     question_1:  LikertThreeLevel | LikertFiveLevel;
