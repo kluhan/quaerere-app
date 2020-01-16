@@ -9,6 +9,15 @@ export class NeoFfi {
     neuroticism: Neuroticism;
 }
 
+export class NeoFfiResult {
+    scale: LikertScale;
+    openness: Number;
+    conscientiousness: Number;
+    extraversion: Number;
+    agreeableness: Number;
+    neuroticism: Number;
+}
+
 export class Openness {
     question_0:  LikertThreeLevel | LikertFiveLevel;
     question_1:  LikertThreeLevel | LikertFiveLevel;
