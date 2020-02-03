@@ -8,6 +8,7 @@ import { MpZmComponent } from '../tests/mp-zm/mp-zm.component';
 import { FacebookComponent } from '../demographic/facebook/facebook.component';
 import { SurveyComponent } from '../share/types/surveyComponent.type';
 import { SynchronisationService } from '../synchronisation.service';
+import { Router } from '@angular/router';
 
 @Component({
    selector: 'app-linker',
@@ -47,7 +48,8 @@ export class LinkerComponent implements AfterViewInit {
    }
 
   // Saves the ChangeDetectorRef for afterViewInit
-  constructor(private ref: ChangeDetectorRef, private store: Store, private synchronisationService: SynchronisationService) {
+  // tslint:disable-next-line: max-line-length
+  constructor(private ref: ChangeDetectorRef, private store: Store, private synchronisationService: SynchronisationService, private router: Router) {
     this.changeDetectorRef = ref;
     this.test = this.store.selectSnapshot<SurveyComponent[]>(state => state.surveyState.configuration.components);
     this.demographic = this.store.selectSnapshot<SurveyComponent>(state => state.surveyState.configuration.demographic);
@@ -59,6 +61,7 @@ export class LinkerComponent implements AfterViewInit {
 
   requestResults(): void {
      this.synchronisationService.requestResult();
+     this.router.navigate(['result']);
   }
 
 }
