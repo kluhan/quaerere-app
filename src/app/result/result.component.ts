@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SynchronisationService } from '../synchronisation.service';
 
 @Component({
   selector: 'app-result',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultComponent implements OnInit {
 
-  constructor() { }
+  constructor(private synchronisationService: SynchronisationService) {
+    this.synchronisationService.requestResult();
+  }
 
   ngOnInit() {
   }

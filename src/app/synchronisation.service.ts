@@ -50,26 +50,26 @@ export class SynchronisationService {
   }
 
   // TODO Add custom Error
-  // TODO Remove constant uid and token
   async requestResult() {
+    const uid = this.store.selectSnapshot<String>(state => state.surveyState.configuration.uid).toString();
+    const token = this.store.selectSnapshot<String>(state => state.surveyState.configuration.token).toString();
     try {
-      const uid = 'RtNmHB2M2UkEHtX2cQpwPH'; // this.store.selectSnapshot<String>(state => state.surveyState.configuration.uid).toString();
-      const token = 'CMiLQAiz5WXW4HzzMUVb'; // this.store.selectSnapshot<String>(state => state.surveyState.configuration.token).toString();
       // tslint:disable-next-line: max-line-length
       const response: any = await this.httpClient.post('https://us-central1-quaerere-app.cloudfunctions.net/finishSurvey', { 'token': token.toString(), 'uid': uid.toString() }, {responseType: 'text'}).toPromise();
     } catch (error) {
       console.log(error);
     } finally {
-      const resultRef = this.firestore.collection('result').doc('RtNmHB2M2UkEHtX2cQpwPH').get().subscribe( (resultDoc) => {
-        if (resultDoc.exists) {
-          const result = resultDoc.data();
+      const resultRef = this.firestore.collection('result').doc(uid).valueChanges();
+      resultRef.subscribe((result: any) => {
           if ('neo_ffi' in result) {
             this.store.dispatch(new SetResultNeoFfi(result.neo_ffi));
           }
           if ('mp_zm' in result) {
             this.store.dispatch(new SetResultMpZm(result.mp_zm));
           }
-        }
+          if ('demographic' in result) {
+            this.store.dispatch(new SetDemographic(result.demographic));
+          }
       });
     }
   }

@@ -55,172 +55,22 @@ export class SurveyStateModel {
     };
 }
 
+// TODO: Remove static configuration
 @State<SurveyStateModel>({
     name: 'surveyState',
     defaults: {
-        demographicData: {
-            name: {
-                first: null,
-                last: null,
-            },
-            age: {
-                scale: null,
-                value: null,
-            },
-            gender: {
-                scale: null,
-                value: null,
-            },
-            country: {
-                scale: null,
-                value: null,
-            },
-            education: {
-                scale: null,
-                value: null,
-            },
-            income: {
-                scale: null,
-                value: null,
-            },
-            profession: {
-                scale: null,
-                value: null,
-            }
-        },
-        tests: {
-            neo_ffi: {
-                scale: null,
-                openness: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                    question_6:  null,
-                    question_7:  null,
-                    question_8:  null,
-                    question_9:  null,
-                    question_10: null,
-                    question_11: null,
-                },
-                conscientiousness: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                    question_6:  null,
-                    question_7:  null,
-                    question_8:  null,
-                    question_9:  null,
-                    question_10: null,
-                    question_11: null,
-                },
-                extraversion: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                    question_6:  null,
-                    question_7:  null,
-                    question_8:  null,
-                    question_9:  null,
-                    question_10: null,
-                    question_11: null,
-                },
-                agreeableness: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                    question_6:  null,
-                    question_7:  null,
-                    question_8:  null,
-                    question_9:  null,
-                    question_10: null,
-                    question_11: null,
-                },
-                neuroticism: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                    question_6:  null,
-                    question_7:  null,
-                    question_8:  null,
-                    question_9:  null,
-                    question_10: null,
-                    question_11: null,
-                },
-            },
-            mp_zm: {
-                scale: null,
-                safety: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                },
-                initiative: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                },
-                might: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                },
-                repute: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                },
-                accomplishment: {
-                    question_0:  null,
-                    question_1:  null,
-                    question_2:  null,
-                    question_3:  null,
-                    question_4:  null,
-                    question_5:  null,
-                },
-            }
-        },
+        demographicData: null,
+        tests: null,
         configuration: {
             components: [
-                Demographic.FACEBOOK,
-                Demographic.GOOGLE,
-                Tests.ZM_SM,
                 Tests.NEO_FFI,
+                Tests.ZM_SM,
             ],
-            uid: null,
-            token: null,
-            demographic: null,
+            uid: 'G5gmbZL53jPgAfTnT3Z1Nq',
+            token: 'CMiLQAiz5WXW4HzzMUVb',
+            demographic: Demographic.GOOGLE,
         },
-        results: {
-            neo_ffi: null,
-            mp_zm: null,
-        }
+        results: null,
     }
 })
 

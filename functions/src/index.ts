@@ -56,14 +56,16 @@ exports.finishSurvey = functions.https.onRequest((req, res) => {
          const requestToken = req.body.token;
          const requestUid = req.body.uid;
  
-         admin.firestore().collection('token').doc(requestToken).get().then((tokenDocument) => {
+         admin.firestore().collection('token').doc(requestToken).get().then(async (tokenDocument) => {
             if (tokenDocument.exists) {
                 const token = tokenDocument.data();
+                const demographic = await admin.firestore().collection('demographic').doc(requestUid).get();
 
-                admin.firestore().collection('result').doc(requestUid).set({token: requestToken}).catch(() => { throw Error("Can not create ResultDocument") });
-                admin.firestore().collection('demographic').doc(requestUid).update({finished: true}).catch(() => { throw Error("Can not access DemographicDocument")});
+                // TODO: Remove token-field from demographicData before copy
+                await admin.firestore().collection('result').doc(requestUid).set({token: requestToken, demographic: demographic.data()}).catch(() => { throw Error("Can not create ResultDocument") });
+                await admin.firestore().collection('demographic').doc(requestUid).update({finished: true}).catch(() => { throw Error("Can not access DemographicDocument")});
 
-                token.layout.forEach((test: string) => {
+                await token.layout.forEach((test: string) => {
                     admin.firestore().collection(test).doc(requestUid).update({finished: true}).catch(() => { throw Error("Can not access TestDocument")});
                     switch (test) {
                         case 'neo_ffi':
