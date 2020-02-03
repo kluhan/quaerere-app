@@ -14,7 +14,7 @@ import { Education } from '../share/models/education.model';
 import { Income } from '../share/models/income.model';
 import { Profession } from '../share/models/profession.model';
 import { Name } from '../share/models/name.model';
-import { NeoFfi } from '../share/models/neo-ffi.model';
+import { NeoFfi, NeoFfiResult } from '../share/models/neo-ffi.model';
 import { LikertFiveLevel, LikertThreeLevel, LikertScale } from '../share/enumerations/likert.enum';
 import * as NeoFfiActions from '../actions/neoFfi.action';
 import { Ocean } from '../share/enumerations/ocean.enum';
@@ -24,7 +24,7 @@ import { UndefinedFactorError } from '../errors/undefinedFactor.error';
 import { Demographic } from '../share/enumerations/demographic.enum';
 import { Tests } from '../share/enumerations/tests.enum';
 import * as ZmSmActions from '../actions/mpZm.action';
-import { MpZm } from '../share/models/mp-zm.model';
+import { MpZm, MpZmResult } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
 import { SurveyComponent } from '../share/types/surveyComponent.type';
 import { SetComponent, SetToken, SetUID, SetDemographic } from '../actions/survey.action';
@@ -48,6 +48,10 @@ export class SurveyStateModel {
         uid: String,
         token: String,
         demographic: SurveyComponent,
+    };
+    results: {
+        neo_ffi: NeoFfiResult;
+        mp_zm: MpZmResult;
     };
 }
 
@@ -213,6 +217,10 @@ export class SurveyStateModel {
             token: null,
             demographic: null,
         },
+        results: {
+            neo_ffi: null,
+            mp_zm: null,
+        }
     }
 })
 
@@ -240,8 +248,6 @@ export class SurveyState {
         });
     }
 
-
-
     @Action(SetToken)
     SetToken(ctx: StateContext<SurveyStateModel>, action: {token: String}) {
         const state = ctx.getState();
@@ -265,7 +271,7 @@ export class SurveyState {
     }
 
     @Action(ZmSmActions.SetScale)
-    SetScale(ctx: StateContext<SurveyStateModel>, action: {scale: LikertScale}) {
+    SetScale(ctx: StateContext<SurveyStateModel>, action: {scale: LikertScale }) {
         if (!Object.values(LikertScale).includes(<LikertScale>action.scale)) {
             throw new Error('Undefined scale');
         }
@@ -283,7 +289,7 @@ export class SurveyState {
 
     @Action(ZmSmActions.SetAnswer)
     // tslint:disable-next-line: max-line-length
-    SetAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Zurich}) {
+    SetAnswer(ctx: StateContext<SurveyStateModel>, action: { value: LikertThreeLevel | LikertFiveLevel, question: Number, factor: Zurich }) {
         const state = ctx.getState();
 
         switch (state.tests.mp_zm.scale) {
@@ -380,6 +386,17 @@ export class SurveyState {
             default:
                 throw new UndefinedFactorError();
         }
+    }
+
+    @Action(ZmSmActions.SetResult)
+    SetZmSmResult(ctx: StateContext<SurveyStateModel>, action: { result: MpZmResult }) {
+        const state = ctx.getState();
+        ctx.patchState({
+            results: {
+                ...state.results,
+                mp_zm: action.result,
+            }
+        });
     }
 
     @Action(NeoFfiActions.SetScale)
@@ -498,6 +515,17 @@ export class SurveyState {
             default:
                 throw new UndefinedFactorError();
         }
+    }
+
+    @Action(NeoFfiActions.SetResult)
+    SetNeoFfiResult(ctx: StateContext<SurveyStateModel>, action: { result: NeoFfiResult }) {
+        const state = ctx.getState();
+        ctx.patchState({
+            results: {
+                ...state.results,
+                neo_ffi: action.result,
+            }
+        });
     }
 
     @Action(SetName)

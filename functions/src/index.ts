@@ -40,6 +40,8 @@ exports.getToken = functions.https.onRequest((req, res) => {
                         res.status(200).send(response)
                     })
             } else {
+                console.log("nothing was done");
+                
                 res.send(404);
             }
             
