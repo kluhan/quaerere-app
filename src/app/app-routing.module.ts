@@ -5,6 +5,7 @@ import { FacebookComponent } from './demographic/facebook/facebook.component';
 import { LinkerComponent } from './linker/linker.component';
 import { NeoFfiComponent } from './tests/neo-ffi/neo-ffi.component';
 import { SelectorComponent } from './selector/selector.component';
+import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
   { path: 'demographic/google', component: GoogleComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'linker', component: LinkerComponent },
   { path: 'tests/neo-ffi', component: NeoFfiComponent},
   { path: 'selector', component: SelectorComponent},
+  { path: 'result', component: ResultComponent},
 ];
 
 @NgModule({
