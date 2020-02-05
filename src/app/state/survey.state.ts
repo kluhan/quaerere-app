@@ -49,7 +49,7 @@ export class SurveyStateModel {
         token: String,
         demographic: SurveyComponent,
     };
-    results: {
+    result: {
         neo_ffi: NeoFfiResult;
         mp_zm: MpZmResult;
     };
@@ -64,13 +64,16 @@ export class SurveyStateModel {
         configuration: {
             components: [
                 Tests.NEO_FFI,
-                Tests.ZM_SM,
+                Tests.MP_ZM,
             ],
             uid: 'G5gmbZL53jPgAfTnT3Z1Nq',
             token: 'CMiLQAiz5WXW4HzzMUVb',
             demographic: Demographic.GOOGLE,
         },
-        results: null,
+        result: {
+            neo_ffi: null,
+            mp_zm: null,
+        },
     }
 })
 
@@ -242,8 +245,8 @@ export class SurveyState {
     SetZmSmResult(ctx: StateContext<SurveyStateModel>, action: { result: MpZmResult }) {
         const state = ctx.getState();
         ctx.patchState({
-            results: {
-                ...state.results,
+            result: {
+                ...state.result,
                 mp_zm: action.result,
             }
         });
@@ -371,8 +374,8 @@ export class SurveyState {
     SetNeoFfiResult(ctx: StateContext<SurveyStateModel>, action: { result: NeoFfiResult }) {
         const state = ctx.getState();
         ctx.patchState({
-            results: {
-                ...state.results,
+            result: {
+                ...state.result,
                 neo_ffi: action.result,
             }
         });
