@@ -6,19 +6,19 @@ export function likertToNumeric(value: LikertFiveLevel | LikertThreeLevel, scale
         case LikertScale.LIKERT_FIVE_LEVEL:
             switch (value) {
                 case LikertFiveLevel.STRONG_AGREE:
-                    return 0
+                    return 4
             
                 case LikertFiveLevel.AGREE:
-                    return 1
+                    return 3
         
                 case LikertFiveLevel.NEUTRAL:
                     return 2
         
                 case LikertFiveLevel.DISAGREE:
-                    return 3
+                    return 1
         
                 case LikertFiveLevel.STRONG_DISAGREE:
-                    return 4
+                    return 0
                 default:
                     throw Error("Value isn't LikertThreeLevel");
             }
@@ -26,13 +26,13 @@ export function likertToNumeric(value: LikertFiveLevel | LikertThreeLevel, scale
         case LikertScale.LIKERT_THREE_LEVEL:
             switch (value) {
                 case LikertFiveLevel.AGREE:
-                    return 0
+                    return 2
         
                 case LikertFiveLevel.NEUTRAL:
                     return 1
         
                 case LikertFiveLevel.DISAGREE:
-                    return 2
+                    return 0
                 default:
                     throw Error("Value isn't LikertThreeLevel"); 
             }
