@@ -1,0 +1,30 @@
+.blind {
+    font-family: "BLOKK";
+}
+
+section{
+
+    h1{
+        text-align: center;
+
+        mat-chip-list{
+            display: inline-block;
+        }
+
+    }
+
+
+    mat-progress-bar{
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    padding-left: 15%; 
+    padding-right: 15%;
+}
+
+.head{
+
+    padding-left: 0%;
+    padding-right: 0%;
+}

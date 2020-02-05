@@ -15,6 +15,10 @@ import {
     MatSliderModule,
     MatStepperModule,
     MatButtonToggleModule,
+    MatProgressBarModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
   } from '@angular/material';
 
   @NgModule({
@@ -34,6 +38,10 @@ import {
       MatSliderModule,
       MatButtonToggleModule,
       MatStepperModule,
+      MatProgressBarModule,
+      MatDividerModule,
+      MatChipsModule,
+      MatProgressSpinnerModule,
     ],
     exports: [
       MatInputModule,
@@ -51,6 +59,10 @@ import {
       MatSliderModule,
       MatButtonToggleModule,
       MatStepperModule,
+      MatProgressBarModule,
+      MatDividerModule,
+      MatChipsModule,
+      MatProgressSpinnerModule,
     ]
   })
   export class AppMaterialModule { }
