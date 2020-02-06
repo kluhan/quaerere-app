@@ -33,6 +33,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { HttpClientModule } from '@angular/common/http';
 import { ResultComponent } from './result/result.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ResultComponent } from './result/result.component';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireFunctionsModule,
     HttpClientModule,
+    ChartsModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
