@@ -63,7 +63,7 @@ export class ResultComponent implements OnInit {
     if (this.components.includes(Tests.NEO_FFI)) {
       this.store.select<NeoFfiResult>(state => state.surveyState.result.neo_ffi).subscribe(result => {
         this.neoFfiResult = result;
-        if (result !== null) {
+        if (result !== null && result !== undefined) {
           this.updateNeoFfiChart();
           this.isNeoFfiLoaded = true;
         }
@@ -73,7 +73,7 @@ export class ResultComponent implements OnInit {
     if (this.components.includes(Tests.MP_ZM)) {
       this.store.select<MpZmResult>(state => state.surveyState.result.mp_zm).subscribe(result => {
         this.mpZmResult = result;
-        if (result !== null) {
+        if (result !== null && result !== undefined) {
           this.updateMpZmChart();
           this.isMpZmLoaded = true;
         }

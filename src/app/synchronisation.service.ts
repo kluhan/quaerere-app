@@ -36,7 +36,9 @@ export class SynchronisationService {
     const uid = this.store.selectSnapshot<String>(state => state.surveyState.configuration.uid).toString();
     const docRef = this.firestore.collection('demographic').doc(uid).ref;
     data$.subscribe(data => {
-      docRef.update(data);
+      if (data !== null && data !== undefined) {
+        docRef.update(data);
+      }
     });
   }
 
@@ -45,7 +47,9 @@ export class SynchronisationService {
     const uid = this.store.selectSnapshot<String>(state => state.surveyState.configuration.uid).toString();
     const docRef = this.firestore.collection(collection.toString()).doc(uid).ref;
     data$.subscribe(data => {
-      docRef.update(data);
+      if (data !== null && data !== undefined) {
+        docRef.update(data);
+      }
     });
   }
 
@@ -61,6 +65,7 @@ export class SynchronisationService {
     } finally {
       const resultRef = this.firestore.collection('result').doc(uid).valueChanges();
       resultRef.subscribe((result: any) => {
+        try{
           if ('neo_ffi' in result) {
             this.store.dispatch(new SetResultNeoFfi(result.neo_ffi));
           }
@@ -70,6 +75,9 @@ export class SynchronisationService {
           if ('demographic' in result) {
             this.store.dispatch(new SetDemographic(result.demographic));
           }
+        } catch (error){
+          console.log('Document not ready');
+        }
       });
     }
   }

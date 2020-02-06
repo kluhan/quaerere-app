@@ -26,7 +26,7 @@
         </div>
       </mat-step>
   
-      <mat-step *ngIf='test.includes(testOptions.ZM_SM)' [stepControl]="frmZmSmComponent">
+      <mat-step *ngIf='test.includes(testOptions.MP_ZM)' [stepControl]="frmZmSmComponent">
         <ng-template matStepLabel>ZM</ng-template>
         <app-mp-zm></app-mp-zm>
         <div fxLayoutAlign="center center">
@@ -40,7 +40,7 @@
           <h1 class="mat-display-4">you're done.</h1>
         </section>
         <div fxLayoutAlign="center center">
-          <button mat-raised-button color="primary" (click)="requestResults()">Finish and show results</button>
+          <button mat-raised-button color="primary" (click)="finish()">Finish and show results</button>
         </div>
       </mat-step>
     

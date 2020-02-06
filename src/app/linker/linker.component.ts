@@ -59,8 +59,7 @@ export class LinkerComponent implements AfterViewInit {
   // https://indepth.dev/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error/
   ngAfterViewInit() { this.changeDetectorRef.detectChanges(); }
 
-  async requestResults(): Promise<void> {
-     await this.synchronisationService.requestResult();
+  async finish(): Promise<void> {
      this.router.navigate(['result']);
   }
 

@@ -21,8 +21,6 @@ import { Ocean } from '../share/enumerations/ocean.enum';
 import { UndefinedScaleError } from '../errors/undefinedScale.error';
 import { QuestionOutOfRangeError } from '../errors/questionOutOfRange.error';
 import { UndefinedFactorError } from '../errors/undefinedFactor.error';
-import { Demographic } from '../share/enumerations/demographic.enum';
-import { Tests } from '../share/enumerations/tests.enum';
 import * as ZmSmActions from '../actions/mpZm.action';
 import { MpZm, MpZmResult } from '../share/models/mp-zm.model';
 import { Zurich } from '../share/enumerations/zurich.enum';
@@ -60,15 +58,15 @@ export class SurveyStateModel {
     name: 'surveyState',
     defaults: {
         demographicData: null,
-        tests: null,
+        tests: {
+            neo_ffi: null,
+            mp_zm: null,
+        },
         configuration: {
-            components: [
-                Tests.NEO_FFI,
-                Tests.MP_ZM,
-            ],
-            uid: 'G5gmbZL53jPgAfTnT3Z1Nq',
-            token: 'CMiLQAiz5WXW4HzzMUVb',
-            demographic: Demographic.GOOGLE,
+            components: [],
+            uid: null,
+            token: null,
+            demographic: null,
         },
         result: {
             neo_ffi: null,
