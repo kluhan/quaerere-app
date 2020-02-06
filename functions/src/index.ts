@@ -5,10 +5,11 @@ import { NeoFfi, NeoFfiResult } from "../../src/app/share/models/neo-ffi.model";
 import { MpZm, MpZmResult } from "../../src/app/share/models/mp-zm.model";
 
 import * as admin from 'firebase-admin';
+import { Token, Survey, TokenType } from "./helper";
 
 const functions = require('firebase-functions');
 const uidgenerator = require('uid-generator');
-//const admin = require ('firebase-admin');
+
 const cors = require('cors')({
     origin: true,
   });
@@ -20,14 +21,40 @@ admin.initializeApp({
 });
 
 // TODO: Create Token-Model
+// TODO: Rework Tokenlayout
 exports.getToken = functions.https.onRequest((req, res) => {
    cors(req, res, () => {
         
         const requestToken = req.body.token;
+        admin.firestore().collection('survey').where('token', 'array-contains', requestToken).get().then(async (surveyCollection) => {
+            if (!surveyCollection.empty) {
+                const survey = <Survey>surveyCollection.docs[0].data();
+                const tokenSnapshot = await admin.firestore().collection('token').doc(requestToken).get();
+                const token = <Token>tokenSnapshot.data();
 
-        admin.firestore().collection('token').doc(requestToken).get().then((tokenDocument) => {
-            if (tokenDocument.exists) {
-                const response = tokenDocument.data();
+                const increment = admin.firestore.FieldValue.increment(1);
+                const tokenRef = tokenSnapshot.ref;
+                switch (token.type) {
+                    case TokenType.FREE:
+                        tokenRef.update({ count: increment }).catch(err => Error(err));
+                        break;
+
+                    case TokenType.VOLUME:
+                        if(token.limit > token.count){
+                            tokenRef.update({ count: increment}).catch(err => Error(err));
+                        } else {
+                            res.status(423).send();
+                        }
+                }
+                
+                const response = {
+                    'layout': survey.layout,
+                    'demographic': survey.demographic,
+                    'token': requestToken,
+                    'name': survey.name,
+                    'uid': undefined,
+                };
+
                 uidgen.generate()
                     .then((uid: string) => {
                         admin.auth().createCustomToken(uid).catch(() => { throw Error("Can not register CustomToken")});
@@ -41,15 +68,15 @@ exports.getToken = functions.https.onRequest((req, res) => {
                     })
             } else {
                 console.log("nothing was done");
-                
                 res.send(404);
             }
             
-        }).catch(() => { throw Error("Can not access TokenDocument")});
+        }).catch(() => { throw Error("Can not access SurveyDocument")});
     })
 });
 
 // TODO: Write custom Error
+// TODO: Add Survey to Result
 exports.finishSurvey = functions.https.onRequest((req, res) => {
     cors(req, res, () => {
          

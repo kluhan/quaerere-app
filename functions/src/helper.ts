@@ -1,5 +1,25 @@
-import { LikertFiveLevel, LikertThreeLevel, LikertScale } from "../../src/app/share/enumerations/likert.enum"
+import { LikertFiveLevel, LikertThreeLevel, LikertScale } from "../../src/app/share/enumerations/likert.enum";
+import { Demographic } from "../../src/app/share/enumerations/demographic.enum";
+import { Tests } from "../../src/app/share/enumerations/tests.enum"
 
+
+export class Survey {
+    demographic: Demographic;
+    layout: Array<Tests>;
+    token: Array<String>;
+    name: String;
+}
+
+export class Token {
+    type: TokenType;
+    limit: Number;
+    count: Number;
+}
+
+export enum TokenType{
+    FREE = "free",
+    VOLUME = "volume",
+}
 // TODO: Write custom Error
 export function likertToNumeric(value: LikertFiveLevel | LikertThreeLevel, scale: LikertScale ) {
     switch (scale) {

@@ -15,7 +15,7 @@
   "main": "lib/functions/src/index.js",
   "dependencies": {
     "cors": "^2.8.5",
-    "firebase-admin": "^8.9.1",
+    "firebase-admin": "^8.9.2",
     "firebase-functions": "^3.3.0",
     "uid-generator": "^2.0.0"
   },
