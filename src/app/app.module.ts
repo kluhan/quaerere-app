@@ -34,6 +34,7 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { HttpClientModule } from '@angular/common/http';
 import { ResultComponent } from './result/result.component';
 import { ChartsModule } from 'ng2-charts';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ChartsModule } from 'ng2-charts';
     FooterComponent,
     SelectorComponent,
     ResultComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
