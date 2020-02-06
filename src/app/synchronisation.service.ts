@@ -65,7 +65,7 @@ export class SynchronisationService {
     } finally {
       const resultRef = this.firestore.collection('result').doc(uid).valueChanges();
       resultRef.subscribe((result: any) => {
-        try{
+        try {
           if ('neo_ffi' in result) {
             this.store.dispatch(new SetResultNeoFfi(result.neo_ffi));
           }
@@ -75,7 +75,7 @@ export class SynchronisationService {
           if ('demographic' in result) {
             this.store.dispatch(new SetDemographic(result.demographic));
           }
-        } catch (error){
+        } catch (error) {
           console.log('Document not ready');
         }
       });

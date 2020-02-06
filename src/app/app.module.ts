@@ -34,7 +34,6 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { HttpClientModule } from '@angular/common/http';
 import { ResultComponent } from './result/result.component';
 import { ChartsModule } from 'ng2-charts';
-import { TokenGeneratorComponent } from './token-generator/token-generator.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +54,6 @@ import { TokenGeneratorComponent } from './token-generator/token-generator.compo
     FooterComponent,
     SelectorComponent,
     ResultComponent,
-    TokenGeneratorComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +69,7 @@ import { TokenGeneratorComponent } from './token-generator/token-generator.compo
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFirestoreModule,
     AngularFireFunctionsModule,
     HttpClientModule,
     ChartsModule,
