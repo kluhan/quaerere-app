@@ -19,6 +19,7 @@ import {
     MatDividerModule,
     MatChipsModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
   } from '@angular/material';
 
   @NgModule({
@@ -42,6 +43,7 @@ import {
       MatDividerModule,
       MatChipsModule,
       MatProgressSpinnerModule,
+      MatExpansionModule,
     ],
     exports: [
       MatInputModule,
@@ -63,6 +65,7 @@ import {
       MatDividerModule,
       MatChipsModule,
       MatProgressSpinnerModule,
+      MatExpansionModule,
     ]
   })
   export class AppMaterialModule { }

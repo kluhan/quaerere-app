@@ -9,10 +9,33 @@
                    <!-- Applying the mat-typography class adds styles for native elements. -->
                     <section class="head">
                         <h1 class="mat-display-4">NEO-FFI</h1>
-                        <p class="blind mat-subheading-2">
-                            Quis laborum aliquip ea consequat deserunt culpa veniam enim nisi enim in. Culpa ut proident veniam quis ad. Lorem veniam amet aute ex enim anim anim voluptate fugiat excepteur dolore. Ea do ipsum adipisicing enim non. Ipsum ex et elit fugiat.
-                        </p>
+                        <div >
+                            <p class="blind mat-subheading-2">
+                                Quis laborum aliquip ea consequat deserunt culpa veniam enim nisi enim in. Culpa ut proident veniam quis ad. Lorem veniam amet aute ex enim anim anim voluptate fugiat excepteur dolore. Ea do ipsum adipisicing enim non. Ipsum ex et elit fugiat.
+                            </p>
+                        </div>
                     </section>
+
+                    <section>
+                        <mat-accordion>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <p class="blind">Quis </p>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                              
+                                <canvas baseChart *ngIf="neoFfiChartData !== null"
+                                    [datasets]="neoFfiChartData"
+                                    [options]="radarChartOptions"
+                                    [labels]="neoFfiChartLabels"
+                                    [chartType]="neoFfiChartType">
+                                </canvas>
+
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </section>
+                    <mat-divider></mat-divider>
 
                     <section>
                         <h1 class="mat-h1">Neurotizismus
@@ -94,27 +117,113 @@
         </mat-tab>
         <mat-tab label="MP-ZM">
             <div style="margin-top: 24px; margin-bottom: 24px;" class="mat-typography">
-                <div fxLayout="column" fxLayoutGap="32px" fxFlex="50" fxFlex.lt-sm="90" fxFlexOffset="25" fxFlexOffset.lt-sm="5">
+                <div *ngIf="!isMpZmLoaded" fxLayout="row" fxFill fxLayoutAlign="center center">
+                    <mat-spinner></mat-spinner>
+                </div>
+                <div *ngIf="isMpZmLoaded" fxLayout="column" fxLayoutGap="32px" fxFlex="50" fxFlex.lt-sm="90" fxFlexOffset="25" fxFlexOffset.lt-sm="5">
                    <!-- Applying the mat-typography class adds styles for native elements. -->
-                    <section style="text-align: center;">
-                        <h1 class="mat-display-4">MP-ZM</h1>
+                    <section class="head">
+                        <h1 class="mat-display-4">MpZm</h1>
+                        <p class="blind mat-subheading-2">
+                            Quis laborum aliquip ea consequat deserunt culpa veniam enim nisi enim in. Culpa ut proident veniam quis ad. Lorem veniam amet aute ex enim anim anim voluptate fugiat excepteur dolore. Ea do ipsum adipisicing enim non. Ipsum ex et elit fugiat.
+                        </p>
                     </section>
-                    <p>
-                        Der nächste Abschnitt umfasst 60 Aussagen, die sich zur Beschreibung Ihrer eigenen Person eignen könnten. Lesen Sie bitte jede dieser Aussagen aufmerksam durch und überlegen Sie, ob diese Aussage auf Sie persönlich zutrifft oder nicht. Zur Bewertung jeder der 60 Aussagen steht Ihnen eine fünffach abgestufte Skala zur Verfügung.
-                    </p>
-                    <ul>
-                        <li><b>starke Ablehnung</b>, wenn Sie der Aussage auf keinen Fall zustimmen oder sie für völlig unzutreffend halten</li>
-                        <li><b>Ablehnung</b>, wenn Sie der Aussage eher nicht zustimmen oder sie für unzutreffend halten</li>
-                        <li><b>Neutral</b>, wenn die Aussage weder richtig noch falsch, also weder zutreffend noch unzutreffend ist</li>
-                        <li><b>Zustimmung</b>, wenn Sie der Aussage eher zustimmen oder sie für zutreffend halten</li>
-                        <li><b>starke Zustimmung</b>, wenn Sie der Aussage nachdrücklich zustimmen oder sie für völlig zutreffend halten</li>
-                    </ul>
-                    <p>
-                        Es gibt in diesem Fragebogen keine ‘richtigen‘ oder ‘falschen‘ Antworten, und Sie müssen kein Experte / keine Expertin sein, um den Fragebogen angemessen beantworten zu können. Sie erfüllen den Zweck der Befragung am besten, wenn Sie die Fragen so wahrheitsgemäß wie möglich beantworten.
-                    </p>
-                    <p>
-                        Bitte lesen Sie jede Aussage genau durch und kreuzen Sie als Antwort die Kategorie an, die Ihre Sichtweise am besten ausdrückt. Falls Sie Ihre Meinung nach dem Ankreuzen einmal ändern sollten, streichen Sie Ihre erste Antwort bitte deutlich durch. Bitte bewerten Sie die 60 Aussagen zügig, aber sorgfältig. Lassen Sie keine Aussage aus. Auch wenn Ihnen einmal die Entscheidung schwerfallen sollte, kreuzen Sie trotzdem immer eine Antwort an und zwar diejenige, welche noch am ehesten auf Sie zutrifft. Beginnen Sie bitte jetzt mit der Beantwortung. 
-                    </p>
+
+                    <section>
+                        <mat-accordion>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <p class="blind">Quis</p>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                              
+                                <canvas baseChart *ngIf="mpZmChartData !== null"
+                                    [datasets]="mpZmChartData"
+                                    [options]="radarChartOptions"
+                                    [labels]="mpZmChartLabels"
+                                    [chartType]="mpZmChartType">
+                                </canvas>
+
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </section>
+                    <mat-divider></mat-divider>
+
+                    <section>
+                        <h1 class="mat-h1">Sicherheit 
+                            <mat-chip-list>
+                                <mat-chip color="primary" selected>{{mpZmResult.safety}} von 24</mat-chip>
+                            </mat-chip-list>
+                        </h1>
+                        <mat-progress-bar mode="determinate" value="{{ (mpZmResult.safety/24)*100}}"></mat-progress-bar>
+                        <p class="blind">
+                            Exercitation enim ullamco exercitation qui duis eiusmod dolore esse. Laboris et aliqua fugiat ipsum id fugiat ex proident labore deserunt cillum minim. Incididunt proident ullamco culpa ea velit ullamco sint occaecat non. Nisi eu velit ea laboris nostrud magna non minim enim ipsum ad magna.
+                            <br>
+                            Incididunt cupidatat ut eu et irure consectetur sunt et consectetur aute. Veniam elit labore eu Lorem qui occaecat amet irure nostrud exercitation laborum ut laborum anim. Aliquip laborum officia dolor excepteur.
+                        </p>
+                    </section>
+                    <mat-divider></mat-divider>
+
+                    <section>
+                        <h1 class="mat-h1">Unternehmungslust
+                            <mat-chip-list>
+                                <mat-chip color="primary" selected>{{mpZmResult.initiative}} von 24</mat-chip>
+                            </mat-chip-list>
+                        </h1>
+                        <mat-progress-bar mode="determinate" value="{{ (mpZmResult.initiative/24)*100}}"></mat-progress-bar>
+                        <p class="blind">
+                            Exercitation enim ullamco exercitation qui duis eiusmod dolore esse. Laboris et aliqua fugiat ipsum id fugiat ex proident labore deserunt cillum minim. Incididunt proident ullamco culpa ea velit ullamco sint occaecat non. Nisi eu velit ea laboris nostrud magna non minim enim ipsum ad magna.
+                            <br>
+                            Incididunt cupidatat ut eu et irure consectetur sunt et consectetur aute. Veniam elit labore eu Lorem qui occaecat amet irure nostrud exercitation laborum ut laborum anim. Aliquip laborum officia dolor excepteur.
+                        </p>
+                    </section>
+                    <mat-divider></mat-divider>
+
+                    <section>
+                        <h1 class="mat-h1">Macht
+                            <mat-chip-list>
+                                <mat-chip color="primary" selected>{{mpZmResult.might}} von 24</mat-chip>
+                            </mat-chip-list>
+                        </h1>
+                        <mat-progress-bar mode="determinate" value="{{ (mpZmResult.might/24)*100}}"></mat-progress-bar>
+                        <p class="blind">
+                            Exercitation enim ullamco exercitation qui duis eiusmod dolore esse. Laboris et aliqua fugiat ipsum id fugiat ex proident labore deserunt cillum minim. Incididunt proident ullamco culpa ea velit ullamco sint occaecat non. Nisi eu velit ea laboris nostrud magna non minim enim ipsum ad magna.
+                            <br>
+                            Incididunt cupidatat ut eu et irure consectetur sunt et consectetur aute. Veniam elit labore eu Lorem qui occaecat amet irure nostrud exercitation laborum ut laborum anim. Aliquip laborum officia dolor excepteur.
+                        </p>
+                    </section>
+                    <mat-divider></mat-divider>
+
+                    <section>
+                        <h1 class="mat-h1">Geltung
+                            <mat-chip-list>
+                                <mat-chip color="primary" selected>{{mpZmResult.repute}} von 24</mat-chip>
+                            </mat-chip-list>
+                        </h1>
+                        <mat-progress-bar mode="determinate" value="{{ (mpZmResult.repute/24)*100}}"></mat-progress-bar>
+                        <p class="blind">
+                            Exercitation enim ullamco exercitation qui duis eiusmod dolore esse. Laboris et aliqua fugiat ipsum id fugiat ex proident labore deserunt cillum minim. Incididunt proident ullamco culpa ea velit ullamco sint occaecat non. Nisi eu velit ea laboris nostrud magna non minim enim ipsum ad magna.
+                            <br>
+                            Incididunt cupidatat ut eu et irure consectetur sunt et consectetur aute. Veniam elit labore eu Lorem qui occaecat amet irure nostrud exercitation laborum ut laborum anim. Aliquip laborum officia dolor excepteur.
+                        </p>
+                    </section>
+                    <mat-divider></mat-divider>
+
+                    <section>
+                        <h1 class="mat-h1">Leistung
+                            <mat-chip-list>
+                                <mat-chip color="primary" selected>{{mpZmResult.accomplishment}} von 24</mat-chip>
+                            </mat-chip-list>
+                        </h1>
+                        <mat-progress-bar mode="determinate" value="{{ (mpZmResult.accomplishment/24)*100}}"></mat-progress-bar>
+                        <p class="blind">
+                            Exercitation enim ullamco exercitation qui duis eiusmod dolore esse. Laboris et aliqua fugiat ipsum id fugiat ex proident labore deserunt cillum minim. Incididunt proident ullamco culpa ea velit ullamco sint occaecat non. Nisi eu velit ea laboris nostrud magna non minim enim ipsum ad magna.
+                            <br>
+                            Incididunt cupidatat ut eu et irure consectetur sunt et consectetur aute. Veniam elit labore eu Lorem qui occaecat amet irure nostrud exercitation laborum ut laborum anim. Aliquip laborum officia dolor excepteur.
+                        </p>
+                    </section>
+
                 </div>
                 <div fxFlex></div>
             </div>
