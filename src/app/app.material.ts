@@ -20,6 +20,9 @@ import {
     MatChipsModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
+    MatTableModule,
+    MatListModule,
+    MatDialogModule,
   } from '@angular/material';
 
   @NgModule({
@@ -44,6 +47,9 @@ import {
       MatChipsModule,
       MatProgressSpinnerModule,
       MatExpansionModule,
+      MatTableModule,
+      MatListModule,
+      MatDialogModule,
     ],
     exports: [
       MatInputModule,
@@ -66,6 +72,9 @@ import {
       MatChipsModule,
       MatProgressSpinnerModule,
       MatExpansionModule,
+      MatTableModule,
+      MatListModule,
+      MatDialogModule,
     ]
   })
   export class AppMaterialModule { }

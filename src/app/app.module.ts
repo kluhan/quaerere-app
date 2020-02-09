@@ -35,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResultComponent } from './result/result.component';
 import { ChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TokenDialogComponent } from './share/components/token-dialog/token-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SelectorComponent,
     ResultComponent,
     DashboardComponent,
+    TokenDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +79,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ChartsModule,
   ],
   providers: [HttpClientModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [TokenDialogComponent],
 })
 export class AppModule { }

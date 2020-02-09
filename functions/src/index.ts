@@ -5,7 +5,6 @@ import { NeoFfi, NeoFfiResult } from "../../src/app/share/models/neo-ffi.model";
 import { MpZm, MpZmResult } from "../../src/app/share/models/mp-zm.model";
 
 import * as admin from 'firebase-admin';
-import { Token, Survey, TokenType } from "./helper";
 
 const functions = require('firebase-functions');
 const uidgenerator = require('uid-generator');

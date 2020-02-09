@@ -1,1 +1,50 @@
-<p>dashboard works!</p>
+<mat-tab-group>
+    <mat-tab label="Overview">
+
+        <div style="margin-top: 24px; margin-bottom: 24px;" class="mat-typography">
+            <div fxLayout="column" fxLayoutGap="32px" fxFlex="50" fxFlex.lt-sm="90" fxFlexOffset="25" fxFlexOffset.lt-sm="5">
+               <!-- Applying the mat-typography class adds styles for native elements. -->
+                <h1 class="mat-display-4">Surveys</h1>
+                <section fxLayout="row" fxLayoutGap="32px">
+
+                    <mat-card *ngFor="let survey of surveyData" class="example-card" fxFlex="50">
+                        <mat-card-header>
+                            <mat-card-title>{{ survey.survey.name }}</mat-card-title>
+                            <mat-card-subtitle>{{ survey.survey.date.toDate() | date: 'dd MMM hh:mm' }}</mat-card-subtitle>
+                        </mat-card-header>
+
+                        <mat-card-content>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>Token</td>
+                                        <td>Type</td>
+                                        <td>Count</td>
+                                        <td>Limit</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let token of survey.token">
+                                        <td>{{token.tokenDocument.name}}</td>
+                                        <td>{{token.tokenDocument.type}}</td>
+                                        <td>{{token.tokenDocument.count}}</td>
+                                        <td>{{token.tokenDocument.limit}}</td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        </mat-card-content>
+
+                        <mat-card-actions>
+                            <button mat-button (click)="openDialog(survey.surveyID)">Add</button>
+                        </mat-card-actions>
+
+                    </mat-card>
+
+                </section>
+            </div>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Manage Surveys"> Content 2 </mat-tab>
+    <mat-tab label="View Results"> Content 3 </mat-tab>
+</mat-tab-group>

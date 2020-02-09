@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Add Token</h2>
+
+<mat-dialog-content>
+
+    <form [formGroup]="tokenForm" fxLayout="column">
+
+        <!--Name field -->
+        <mat-form-field  appearance="outline" required>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="Name">
+        </mat-form-field>
+
+        <!--Type field -->
+        <mat-form-field appearance="outline" required>
+            <mat-label>Type</mat-label>
+            <select matNativeControl formControlName="type" >
+                <option [value]="TokenTypeOptions.FREE">Free</option>
+                <option [value]="TokenTypeOptions.VOLUME">Volume</option>
+            </select>
+        </mat-form-field>
+
+        <!--Limit field -->
+        <mat-form-field *ngIf="showLimit" appearance="outline">
+            <mat-label>Limit</mat-label>
+            <input matInput formControlName="limit" placeholder="Limit">
+        </mat-form-field>
+    </form>
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="discard()">Discard</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Add</button>
+</mat-dialog-actions>
