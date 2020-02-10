@@ -13,7 +13,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class TokenDialogComponent implements OnInit {
 
-  TokenTypeOptions = TokenType;
+  private tokenTypeOptions = TokenType;
   private tokenForm: FormGroup;
   private showLimit: Boolean = false;
   private surveyID: String;

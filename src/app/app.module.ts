@@ -36,6 +36,7 @@ import { ResultComponent } from './result/result.component';
 import { ChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TokenDialogComponent } from './share/components/token-dialog/token-dialog.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { TokenDialogComponent } from './share/components/token-dialog/token-dial
     AngularFireFunctionsModule,
     HttpClientModule,
     ChartsModule,
+    ClipboardModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],

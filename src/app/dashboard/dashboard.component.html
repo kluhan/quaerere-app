@@ -14,13 +14,14 @@
                         </mat-card-header>
 
                         <mat-card-content>
-                            <table class="table table-hover">
+                            <table class="table table-hover" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <td>Token</td>
                                         <td>Type</td>
                                         <td>Count</td>
                                         <td>Limit</td>
+                                        <td></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,13 +30,18 @@
                                         <td>{{token.tokenDocument.type}}</td>
                                         <td>{{token.tokenDocument.count}}</td>
                                         <td>{{token.tokenDocument.limit}}</td>
+                                        <td>
+                                            <button color="accent" mat-icon-button ngxClipboard [cbContent]="token.tokenID">
+                                                <mat-icon>file_copy</mat-icon>
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table> 
                         </mat-card-content>
 
                         <mat-card-actions>
-                            <button mat-button (click)="openDialog(survey.surveyID)">Add</button>
+                            <button mat-raised-button color="primary" (click)="openDialog(survey.surveyID)">Add Token</button>
                         </mat-card-actions>
 
                     </mat-card>
@@ -43,6 +49,8 @@
                 </section>
             </div>
         </div>
+
+        <button mat-fab color="primary">Primary</button>
 
     </mat-tab>
     <mat-tab label="Manage Surveys"> Content 2 </mat-tab>
