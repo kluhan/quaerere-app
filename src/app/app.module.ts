@@ -37,6 +37,7 @@ import { ChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TokenDialogComponent } from './share/components/token-dialog/token-dialog.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { SurveyDialogComponent } from './share/components/survey-dialog/survey-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ClipboardModule } from 'ngx-clipboard';
     ResultComponent,
     DashboardComponent,
     TokenDialogComponent,
+    SurveyDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +84,9 @@ import { ClipboardModule } from 'ngx-clipboard';
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],
-  entryComponents: [TokenDialogComponent],
+  entryComponents: [
+    TokenDialogComponent,
+    SurveyDialogComponent,
+  ],
 })
 export class AppModule { }

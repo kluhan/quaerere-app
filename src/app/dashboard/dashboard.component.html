@@ -41,16 +41,22 @@
                         </mat-card-content>
 
                         <mat-card-actions>
-                            <button mat-raised-button color="primary" (click)="openDialog(survey.surveyID)">Add Token</button>
+                            <button mat-raised-button color="primary" (click)="openTokenDialog(survey.surveyID)">Add Token</button>
                         </mat-card-actions>
 
                     </mat-card>
-
                 </section>
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <button (click)="openSurveyDialog()" color="primary" mat-fab style="height: 96px; width: 96px;">
+                        <mat-icon>note_add</mat-icon>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <button mat-fab color="primary">Primary</button>
+
+
 
     </mat-tab>
     <mat-tab label="Manage Surveys"> Content 2 </mat-tab>

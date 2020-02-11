@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Add Survey</h2>
+
+<mat-dialog-content>
+
+    <form [formGroup]="surveyForm" fxLayout="column">
+
+        <!--Name field -->
+        <mat-form-field  appearance="outline" required>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="Name">
+        </mat-form-field>
+
+        <!--Demographic field -->
+        <mat-form-field appearance="outline" required>
+            <mat-label>Demographic</mat-label>
+            <select matNativeControl formControlName="demographic" >
+                <option [value]="demographicOptions.GOOGLE">Google</option>
+                <option [value]="demographicOptions.FACEBOOK">Facebook</option>
+            </select>
+        </mat-form-field>
+
+        <!--Limit field -->
+        <mat-label>Tests</mat-label>
+        <mat-checkbox formControlName="neo_ffi" >NEO-FFI</mat-checkbox>
+        <mat-checkbox formControlName="mp_zm" >MP-ZM</mat-checkbox>
+    </form>
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="discard()">Discard</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Add</button>
+</mat-dialog-actions>

@@ -3,7 +3,7 @@ import { Demographic } from '../enumerations/demographic.enum';
 
 export class Survey {
     layout: SurveyComponent[];
-    date: String;
+    date: Date;
     demographic: Demographic;
     name: String;
     token: Array<String>;

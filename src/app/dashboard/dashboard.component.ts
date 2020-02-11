@@ -4,6 +4,7 @@ import { Survey } from '../share/models/survey.model';
 import { Token } from '../share/models/token.model';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { TokenDialogComponent } from '../share/components/token-dialog/token-dialog.component';
+import { SurveyDialogComponent } from '../share/components/survey-dialog/survey-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,7 +44,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  openDialog(surveyID: String) {
+  openTokenDialog(surveyID: String) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -52,6 +53,18 @@ export class DashboardComponent implements OnInit {
     };
 
     const dialogRef = this.dialog.open(TokenDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((value) => {
+        this.sync();
+      });
+  }
+
+  openSurveyDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(SurveyDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((value) => {
         this.sync();
