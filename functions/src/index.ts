@@ -3,6 +3,10 @@ import { calculateMpZm } from "./mp_zm";
 
 import { NeoFfi, NeoFfiResult } from "../../src/app/share/models/neo-ffi.model";
 import { MpZm, MpZmResult } from "../../src/app/share/models/mp-zm.model";
+import { Survey } from "../../src/app/share/models/survey.model"
+import { Token } from "../../src/app/share/models/token.model"
+import { TokenType } from "../../src/app/share/enumerations/token-type.enum"
+import { Tests } from "../../src/app/share/enumerations/tests.enum"
 
 import * as admin from 'firebase-admin';
 
@@ -84,17 +88,18 @@ exports.finishSurvey = functions.https.onRequest((req, res) => {
  
          admin.firestore().collection('token').doc(requestToken).get().then(async (tokenDocument) => {
             if (tokenDocument.exists) {
-                const token = tokenDocument.data();
+                const token = <Token>tokenDocument.data();
                 const demographic = await admin.firestore().collection('demographic').doc(requestUid).get();
+                const survey = <Survey> await (await admin.firestore().collection('survey').doc(token.survey.toString()).get()).data();
 
                 // TODO: Remove token-field from demographicData before copy
                 await admin.firestore().collection('result').doc(requestUid).set({token: requestToken, demographic: demographic.data()}).catch(() => { throw Error("Can not create ResultDocument") });
                 await admin.firestore().collection('demographic').doc(requestUid).update({finished: true}).catch(() => { throw Error("Can not access DemographicDocument")});
 
-                await token.layout.forEach((test: string) => {
+                survey.layout.forEach((test: Tests) => {
                     admin.firestore().collection(test).doc(requestUid).update({finished: true}).catch(() => { throw Error("Can not access TestDocument")});
                     switch (test) {
-                        case 'neo_ffi':
+                        case Tests.NEO_FFI:
                             admin.firestore().collection('neo_ffi').doc(requestUid).get().then((neoFfiDocument) => {
                                 const neo_ffi = neoFfiDocument.data() as NeoFfi;
                                 const neo_ffi_result: NeoFfiResult = calculateNeoFfi(neo_ffi);
@@ -102,7 +107,7 @@ exports.finishSurvey = functions.https.onRequest((req, res) => {
                             }).catch(() => { throw Error("Can not access NeoFfiDocument")});
                             break;
                      
-                        case 'mp_zm':
+                        case Tests.MP_ZM:
                             admin.firestore().collection('mp_zm').doc(requestUid).get().then((mpZmDocument) => {
                                 const mp_zm = mpZmDocument.data() as MpZm;
                                 const mp_zm_result: MpZmResult = calculateMpZm(mp_zm);

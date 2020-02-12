@@ -21,7 +21,7 @@ export class TokenDialogComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
   constructor( private firestore: AngularFirestore, private formBuilder: FormBuilder, private dialogRef: MatDialogRef<TokenDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.surveyID = data.surveyID;
-}
+  }
 
   ngOnInit() {
     this.tokenForm = this.formBuilder.group({
@@ -52,6 +52,7 @@ export class TokenDialogComponent implements OnInit {
       name: this.tokenForm.get('name').value,
       type: this.tokenForm.get('type').value,
       limit: this.tokenForm.get('limit').value,
+      survey: this.surveyID.toString(),
     };
     console.log(newToken);
 

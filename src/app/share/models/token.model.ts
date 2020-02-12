@@ -5,4 +5,5 @@ export class Token {
     count: Number;
     limit: Number;
     type: TokenType;
+    survey: String;
 }
