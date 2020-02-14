@@ -24,6 +24,7 @@ import {
     MatListModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatTreeModule,
   } from '@angular/material';
 
   @NgModule({
@@ -78,6 +79,7 @@ import {
       MatListModule,
       MatDialogModule,
       MatCheckboxModule,
+      MatTreeModule,
     ]
   })
   export class AppMaterialModule { }

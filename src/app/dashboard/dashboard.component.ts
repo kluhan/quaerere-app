@@ -5,6 +5,9 @@ import { Token } from '../share/models/token.model';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { TokenDialogComponent } from '../share/components/token-dialog/token-dialog.component';
 import { SurveyDialogComponent } from '../share/components/survey-dialog/survey-dialog.component';
+import { Result } from '../share/models/result.model';
+import { SurveyComponent } from '../share/types/surveyComponent.type';
+import { Tests } from '../share/enumerations/tests.enum';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +16,22 @@ import { SurveyDialogComponent } from '../share/components/survey-dialog/survey-
 })
 export class DashboardComponent implements OnInit {
 
-  surveyData: Array<{ survey: Survey, surveyID: String, token: {tokenDocument: Token, tokenID: String}[]}>;
+  private testOptions = Tests;
+
+  surveyData: Array<{
+    survey: Survey,
+    surveyID: String,
+    token: {
+      tokenDocument: Token,
+      tokenID: String
+    }[]}>;
+
+  resultMap: Map<String, Result[]> = new Map;
   tokenMap: Map<String, Token> = new Map;
+
+
+  displayedColumnsMpZm: string[] = ['name', 'accomplishment', 'initiative', 'might', 'repute', 'safety'];
+  displayedColumnsNeoFfi: string[] = ['name', 'agreeableness', 'conscientiousness', 'extraversion', 'neuroticism', 'openness'];
 
   constructor(private firestore: AngularFirestore, private dialog: MatDialog) {
     this.sync();
@@ -23,6 +40,7 @@ export class DashboardComponent implements OnInit {
   async sync() {
     const surveyPromise = await this.firestore.collection('survey').get().toPromise();
     const tokenPromise = await this.firestore.collection('token').get().toPromise();
+    const resultPromise = await this.firestore.collection('result').get().toPromise();
 
     surveyPromise.docs.forEach(doc => {
       console.log(doc.data());
@@ -32,6 +50,23 @@ export class DashboardComponent implements OnInit {
       console.log(tokenDoc.data());
       this.tokenMap.set(tokenDoc.id, <Token>tokenDoc.data());
     });
+
+    resultPromise.docs.forEach(resultDoc => {
+      const resultData = <Result>resultDoc.data();
+      console.log(resultData);
+
+      if (this.resultMap.has(resultData.token)) {
+        this.resultMap.get(resultDoc.data().token).push(resultData);
+      } else {
+        const newResultArr = new Array<Result>();
+        newResultArr.push(resultData);
+        this.resultMap.set(resultData.token, newResultArr);
+      }
+    });
+
+    console.log(this.resultMap);
+
+
     this.surveyData = [];
     surveyPromise.docs.forEach(surveyDoc => {
       const surveyDocData = <Survey>surveyDoc.data();
@@ -72,6 +107,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  hasLayoutElement(survey: Survey, layoutElement: Tests) {
+    return survey.layout.includes(layoutElement);
   }
 
 }
